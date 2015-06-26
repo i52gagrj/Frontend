@@ -1,0 +1,29 @@
+'use strict';
+
+angular.module('Frontend.Login', ['ngRoute','angular-jwt','angular-storage'])
+
+.config(['$routeProvider', function($routeProvider) {
+  $routeProvider.when('/login', {
+    templateUrl: 'login/login.html',
+    controller: 'LoginController'
+  });
+}])
+
+.controller('LoginController', function($scope, $http, backendAPIservice) {
+  $scope.recibeVenta;
+
+    $scope.Login=function(username,password) {
+      backendAPIservice.getLogin(username,password).success(function(response){
+        //Recibe token
+        //Tratarlo
+        //PONERLO EN ALMACENAMIENTO LOCAL (Mirar) 
+        var recibeToken = response;
+        console.log(JSON.stringify(recibeToken));  
+        store.set('recibeToken'response.data.response.token);
+        $location.path("/home"); 
+      });
+    };
+
+
+
+});

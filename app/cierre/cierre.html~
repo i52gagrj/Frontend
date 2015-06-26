@@ -1,0 +1,57 @@
+<div ng-Load="Totales()">
+
+<div class="ventascaja">  
+  <strong>Ventas del dia</strong>
+  <table>
+    <tr>
+      <th align=center > Nº de Venta 
+      <th align=center > Fecha
+      <th align=center > Hora
+      <th align=center > Cliente
+      <th align=center > Contado
+    <tr ng-repeat="venta in listaVentas">
+      <td align=center >{{ venta.id }}</td> 
+      <td align=center >{{ venta.fechaventa }}</td> 
+      <td align=center >{{ venta.horaventa }}</td> 
+      <td align=center >{{ venta.socio }}</td> 
+      <td align=center >{{ venta.contado }}</td> 
+  </table>  
+</div> 
+
+
+
+<div class="desglosecaja">
+  <strong>INGRESOS</strong>
+  <br>
+  <strong>En efectivo: </strong> {{ contado | number:2 }}
+  <strong>En prepago: </strong>  {{ prepago | number:2 }}
+  <br><br>
+  <strong>DESGLOSE DEL IVA</strong>
+  <br> 
+  <strong>Base Imponible 21%: </strong> {{ base21 | number:2 }}
+  <strong>IVA 21%: </strong> {{ iva21 | number:2 }}
+  <br>
+  <strong>Base Imponible 10%: </strong> {{ base10 | number:2 }}
+  <strong>IVA 10%: </strong> {{ iva10 | number:2 }}
+  <br> 
+  <strong>Base Imponible 4%: </strong> {{ base4 | number:2 }}
+  <strong>IVA 21%: </strong> {{ iva4 | number:2 }} 
+</div>
+
+
+
+<div class="cierrecaja" >
+  <strong>Cantidad en caja: </strong> {{ (contado *1) + (anterior.dejado *1) | number:2 }}
+  <p>
+  <strong>Cierre</strong>
+  <br>
+  <strong>Cantidad a dejar en caja:</strong>
+  <input type="text" size="6" name="resto" id="resto" ng-model="resto" />          
+  <button ng-click="Finalizar()"> Finalizar </button>
+  <br> 
+  <strong> Terminado: </strong> {{ terminado }} 
+</div>     
+
+</div>
+
+

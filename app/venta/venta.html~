@@ -1,0 +1,83 @@
+<div>
+
+  <div class="articuloscaja" ng-if="terminado==false">  
+    <strong>ARTÍCULOS</strong>
+    <table>
+      <tr>
+        <th align=center > Nombre 
+        <th align=center > Base Imponible
+        <th align=center > Tipo IVA
+        <th align=center > IVA 
+        <th align=center > Precio Total
+      <tr ng-repeat="producto in listaProducto">
+        <td align=left>{{producto.nombre}}</td>
+        <td align=right >{{producto.precio | number:2 }}</td>
+        <td align=center >{{ producto.iva }}</td>
+        <td align=right >{{ (producto.precio * producto.iva)/100 | number:2 }}</td>
+        <td align=right >{{ producto.precio * (1 + producto.iva/100) | number:2}}</td>
+        <td> <button ng-click="Aniadir(producto.id, producto.nombre, producto.precio, producto.iva)">Añadir</button></td>
+    </table>  
+  </div>
+
+  <div class="articuloscaja" ng-if="terminado==true">
+    <h2> Venta realizada Correctamente </h2>
+  </div>
+
+  <div class="cestacaja">
+    <strong>CESTA</strong>
+    <table>
+      <tr>
+        <th align=center> Artículo
+        <th align=center> Cantidad
+        <th align=center> Base Imponible
+        <th align=center> Tipo IVA
+        <th align=center> IVA 
+        <th align=center> Precio Total
+      <tr ng-repeat="venta in listaVenta">
+        <td align=left>{{ venta.nombre }}</td>
+        <td align=right ng-if="terminado==false"><input size="2" type="text" ng-change="Totales()" ng-model="listaVenta[$index].cantidad"></td>
+        <td align=right ng-if="terminado==true">{{ venta.cantidad }}</td>
+        <td align=right>{{ venta.precio * venta.cantidad | number:2 }}</td>
+        <td align=center>{{ venta.iva }}</td>
+        <td align=right>{{((venta.precio * venta.iva)/100) * venta.cantidad | number:2}}</td>
+        <td align=right>{{ (venta.precio * ( 1+ venta.iva/100)) * venta.cantidad | number:2}}</td>
+        <td ng-if="terminado==false"> <button class="btn btn-danger" ng-click="Borrar($index)">Borrar</button></td>
+    </table>  
+  </div>
+
+  <div class="totalescaja">
+    <strong>TOTALES</strong>
+    <br> 
+    <strong>Base 21: </strong> {{ base21 | number:2 }}
+    <strong>Base 10: </strong> {{ base10 | number:2 }}
+    <strong>Base 4: </strong> {{ base4 | number:2 }}
+    <br>
+    <strong>IVA 21: </strong> {{ iva21 | number:2 }}
+    <strong>IVA 10: </strong> {{ iva10 | number:2 }}
+    <strong>IVA 4: </strong> {{ iva4 | number:2 }}
+    <br>
+    <strong>Total: </strong> {{ total | number:2 }}
+    <button ng-click="Finalizar()" ng-if="terminado==false"> Finalizar </button> 
+    <form ng-if="cliente!=1">
+    <input type="radio" name="tipo-pago" ng-model="contado" value="false"> Prepago    
+    <input type="radio" name="tipo-pago" ng-model="contado" value="true"> Contado
+    </form>
+
+
+  </div>     
+
+  <div class="clientecaja">
+    <strong>CLIENTE:
+      <input size="2" type="text" name="cliente" id="cliente" ng-model="cliente" value=1 ></input>
+    </strong>
+    <div ng-repeat="socio in listaSocio | filter:clienteElegido">     
+      <strong> Nombre: </strong>  {{ socio.nombre }} 
+      <strong> DNI: </strong> {{ socio.dni }}
+      <br><strong> Dirección: </strong> {{ socio.direccion }}
+      <strong> Población: </strong> {{ socio.poblacion }}
+      <br><strong> Saldo:  </strong> {{ socio.saldo }}
+       {{ contado }}
+    </div>
+  </div>
+
+</div>

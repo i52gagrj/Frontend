@@ -1,0 +1,201 @@
+body {
+  padding-left: 11em;
+  font-family: Arial, Georgia,
+        Times, serif;
+  color: black;
+  background-color: #99dfff }
+ul.navbar {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 2em;
+  left: 1em;
+  width: 9em }
+h1 {
+  font-family: Helvetica, Geneva, Arial,
+        SunSans-Regular, sans-serif }
+ul.navbar li {
+  background: white;
+  margin: 0.5em 0;
+  padding: 0.3em;
+  border-right: 1em solid black }
+
+ul.navbar a {
+  text-decoration: none }
+
+a:link {
+  color: blue }
+
+a:visited {
+  color: red }
+
+address {
+  margin-top: 1em;
+  padding-top: 1em;
+  border-top: thin dotted }
+
+#contenido {
+  display: block;
+  margin: auto;
+  width: auto;
+  min-height:400px;
+}
+
+.estructura {
+  border-style:  solid;
+  padding: 5px;
+  margin: 5px;
+  float: left;
+  width: 1320px;
+  height: 726px;
+}
+
+.cabecera {
+  border-style:  solid;
+  padding: 5px;
+  margin: 5px;
+  float: left;
+  width: 1295px;
+  height: 90px; 
+  position:  
+}
+
+.barramenu {
+  border-style:  solid;
+  padding: 5px;
+  margin: 5px;
+  float: left;
+  width: 125px;
+  height: 531px;
+
+}
+
+.contenido {
+  border-style:  solid;
+  padding: 5px;
+  margin: 5px;
+  float: left;
+  width: 1143px;
+  height: 531px;
+  overflow: auto;
+} 
+
+.pie {
+  border-style:  solid;
+  padding: 5px;
+  margin: 5px;
+  float: left;
+  width: 1295px;
+  height: 25px;
+}
+
+.articuloscaja {
+  border-style:  solid;
+  padding: 5px;
+  margin: 5px;
+  float: left;
+  width: 558px;
+  height: 400px;
+  overflow: auto;  
+}
+
+.clientecaja {
+  border-style:  solid;
+  padding: 5px;
+  margin: 5px;
+  float: left;
+  width: 558px;
+  height: 105px;    
+}
+
+.cestacaja {
+  border-style:  solid;
+  padding: 5px;
+  margin: 5px;
+  float: left;
+  width: 559px;
+  height: 400px;
+  overflow: auto;  
+}
+
+.totalescaja {
+  border-style:  solid;
+  padding: 5px;
+  margin: 5px;
+  float: left;
+  width: 559px;
+  height: 105px;    
+}
+
+.ventascaja {
+  border-style:  solid;
+  padding: 5px;
+  margin: 5px;
+  float: left;
+  width: 558px;
+  height: 531px; 
+  overflow: auto;    
+}
+
+.desglosecaja {
+  border-style:  solid;
+  padding: 5px;
+  margin: 5px;
+  float: left;
+  width: 559px;
+  height: 252px; 
+  overflow: auto;         
+}
+
+.cierrecaja {
+  border-style:  solid;
+  padding: 5px;
+  margin: 5px;
+  float: left;
+  width: 559px;
+  height: 253px;   
+  overflow: auto;            
+}
+
+.menu {
+  margin:0; 
+  padding:0; 
+  width:125px; 
+  list-style:none;
+  background:rgb(NaN,NaN,NaN);
+}
+
+.menu li{
+  padding:0; 
+  margin:0 0 1px 0; 
+  height:40px; 
+  display:block; 
+}
+
+.menu li a{
+  text-align:left;
+  height:40px; 
+  padding:0px 25px; 
+  font:16px Verdana, Arial, Helvetica, sans-serif; 
+  color:rgb(255,255,255); 
+  display:block; 
+  background:url('verMenuImages.png') 0px 0px no-repeat; 
+  text-decoration:none;
+}
+
+.menu li a:hover{
+  background:url('verMenuImages.png') 0px -40px no-repeat; 
+  color:rgb(255,255,255);
+}
+
+.menu li a.active, .menu li a.active:hover{
+  background:url('verMenuImages.png') 0px -80px no-repeat; 
+  color:rgb(255,255,255);
+}
+
+.menu li a span{
+  line-height:40px;
+}
+
+
