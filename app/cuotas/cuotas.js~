@@ -13,8 +13,6 @@ angular.module('Frontend.Cuotas', ['ngRoute','angular-jwt','angular-storage'])
     $scope.listaSocios = [];
     $scope.terminado=false;
     $scope.respuesta;
-    var d = new Date();    
-    $scope.timed = d.getTime()/1000; 
     
     //if(store.get('token') && store.get('token')!=" ")
     if(store.get('token'))
@@ -32,12 +30,14 @@ angular.module('Frontend.Cuotas', ['ngRoute','angular-jwt','angular-storage'])
       else
       {
         store.remove('token');
+        //if(store.get('nombre') store.remove('nombre');
         $location.path("/login");
       }
     } 
     else 
     {
       store.remove('token');
+      //if(store.get('nombre') store.remove('nombre');
       $location.path("/login");
     }
 

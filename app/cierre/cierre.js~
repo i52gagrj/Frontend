@@ -29,7 +29,8 @@ angular.module('Frontend.Cierre', ['ngRoute','angular-jwt','angular-storage'])
     $scope.listaVentas = [];
     $scope.listaLineas = [];
     
-    if(store.get('token') && store.get('token')!=" "){
+    //if(store.get('token') && store.get('token')!=" "){
+    if(store.get('token')){
       var token = store.get('token'); 
       if(!jwtHelper.isTokenExpired(token))
       {
@@ -58,12 +59,14 @@ angular.module('Frontend.Cierre', ['ngRoute','angular-jwt','angular-storage'])
       else
       {
         store.remove('token');
+        //if(store.get('nombre') store.remove('nombre'); 
         $location.path("/login");
       }
     } 
     else 
     {
       store.remove('token');
+      //if(store.get('nombre') store.remove('nombre');
       $location.path("/login");
     }
 

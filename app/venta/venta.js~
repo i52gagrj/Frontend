@@ -26,12 +26,10 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
     $scope.listaVenta = [];
     $scope.listaProducto = [];
     $scope.listaSocio = [];    
-    var d = new Date();    
-    $scope.timed = d.getTime()/1000; 
     
-    if(store.get('token') && store.get('token')!=" "){
+    //if(store.get('token') && store.get('token')!=" "){
+    if(store.get('token')){
       var token = store.get('token'); 
-      //$scope.tokenDe = jwtHelper.decodeToken(token);
       if(!jwtHelper.isTokenExpired(token))
       {     
         backendAPIservice.getProductos().success(function (recibe) {       
@@ -51,12 +49,14 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       else
       {
         store.remove('token');
+        store.remove('nombre');
         $location.path("/login");
       }
     } 
     else 
     {
-      store.set('token'," ");
+      store.remove('token');
+      store.remove('nombre');
       $location.path("/login");
     }
 

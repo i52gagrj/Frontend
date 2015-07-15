@@ -71,11 +71,3 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
     }];
     $httpProvider.interceptors.push('jwtInterceptor');
   }])
- /* $routeProvider.when('/', {
-    redirectTo: "/ventas"
-  })
-  .when("/login", {
-    templateUrl: 'login/login.html',
-    controller: 'loginCtrl',
-    authorization: false
-  })*/

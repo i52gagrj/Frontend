@@ -9,15 +9,15 @@ angular.module('Frontend.Index', ['ngRoute','angular-jwt','angular-storage'])
     $scope.token = store.get('token');
     try{
       $scope.tokenDe = jwtHelper.decodeToken($scope.token);
-      $scope.usuario = $scope.tokenDe.nombre;
+      store.set('nombre',$scope.tokenDe.nombre);
+      $scope.usuario = store.get('nombre');      
     } catch (Error){ }
     
   }
 
     $scope.Logout=function() {
-      store.remove('recibeToken');
-      store.remove('code');
       store.remove('token');
+      store.remove('nombre');
       $location.path("/login"); 
       $scope.usuario="Sin conexión";      
     };

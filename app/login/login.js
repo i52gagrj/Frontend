@@ -10,9 +10,9 @@ angular.module('Frontend.Login', ['ngRoute','angular-jwt','angular-storage'])
 }])
 
 .controller('LoginController',function($scope, store, jwtHelper, $http, backendAPIservice, $location) {
-  $scope.recibeVenta;
   $scope.token;
   $scope.mensaje="";
+  $scope.usuario=store.get("nombre");
 
     $scope.Login=function(username,password) {
       backendAPIservice.postLogin(username,password).success(function(respuesta){
@@ -21,10 +21,13 @@ angular.module('Frontend.Login', ['ngRoute','angular-jwt','angular-storage'])
         store.set('token',recibe.response.token);
         if(recibe.code==0){
           $scope.token=store.get('token'); 
+          var tokenDe = jwtHelper.decodeToken($scope.token);
+          store.set('nombre',tokenDe.nombre);
+          $scope.usuario=store.get("nombre");          
           $location.path("/home"); 
         } 
         else{ 
-          store.remove('token');
+          store.remove('token');          
           $location.path("/login");
           $scope.mensaje=recibe.response.respuesta;
         }
@@ -33,8 +36,9 @@ angular.module('Frontend.Login', ['ngRoute','angular-jwt','angular-storage'])
 
     $scope.Logout=function() {
       store.remove('token');
+      store.set('nombre', "Sin conexion");
       $location.path("/login"); 
-      $scope.usuario="Sin conexión";      
+      $scope.usuario=store.get("nombre");      
     };
 
 

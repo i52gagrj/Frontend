@@ -49,12 +49,14 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       else
       {
         store.remove('token');
+        store.set('nombre', "Sin conexion");
         $location.path("/login");
       }
     } 
     else 
     {
       store.remove('token');
+      store.set('nombre', "Sin conexion");
       $location.path("/login");
     }
 

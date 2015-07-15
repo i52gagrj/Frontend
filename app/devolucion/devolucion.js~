@@ -36,7 +36,8 @@ angular.module('Frontend.Devolucion', ['ngRoute','angular-jwt','angular-storage'
     $scope.lineasOriginal = [];
     $scope.listaProducto = [];
 
-    if(store.get('token') && store.get('token')!=" ")
+    //if(store.get('token') && store.get('token')!=" ")
+    if(store.get('token'))
     {
       var token = store.get('token'); 
       if(!jwtHelper.isTokenExpired(token))
@@ -60,7 +61,8 @@ angular.module('Frontend.Devolucion', ['ngRoute','angular-jwt','angular-storage'
     }      
 
     $scope.BuscarVenta=function(idventa) {
-      if(store.get('token') && store.get('token')!=" "){
+      //if(store.get('token') && store.get('token')!=" "){
+      if(store.get('token')){
         var token = store.get('token'); 
         if(!jwtHelper.isTokenExpired(token))
         { 
@@ -98,12 +100,14 @@ angular.module('Frontend.Devolucion', ['ngRoute','angular-jwt','angular-storage'
         else
         {
           store.remove('token');
+          store.set('nombre', "Sin conexion");
           $location.path("/login");
         }
       } 
       else 
       {
         store.remove('token');
+        store.set('nombre', "Sin conexion"); 
         $location.path("/login");
       }
     };
