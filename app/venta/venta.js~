@@ -31,8 +31,8 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
     
     if(store.get('token') && store.get('token')!=" "){
       var token = store.get('token'); 
-      $scope.tokenDe = jwtHelper.decodeToken(token);
-      if($scope.tokenDe.exp>$scope.timed)
+      //$scope.tokenDe = jwtHelper.decodeToken(token);
+      if(!jwtHelper.isTokenExpired(token))
       {     
         backendAPIservice.getProductos().success(function (recibe) {       
           var productosArray = recibe.response.productos;
@@ -42,7 +42,6 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
         });
 
         backendAPIservice.getClientes().success(function (recibe) {        
-          //Hay que almacenar el token!!
           var sociosArray = recibe.response.socios;
           console.log(JSON.stringify(sociosArray));
           $scope.listaSocio = sociosArray;
@@ -51,7 +50,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       }
       else
       {
-        store.set('token'," ");
+        store.remove('token');
         $location.path("/login");
       }
     } 

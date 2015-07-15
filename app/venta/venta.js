@@ -26,13 +26,11 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
     $scope.listaVenta = [];
     $scope.listaProducto = [];
     $scope.listaSocio = [];    
-    var d = new Date();    
-    $scope.timed = d.getTime()/1000; 
     
-    if(store.get('token') && store.get('token')!=" "){
+    //if(store.get('token') && store.get('token')!=" "){
+    if(store.get('token')){
       var token = store.get('token'); 
-      $scope.tokenDe = jwtHelper.decodeToken(token);
-      if($scope.tokenDe.exp>$scope.timed)
+      if(!jwtHelper.isTokenExpired(token))
       {     
         backendAPIservice.getProductos().success(function (recibe) {       
           var productosArray = recibe.response.productos;
@@ -50,13 +48,13 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       }
       else
       {
-        store.set('token'," ");
+        store.remove('token');
         $location.path("/login");
       }
     } 
     else 
     {
-      store.set('token'," ");
+      store.remove('token');
       $location.path("/login");
     }
 

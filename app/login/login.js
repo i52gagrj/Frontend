@@ -11,7 +11,6 @@ angular.module('Frontend.Login', ['ngRoute','angular-jwt','angular-storage'])
 
 .controller('LoginController',function($scope, store, jwtHelper, $http, backendAPIservice, $location) {
   $scope.recibeVenta;
-  //$scope.code;
   $scope.token;
   $scope.mensaje="";
 
@@ -19,7 +18,6 @@ angular.module('Frontend.Login', ['ngRoute','angular-jwt','angular-storage'])
       backendAPIservice.postLogin(username,password).success(function(respuesta){
         var recibe = respuesta;
         console.log(JSON.stringify(recibe));  
-        //store.set('code',recibe.code);
         store.set('token',recibe.response.token);
         if(recibe.code==0){
           $scope.token=store.get('token'); 

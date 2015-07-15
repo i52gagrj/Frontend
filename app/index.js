@@ -15,7 +15,7 @@ angular.module('Frontend.Index', ['ngRoute','angular-jwt','angular-storage'])
   }
 
     $scope.Logout=function() {
-      store.remove('token');
+      store.remove('recibeToken');
       $location.path("/login"); 
       $scope.usuario="Sin conexión";      
     };

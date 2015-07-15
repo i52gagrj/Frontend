@@ -13,14 +13,12 @@ angular.module('Frontend.Cuotas', ['ngRoute','angular-jwt','angular-storage'])
     $scope.listaSocios = [];
     $scope.terminado=false;
     $scope.respuesta;
-    var d = new Date();    
-    $scope.timed = d.getTime()/1000; 
     
-    if(store.get('token') && store.get('token')!=" ")
+    //if(store.get('token') && store.get('token')!=" ")
+    if(store.get('token'))
     {
-      var token = store.get('token'); 
-      $scope.tokenDe = jwtHelper.decodeToken(token);
-      if($scope.tokenDe.exp>$scope.timed)
+      var token = store.get('token');       
+      if(!jwtHelper.isTokenExpired(token))
       {     
         backendAPIservice.getSocios().success(function(recibe) {        
           var sociosArray = recibe.response.socios;
@@ -31,13 +29,13 @@ angular.module('Frontend.Cuotas', ['ngRoute','angular-jwt','angular-storage'])
       }
       else
       {
-        store.set('token'," ");
+        store.remove('token');
         $location.path("/login");
       }
     } 
     else 
     {
-      store.set('token'," ");
+      store.remove('token');
       $location.path("/login");
     }
 

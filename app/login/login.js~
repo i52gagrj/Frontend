@@ -34,8 +34,9 @@ angular.module('Frontend.Login', ['ngRoute','angular-jwt','angular-storage'])
     };
 
     $scope.Logout=function() {
-      store.set('token'," ");
-      $location.path("/login");      
+      store.remove('token');
+      $location.path("/login"); 
+      $scope.usuario="Sin conexión";      
     };
 
 
