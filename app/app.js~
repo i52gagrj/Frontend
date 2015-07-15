@@ -6,6 +6,7 @@ var Frontend=angular.module('Frontend', [
   'ngRoute',
   'angular-jwt',
   'angular-storage',
+  'Frontend.index',
   'Frontend.services',
   'Frontend.Venta',
   'Frontend.Cierre',
@@ -22,13 +23,7 @@ Frontend.constant('CONFIG', {
   $routeProvider.otherwise({redirectTo: '/venta'});
 }]);
 
-/*.config(function($authProvider) {
-   //Parametros de configuración
-   $authProvider.loginUrl = "";
-   $authProvider.signupUrl = "";
-   $authProvider.tokenName = "token";
-   $authProvider.tokenPrefix = "Frontend";
-});*/
+
 
 
 

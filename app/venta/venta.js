@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Frontend.Venta', ['ngRoute'])
+angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/venta', {
@@ -9,7 +9,7 @@ angular.module('Frontend.Venta', ['ngRoute'])
   });
 }])
 
-.controller('VentaController', function($scope, $http, backendAPIservice) {
+.controller('VentaController', function($scope, store, jwtHelper, $http, backendAPIservice, $location) {
     $scope.terminado=false;
     $scope.contado=true;
     $scope.cliente=1;
@@ -20,22 +20,45 @@ angular.module('Frontend.Venta', ['ngRoute'])
     $scope.base4=0.00;
     $scope.iva4=0.00; 
     $scope.total=0.00;
+    $scope.articulopr;
+    $scope.respuesta;
 
     $scope.listaVenta = [];
     $scope.listaProducto = [];
-    $scope.listaSocio = [];
+    $scope.listaSocio = [];    
+    var d = new Date();    
+    $scope.timed = d.getTime()/1000; 
+    
+    if(store.get('token') && store.get('token')!=" "){
+      var token = store.get('token'); 
+      $scope.tokenDe = jwtHelper.decodeToken(token);
+      if($scope.tokenDe.exp>$scope.timed)
+      {     
+        backendAPIservice.getProductos().success(function (recibe) {       
+          var productosArray = recibe.response.productos;
+          console.log(JSON.stringify(productosArray));  
+          $scope.listaProducto = productosArray;
+          store.set('token',recibe.response.token);
+        });
 
-    backendAPIservice.getProductos().success(function (response) {        
-        var productosArray = response;
-        console.log(JSON.stringify(productosArray));  
-        $scope.listaProducto = productosArray;
-    });
-
-    backendAPIservice.getClientes().success(function (response) {        
-        var sociosArray = response;
-        console.log(JSON.stringify(sociosArray));
-        $scope.listaSocio = sociosArray;
-    });
+        backendAPIservice.getClientes().success(function (recibe) {        
+          var sociosArray = recibe.response.socios;
+          console.log(JSON.stringify(sociosArray));
+          $scope.listaSocio = sociosArray;
+          store.set('token',recibe.response.token);
+        });
+      }
+      else
+      {
+        store.set('token'," ");
+        $location.path("/login");
+      }
+    } 
+    else 
+    {
+      store.set('token'," ");
+      $location.path("/login");
+    }
 
     $scope.Aniadir=function(pid, pnombre, pprecio, piva)
     {
@@ -82,8 +105,11 @@ angular.module('Frontend.Venta', ['ngRoute'])
     };
 
     $scope.Finalizar=function() {
-      backendAPIservice.postVenta($scope.cliente, $scope.contado, $scope.listaVenta).success(function(response){
-        console.log(response);
+      backendAPIservice.postVenta($scope.cliente, $scope.contado, $scope.listaVenta).success(function(recibe){
+        var respuesta1 = recibe.response.respuesta;
+        console.log(JSON.stringify(respuesta1));
+        $scope.respuesta = respuesta1;
+        if(recibe.code==0) store.set('token',recibe.response.token);
         $scope.terminado=true;
       });
     }

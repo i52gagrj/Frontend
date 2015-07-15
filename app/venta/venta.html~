@@ -1,7 +1,10 @@
 <div>
 
   <div class="articuloscaja" ng-if="terminado==false">  
-    <strong>ARTÍCULOS</strong>
+    <strong>ARTICULOS:
+      <input size="8" type="text" name="articulopr" id="articulopr" ng-model="articulopr" value=1 ></input>
+    </strong>
+    <br>
     <table>
       <tr>
         <th align=center > Nombre 
@@ -43,6 +46,7 @@
         <td align=right>{{ (venta.precio * ( 1+ venta.iva/100)) * venta.cantidad | number:2}}</td>
         <td ng-if="terminado==false"> <button class="btn btn-danger" ng-click="Borrar($index)">Borrar</button></td>
     </table>  
+    {{tokenDe.exp}} - {{timed}}
   </div>
 
   <div class="totalescaja">
@@ -57,13 +61,11 @@
     <strong>IVA 4: </strong> {{ iva4 | number:2 }}
     <br>
     <strong>Total: </strong> {{ total | number:2 }}
-    <button ng-click="Finalizar()" ng-if="terminado==false"> Finalizar </button> 
-    <form ng-if="cliente!=1">
+    <button ng-click="Finalizar()" ng-if="terminado==false"> Finalizar </button>  
+    <form ng-if="terminado==false">
     <input type="radio" name="tipo-pago" ng-model="contado" value="false"> Prepago    
     <input type="radio" name="tipo-pago" ng-model="contado" value="true"> Contado
     </form>
-
-
   </div>     
 
   <div class="clientecaja">
@@ -76,7 +78,6 @@
       <br><strong> Dirección: </strong> {{ socio.direccion }}
       <strong> Población: </strong> {{ socio.poblacion }}
       <br><strong> Saldo:  </strong> {{ socio.saldo }}
-       {{ contado }}
     </div>
   </div>
 

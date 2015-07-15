@@ -1,13 +1,12 @@
 'use strict';
 
-angular.module('Frontend.services', [])
+angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'])
   .value('version', '0.1') 
-  .factory('backendAPIservice', function($http, CONFIG) {
+  .factory('backendAPIservice', function($http, CONFIG, store) {
 
   return{
     //Se ha sustituido la petición $http.jsonp por $http.get, al tratarse de una petición dentro del mismo servidor.
     //Se deberá modificar la dirección indicada en el momento de desplegar la aplicación en un servidor.
-
 
     getProductos: function() {
       return $http.get(CONFIG.APIURL+'/todosProductos.json?callback=JSON_CALLBACK');
@@ -49,7 +48,7 @@ angular.module('Frontend.services', [])
       return $http.post(CONFIG.APIURL+'/recibirModificada',{modificada: vmodificada, diferencia: vdiferencia, socio: vsocio, contado: vcontado});
     },
 
-    getSocios: function() {
+    getSocios: function() {      
       return $http.get(CONFIG.APIURL+'/todosClientesCuotas.json?callback=JSON_CALLBACK');
     },
 
@@ -57,8 +56,26 @@ angular.module('Frontend.services', [])
       return $http.post(CONFIG.APIURL+'/recibirCuotas',{socios: vsocios});
     },
 
-    getLogin: function(username,password) {
-      return $http.get(CONFIG.APIURL+'/login.json/'+username+'/'+password);
+    postLogin: function(username,password) {
+      return $http.post(CONFIG.APIURL+'/login',{username: username, password: password});
     } 
-   } 
-  });
+  } 
+  })
+  .config(["$httpProvider", "jwtInterceptorProvider",  function ($httpProvider, jwtInterceptorProvider, store) 
+  {
+    $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+    
+    //en cada petición enviamos el token a través de los headers con el nombre Authorization
+    jwtInterceptorProvider.tokenGetter = ['backendAPIservice', function(backendAPIservice) {
+      return localStorage.getItem('token');
+    }];
+    $httpProvider.interceptors.push('jwtInterceptor');
+  }])
+ /* $routeProvider.when('/', {
+    redirectTo: "/ventas"
+  })
+  .when("/login", {
+    templateUrl: 'login/login.html',
+    controller: 'loginCtrl',
+    authorization: false
+  })*/

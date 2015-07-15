@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html ng-app="Frontend">
 <head>
   <meta charset="utf-8">
@@ -5,7 +6,8 @@
   <title>TPV - Comercio Justo</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!--<link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.css">-->
+  <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.css">
+  <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">-->
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
   <link rel="stylesheet" href="app.css">
@@ -14,18 +16,37 @@
 </head>
 
 <body>
+  <div class="estructura">
+    <!--<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-controller="IndexController">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" align="center">TPV Comercio Justo</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <!--<ul class="nav navbar-nav">
+                    <li><a ng-href="#/">Home</a></li>
+                </ul>--
+                <ul class="nav navbar-nav">
+                    <li ><a href="#/venta">Venta</a></li> 
+                    <li ><a href="#/cierre">Cierre</a></li>  
+                    <li ><a href="#/devolucion">Devolucion</a></li>  
+                    <li ><a href="#/gestion">Gestion</a></li>  
+                    <li ><a href="#/informes">Informes</a></li>  
+                    <li ><a href="#/cuotas">Cuotas</a></li>
+                    <!-- <li ><a href="#/login">Login</a></li>--
+                    <li >{{usuario}}</li>
+                    <li ><a ng-click="Logout()" align="left">Logout</a></li>
+                </ul>
+            </div><!--/.nav-collapse --
+        </div>
+    </div> -->
+    <div ng-controller="IndexController">
 
-  <div class="estructura"> 
-     
-    <div class="cabecera">
-      <h3 align="center">Aplicación TPV</h3>
-      (Aquí vendria situado el banner de la tienda)
-      <div align="right" id="login"> 
-        Cerrar sesión
-      </div>
+    <div class="cabecera" >
+      <h2>TPV - Comercio Justo</h2>
+      {{usuario}}
     </div>
 
-    <div>
      <div class="barramenu"> 
        <ul class="menu">  
          <li><a href="#/venta">venta</a></li> 
@@ -34,17 +55,23 @@
          <li><a href="#/gestion">gestion</a></li>  
          <li><a href="#/informes">informes</a></li>  
          <li><a href="#/cuotas">cuotas</a></li>
-         <li><a href="#/login">login</a></li>
+         <li><a ng-click="Logout()">logout</a></li>
        </ul>
      </div>
-    </div>
+
+     </div>
      
     <div ng-view></div>
 
     <div class="pie">
-      <div align="center">- pie de página -</div>
+      i52gagrj
     </div>
 
+    <!--<footer class="footer"> 
+      <div class="container.fluid">
+        i52gagrj
+      </div>
+    </footer>-->
   </div> 
 
 
@@ -54,9 +81,10 @@
   <script type="text/javascript" src="https://cdn.rawgit.com/auth0/angular-jwt/master/dist/angular-jwt.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="bower_components/angular-jwt/dist/angular-jwt.js"></script>
+  <!--<script src="bower_components/angular-jwt/dist/angular-jwt.js"></script>-->
   <script src="bower_components/a0-angular-storage/dist/angular-storage.js"></script>
   <script src="app.js"></script>
+  <script src="index.js"></script>
   <script src="services.js"></script>
   <script src="venta/venta.js"></script>
   <script src="cierre/cierre.js"></script>

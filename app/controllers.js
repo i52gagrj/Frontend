@@ -1,26 +1,9 @@
+//Comprobar si algo de esto se puede usar para el login y el logout
+
 angular  
     .module("Frontend.controllers")
-    .controller("SignUpController", SignUpController)
     .controller("LoginController", LoginController);
     .controller("LogoutController", LogoutController);
-
-function SignUpController($auth, $location) {  
-    var vm = this;
-    this.signup = function() {
-        $auth.signup({
-            email: vm.email,
-            password: vm.password
-        })
-        .then(function() {
-            // Si se ha registrado correctamente,
-            // Podemos redirigirle a otra parte
-            $location.path("/private");
-        })
-        .catch(function(response) {
-            // Si ha habido errores, llegaremos a esta función
-        });
-    }
-}
 
 function LoginController($auth, $location) {  
     var vm = this;

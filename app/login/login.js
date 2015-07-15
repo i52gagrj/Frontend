@@ -11,19 +11,33 @@ angular.module('Frontend.Login', ['ngRoute','angular-jwt','angular-storage'])
 
 .controller('LoginController',function($scope, store, jwtHelper, $http, backendAPIservice, $location) {
   $scope.recibeVenta;
+  //$scope.code;
+  $scope.token;
+  $scope.mensaje="";
 
     $scope.Login=function(username,password) {
-      backendAPIservice.getLogin(username,password).success(function(response){
-        //Recibe token
-        //Tratarlo
-        //PONERLO EN ALMACENAMIENTO LOCAL (Mirar) 
-        var recibe = response;
+      backendAPIservice.postLogin(username,password).success(function(respuesta){
+        var recibe = respuesta;
         console.log(JSON.stringify(recibe));  
-        store.set('recibeToken',recibe.token);
-        $location.path("/home"); 
+        //store.set('code',recibe.code);
+        store.set('token',recibe.response.token);
+        if(recibe.code==0){
+          $scope.token=store.get('token'); 
+          $location.path("/home"); 
+        } 
+        else{ 
+          store.remove('token');
+          $location.path("/login");
+          $scope.mensaje=recibe.response.respuesta;
+        }
       });
     };
 
+    $scope.Logout=function() {
+      store.remove('token');
+      $location.path("/login"); 
+      $scope.usuario="Sin conexión";      
+    };
 
 
 });

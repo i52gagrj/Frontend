@@ -1,6 +1,6 @@
 <div>
 
-<div class="ventascaja">  
+<div class="ventascaja" ng-if="terminado==false">  
   <strong>Ventas del dia</strong>
   <table>
     <tr>
@@ -18,7 +18,9 @@
   </table>  
 </div> 
 
-
+<div class="ventascaja" ng-if="terminado==true">  
+    <h2> {{respuesta}} </h2>
+</div>
 
 <div class="desglosecaja">
   <strong>INGRESOS</strong>
@@ -41,15 +43,13 @@
 
 
 <div class="cierrecaja" >
-  <strong>Cantidad en caja: </strong> {{ (contado *1) + (anterior.dejado *1) | number:2 }}
+  <strong>Cantidad en caja: </strong> {{ total | number:2 }}
   <p>
   <strong>Cierre</strong>
   <br>
   <strong>Cantidad a dejar en caja:</strong>
   <input type="text" size="6" name="resto" id="resto" ng-model="resto" />          
   <button ng-click="Finalizar()"> Finalizar </button>
-  <br> 
-  <strong> Terminado: </strong> {{ terminado }} 
 </div>     
 
 </div>

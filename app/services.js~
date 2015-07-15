@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('Frontend.services', [])
+angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'])
   .value('version', '0.1') 
-  .factory('backendAPIservice', function($http, CONFIG) {
+  .factory('backendAPIservice', function($http, CONFIG, store) {
 
   return{
     //Se ha sustituido la petición $http.jsonp por $http.get, al tratarse de una petición dentro del mismo servidor.
@@ -18,47 +18,72 @@ angular.module('Frontend.services', [])
     },
 
     postVenta: function(vcliente, vcontado, vcesta) {
-      return $http.post('http://192.168.1.3/TPVCJ1.2/web/app_dev.php/caja/datos/recibirVenta',{cliente: vcliente, contado: vcontado, cesta: vcesta});
+      return $http.post(CONFIG.APIURL+'/recibirVenta',{cliente: vcliente, contado: vcontado, cesta: vcesta});
     },
 
     getCierreVentas: function() {
-      return $http.get('http://192.168.1.3/TPVCJ1.2/web/app_dev.php/caja/datos/cierreVentas.json?callback=JSON_CALLBACK');
+      return $http.get(CONFIG.APIURL+'/cierreVentas.json?callback=JSON_CALLBACK');
     }, 
 
     getCierreLineas: function() {
-      return $http.get('http://192.168.1.3/TPVCJ1.2/web/app_dev.php/caja/datos/cierreLineas.json?callback=JSON_CALLBACK');
+      return $http.get(CONFIG.APIURL+'/cierreLineas.json?callback=JSON_CALLBACK');
     },
 
     getUltimoCierre: function() {
-      return $http.get('http://192.168.1.3/TPVCJ1.2/web/app_dev.php/caja/datos/ultimoCierre.json?callback=JSON_CALLBACK');
+      return $http.get(CONFIG.APIURL+'/ultimoCierre.json?callback=JSON_CALLBACK');
     },
 
     postCierre: function(vdejado) {
-      return $http.post('http://192.168.1.3/TPVCJ1.2/web/app_dev.php/caja/datos/recibirCierre',{dejado: vdejado});
+      return $http.post(CONFIG.APIURL+'/recibirCierre',{dejado: vdejado});
     },
 
     getBuscaVenta: function(idventa) {
-      return $http.get('http://192.168.1.3/TPVCJ1.2/web/app_dev.php/caja/datos/buscaVenta.json/'+idventa);
+      return $http.get(CONFIG.APIURL+'/buscaVenta.json/'+idventa);
     },
 
     getBuscaListaVenta: function(idventa) {
-      return $http.get('http://192.168.1.3/TPVCJ1.2/web/app_dev.php/caja/datos/buscaListaVenta.json/'+idventa);
+      return $http.get(CONFIG.APIURL+'/buscaListaVenta.json/'+idventa);
     },
 
     postDevolucion: function(vmodificada, vdiferencia, vsocio, vcontado) {
-      return $http.post('http://192.168.1.3/TPVCJ1.2/web/app_dev.php/caja/datos/recibirModificada',{modificada: vmodificada, diferencia: vdiferencia, socio: vsocio, contado: vcontado});
+      return $http.post(CONFIG.APIURL+'/recibirModificada',{modificada: vmodificada, diferencia: vdiferencia, socio: vsocio, contado: vcontado});
     },
 
-    getSocios: function() {
-      return $http.get('http://192.168.1.3/TPVCJ1.2/web/app_dev.php/caja/datos/todosClientesCuotas.json?callback=JSON_CALLBACK');
+    getSocios: function() {      
+      return $http.get(CONFIG.APIURL+'/todosClientesCuotas.json?callback=JSON_CALLBACK');
     },
 
     postCuotas: function(vsocios) {
-      return $http.post('http://192.168.1.3/TPVCJ1.2/web/app_dev.php/caja/datos/recibirCuotas',{socios: vsocios});
+      return $http.post(CONFIG.APIURL+'/recibirCuotas',{socios: vsocios});
     },
 
-    getLogin: function(username,password) {
-      return $http.get(CONFIG.APIURL+'/login.json/'+username+'/'+password);
+    postLogin: function(username,password) {
+      return $http.post(CONFIG.APIURL+'/login',{username: username, password: password});
+      /*return $http({
+        method: 'POST',
+        skipAuthorization: true,//no queremos enviar el token en esta petición
+        url: CONFIG.APIURL+'/login',//{username: username, password: password},
+        payload:"username:"+ username+", password:"+password,
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+      });*/
     } 
-   } 
-  });
+  } 
+  })
+  .config(["$httpProvider", "jwtInterceptorProvider",  function ($httpProvider, jwtInterceptorProvider, store) 
+  {
+    $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+    
+    //en cada petición enviamos el token a través de los headers con el nombre Authorization
+    jwtInterceptorProvider.tokenGetter = ['backendAPIservice', function(backendAPIservice) {
+      return localStorage.getItem('token');
+    }];
+    $httpProvider.interceptors.push('jwtInterceptor');
+  }])
+ /* $routeProvider.when('/', {
+    redirectTo: "/ventas"
+  })
+  .when("/login", {
+    templateUrl: 'login/login.html',
+    controller: 'loginCtrl',
+    authorization: false
+  })*/

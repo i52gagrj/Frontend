@@ -1,5 +1,5 @@
 <div>
-  <div class="articuloscaja">  
+  <div class="articuloscaja" ng-if="terminado==false">  
     <strong>VENTA:</strong>
     <input type="text" size="2" ng-model="idventa"/>
     <button ng-click="BuscarVenta(idventa)"> Buscar </button>
@@ -30,6 +30,13 @@
         <td align=center >{{ linea.precio * (1 + (linea.iva/100)) * linea.cantidad | number:2 }} 
       </tr> 
     </table> 
+    <div ng-if="codigorecibido!=0"> 
+      {{respuesta}}
+    </div>
+  </div>
+
+  <div class="articuloscaja" ng-if="terminado==true"> 
+    {{respuesta}}
   </div>
 
   <div class="cestacaja" >
