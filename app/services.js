@@ -16,6 +16,10 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
       return $http.get(CONFIG.APIURL+'/todosClientes.json?callback=JSON_CALLBACK');
     },
 
+    getTipos: function() {
+      return $http.get(CONFIG.APIURL+'/todosTipos.json?callback=JSON_CALLBACK');
+    },
+
     postVenta: function(vcliente, vcontado, vcesta) {
       return $http.post(CONFIG.APIURL+'/recibirVenta',{cliente: vcliente, contado: vcontado, cesta: vcesta});
     },
@@ -71,3 +75,4 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
     }];
     $httpProvider.interceptors.push('jwtInterceptor');
   }])
+

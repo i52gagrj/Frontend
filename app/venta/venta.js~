@@ -11,7 +11,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
 
 .controller('VentaController', function($scope, store, jwtHelper, $http, backendAPIservice, $location) {
     $scope.terminado=false;
-    $scope.contado=true;
+    $scope.contado;
     $scope.cliente=1;
     $scope.base21=0.00;
     $scope.iva21=0.00;
@@ -25,9 +25,9 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
 
     $scope.listaVenta = [];
     $scope.listaProducto = [];
-    $scope.listaSocio = [];    
-    
-    //if(store.get('token') && store.get('token')!=" "){
+    $scope.listaSocio = [];  
+    $scope.listaTipo = [];  
+        
     if(store.get('token')){
       var token = store.get('token'); 
       if(!jwtHelper.isTokenExpired(token))
@@ -45,18 +45,25 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
           $scope.listaSocio = sociosArray;
           store.set('token',recibe.response.token);
         });
+
+        backendAPIservice.getTipos().success(function (recibe) {        
+          var tiposArray = recibe.response.tipos;
+          console.log(JSON.stringify(tiposArray));
+          $scope.listaTipo = tiposArray;
+          store.set('token',recibe.response.token);
+        });
       }
       else
       {
         store.remove('token');
-        store.remove('nombre');
+        store.set('nombre', "Sin conexion");
         $location.path("/login");
       }
     } 
     else 
     {
-      store.remove('token');
-      store.remove('nombre');
+      //store.remove('token');
+      //store.set('nombre', "Sin conexion");
       $location.path("/login");
     }
 

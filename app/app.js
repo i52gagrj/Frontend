@@ -6,7 +6,7 @@ var Frontend=angular.module('Frontend', [
   'ngRoute',
   'angular-jwt',
   'angular-storage',
-  //'Frontend.Index',
+  'Frontend.Index',
   'Frontend.services',
   'Frontend.Venta',
   'Frontend.Cierre',

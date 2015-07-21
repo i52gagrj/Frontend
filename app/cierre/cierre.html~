@@ -48,11 +48,10 @@
   <strong>Cierre</strong>
   <br>
   <strong>Cantidad a dejar en caja:</strong>
-  <input type="text" size="6" name="resto" id="resto" ng-model="resto" />          
-  <button ng-click="Finalizar()"> Finalizar </button>
-  <br> 
-  <strong> Terminado: </strong> {{ terminado }} 
-  {{prueba}} - {{tokenDe}}
+  <input type="text" size="6" name="resto" id="resto" ng-model="resto" ng-if="terminado==false"/>
+  <strong ng-if="terminado==true">{{resto}}</strong>         
+  <button ng-click="Finalizar()" ng-show="terminado==false"> Finalizar </button>
+  {{terminado}} 
 </div>     
 
 </div>
