@@ -10,6 +10,7 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
 
     getProductos: function() {
       return $http.get(CONFIG.APIURL+'/todosProductos.json?callback=JSON_CALLBACK');
+      //return $http.get('http://ancient-mesa-9870.herokuapp.com/caja/datos/todosProductos.json?callback=JSON_CALLBACK');
     }, 
 
     getClientes: function() {

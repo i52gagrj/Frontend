@@ -9,7 +9,8 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
     //Se deberá modificar la dirección indicada en el momento de desplegar la aplicación en un servidor.
 
     getProductos: function() {
-      return $http.get(CONFIG.APIURL+'/todosProductos.json?callback=JSON_CALLBACK');
+      //return $http.get(CONFIG.APIURL+'/todosProductos.json?callback=JSON_CALLBACK');
+      return $http.get('http://ancient-mesa-9870.herokuapp.com/caja/datos/todosProductos.json?callback=JSON_CALLBACK');
     }, 
 
     getClientes: function() {
@@ -75,3 +76,4 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
     }];
     $httpProvider.interceptors.push('jwtInterceptor');
   }])
+
