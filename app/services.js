@@ -6,11 +6,9 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
 
   return{
     //Se ha sustituido la petición $http.jsonp por $http.get, al tratarse de una petición dentro del mismo servidor.
-    //Se deberá modificar la dirección indicada en el momento de desplegar la aplicación en un servidor.
-
-    getProductos: function() {
-      return $http.get(CONFIG.APIURL+'/todosProductos.json?callback=JSON_CALLBACK');
-      //return $http.get('http://ancient-mesa-9870.herokuapp.com/caja/datos/todosProductos.json?callback=JSON_CALLBACK');
+    //Se deberá modificar la dirección indicada en el momento de desplegar la aplicación en un servidor.    
+    getProductos: function() {        
+      return $http.get(CONFIG.APIURL+'/todosProductos.json?callback=JSON_CALLBACK');      
     }, 
 
     getClientes: function() {
@@ -68,6 +66,7 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
   })
   .config(["$httpProvider", "jwtInterceptorProvider",  function ($httpProvider, jwtInterceptorProvider, store) 
   {
+    $httpProvider.defaults.headers.common["Access-Control-Allow-Origin"] = '*';
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
     
     //en cada petición enviamos el token a través de los headers con el nombre Authorization
@@ -76,4 +75,5 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
     }];
     $httpProvider.interceptors.push('jwtInterceptor');
   }])
+
 

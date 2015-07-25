@@ -2,15 +2,14 @@
 
 angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'])
   .value('version', '0.1') 
-  .factory('backendAPIservice', function($http, CONFIG, store) {
+  .factory('backendAPIservice', function($http, $httpProvider, CONFIG, store) {
 
   return{
     //Se ha sustituido la petición $http.jsonp por $http.get, al tratarse de una petición dentro del mismo servidor.
-    //Se deberá modificar la dirección indicada en el momento de desplegar la aplicación en un servidor.
-
+    //Se deberá modificar la dirección indicada en el momento de desplegar la aplicación en un servidor.    
     getProductos: function() {
-      //return $http.get(CONFIG.APIURL+'/todosProductos.json?callback=JSON_CALLBACK');
-      return $http.get('http://ancient-mesa-9870.herokuapp.com/caja/datos/todosProductos.json?callback=JSON_CALLBACK');
+      $httpProvider.defaults.headers.common["Access-Control-Allow-Origin"] = '*';  
+      return $http.get(CONFIG.APIURL+'/todosProductos.json?callback=JSON_CALLBACK');      
     }, 
 
     getClientes: function() {
