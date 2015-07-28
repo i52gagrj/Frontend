@@ -13,7 +13,7 @@ angular.module('Frontend.Login', ['ngRoute','angular-jwt','angular-storage'])
   $scope.token;
   $scope.mensaje="";
   $scope.usuario=store.get("nombre");
-  store.set('token',0);
+  //store.set('token',0);
   
 
     $scope.Login=function(username,password) {        

@@ -27,5 +27,3 @@ Frontend.constant('CONFIG', {
 
 
 
-
-

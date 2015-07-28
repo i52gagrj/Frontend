@@ -5,38 +5,36 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
   .factory('backendAPIservice', function($http, CONFIG, store) {
 
   return{
-    //Se ha sustituido la petición $http.jsonp por $http.get, al tratarse de una petición dentro del mismo servidor.
-    //Se deberá modificar la dirección indicada en el momento de desplegar la aplicación en un servidor.    
     getProductos: function() {        
-      //return $http.get(CONFIG.APIURL+'/todosProductos.json',{callback: 'JSON_CALLBACK'}, {'Authorization': 'Bearer '+localStorage.getItem('token')});      
-      return $http({
-        method: "get",
+      return $http.get(CONFIG.APIURL+'/todosProductos.json',{callback: 'JSON_CALLBACK'},{'Content-Type': 'application/json'});      
+      /*return $http({
+        method: 'get',
         url: CONFIG.APIURL+'/todosProductos.json',
-        headers: {'Authorization': 'Bearer '+localStorage.getItem('token')},
-        //headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        //headers: {'Authorization':'Bearer '+localStorage.getItem('token')},
+        //headers: {'Content-Type': 'application/json'},
         //params: {callback: 'JSON_CALLBACK'},
-      });
+      });*/
             
     }, 
 
     getClientes: function() {
-      //return $http.get(CONFIG.APIURL+'/todosClientes.json?callback=JSON_CALLBACK');
-      return $http({
+      return $http.get(CONFIG.APIURL+'/todosClientes.json');
+      /*return $http({
         method: 'get',
         url: CONFIG.APIURL+'/todosClientes.json',
-        headers: {'Authorization': 'Bearer '+localStorage.getItem('token')},
+        //headers: {'Authorization':'Bearer '+localStorage.getItem('token')},
         //params: {callback: 'JSON_CALLBACK'},
-      });
+      });*/
     },
 
     getTipos: function() {
-      //return $http.get(CONFIG.APIURL+'/todosTipos.json?callback=JSON_CALLBACK');
-      return $http({
+      return $http.get(CONFIG.APIURL+'/todosTipos.json');
+      /*return $http({
         method: 'get',
         url: CONFIG.APIURL+'/todosTipos.json',
-        headers: {'Authorization': 'Bearer '+localStorage.getItem('token')},
+        //headers: {'Authorization':'Bearer '+localStorage.getItem('token')},
         //params: {callback: 'JSON_CALLBACK'},
-      });
+      });*/
     },
 
     postVenta: function(vcliente, vcontado, vcesta) {
@@ -80,17 +78,17 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
     },
 
     postLogin: function(username,password) {
-      //return $http.post(CONFIG.APIURL+'/login',{username: username, password: password});
-      return $http({
+      return $http.post(CONFIG.APIURL+'/login',{username: username, password: password}, {'Content-Type': 'application/x-www-form-urlencoded'});
+      /*return $http({
         method: 'POST',
         url: CONFIG.APIURL+'/login',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         data: {username: username, password: password}        
-      }) 
+      })*/ 
     } 
   } 
   })
-  /*.config(["$httpProvider", "jwtInterceptorProvider",  function ($httpProvider, jwtInterceptorProvider, store) 
+  .config(["$httpProvider", "jwtInterceptorProvider",  function ($httpProvider, jwtInterceptorProvider, store) 
   {
     //if(localStorage.getItem('token')!=0){
       //$httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
@@ -101,6 +99,6 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
       }];
       $httpProvider.interceptors.push('jwtInterceptor');
     //}
-  }])*/
+  }])
 
 

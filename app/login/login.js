@@ -12,9 +12,7 @@ angular.module('Frontend.Login', ['ngRoute','angular-jwt','angular-storage'])
 .controller('LoginController', function($scope, store, jwtHelper, $http, backendAPIservice, $location) {
   $scope.token;
   $scope.mensaje="";
-  $scope.usuario=store.get("nombre");
-  //store.set('token',0);
-  
+  $scope.usuario=store.get("nombre");  
 
     $scope.Login=function(username,password) {        
       backendAPIservice.postLogin(username,password).success(function(respuesta){
