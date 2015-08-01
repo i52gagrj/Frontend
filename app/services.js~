@@ -6,73 +6,75 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
 
   return{
     getProductos: function() {        
-      //return $http.get(CONFIG.APIURL+'/todosProductos.json');      
-      return $http({
+      return $http.get(CONFIG.APIURL+'/todosProductos.json',{'Content-Type': 'application/json'});      
+      /*return $http({
         method: 'get',
         url: CONFIG.APIURL+'/todosProductos.json',
+        headers: {'Content-Type': 'application/json'}, 
         //headers: {'Content-Type': 'application/json', 'HTTP_AUTHORIZATION': localStorage.getItem('token')},        
-        //params: {callback: 'JSON_CALLBACK'},
-      });            
+      });*/            
     }, 
 
     getClientes: function() {
-      //return $http.jsonp(CONFIG.APIURL+'/todosClientes.json');
-      return $http({
+      return $http.jsonp(CONFIG.APIURL+'/todosClientes.json',{'Content-Type': 'application/json'});
+      /*return $http({
         method: 'get',
         url: CONFIG.APIURL+'/todosClientes.json',
         headers: {'Content-Type': 'application/json'},
         //params: {callback: 'JSON_CALLBACK'},
-      });
+      });*/
     },
 
     getTipos: function() {
-      //return $http.jsonp(CONFIG.APIURL+'/todosTipos.json');
-      return $http({
+      return $http.jsonp(CONFIG.APIURL+'/todosTipos.json',{'Content-Type': 'application/json'});
+      /*return $http({
         method: 'get',
         url: CONFIG.APIURL+'/todosTipos.json',
         headers: {'Content-Type': 'application/json'},
         //params: {callback: 'JSON_CALLBACK'},
-      });
+      });*/
     },
 
     postVenta: function(vcliente, vcontado, vcesta) {
-      return $http.post(CONFIG.APIURL+'/recibirVenta',{cliente: vcliente, contado: vcontado, cesta: vcesta});
+      return $http.post(CONFIG.APIURL+'/recibirVenta',{cliente: vcliente, contado: vcontado, cesta: vcesta},
+        {'Content-Type': 'application/x-www-form-urlencoded'});
     },
 
     getCierreVentas: function() {
-      return $http.get(CONFIG.APIURL+'/cierreVentas.json?callback=JSON_CALLBACK');
+      return $http.get(CONFIG.APIURL+'/cierreVentas.json',{'Content-Type': 'application/json'});
     }, 
 
     getCierreLineas: function() {
-      return $http.get(CONFIG.APIURL+'/cierreLineas.json?callback=JSON_CALLBACK');
+      return $http.get(CONFIG.APIURL+'/cierreLineas.json',{'Content-Type': 'application/json'});
     },
 
     getUltimoCierre: function() {
-      return $http.get(CONFIG.APIURL+'/ultimoCierre.json?callback=JSON_CALLBACK');
+      return $http.get(CONFIG.APIURL+'/ultimoCierre.json',{'Content-Type': 'application/json'});
     },
 
     postCierre: function(vdejado) {
-      return $http.post(CONFIG.APIURL+'/recibirCierre',{dejado: vdejado});
+      return $http.post(CONFIG.APIURL+'/recibirCierre',{dejado: vdejado},{'Content-Type': 'application/x-www-form-urlencoded'});
     },
 
     getBuscaVenta: function(idventa) {
-      return $http.get(CONFIG.APIURL+'/buscaVenta.json/'+idventa);
+      return $http.get(CONFIG.APIURL+'/buscaVenta.json/'+idventa,{'Content-Type': 'application/json'});
     },
 
     getBuscaListaVenta: function(idventa) {
-      return $http.get(CONFIG.APIURL+'/buscaListaVenta.json/'+idventa);
+      return $http.get(CONFIG.APIURL+'/buscaListaVenta.json/'+idventa,{'Content-Type': 'application/json'});
     },
 
     postDevolucion: function(vmodificada, vdiferencia, vsocio, vcontado) {
-      return $http.post(CONFIG.APIURL+'/recibirModificada',{modificada: vmodificada, diferencia: vdiferencia, socio: vsocio, contado: vcontado});
+      return $http.post(CONFIG.APIURL+'/recibirModificada',{modificada: vmodificada, diferencia: vdiferencia, socio: vsocio, contado: vcontado}, 
+        {'Content-Type': 'application/x-www-form-urlencoded'});
     },
 
     getSocios: function() {      
-      return $http.get(CONFIG.APIURL+'/todosClientesCuotas.json');
+      return $http.get(CONFIG.APIURL+'/todosClientesCuotas.json',{'Content-Type': 'application/json'});
     },
 
     postCuotas: function(vsocios) {
-      return $http.post(CONFIG.APIURL+'/recibirCuotas',{socios: vsocios});
+      return $http.post(CONFIG.APIURL+'/recibirCuotas',{socios: vsocios},{'Content-Type': 'application/x-www-form-urlencoded'});
     },
 
     postLogin: function(username,password) {
