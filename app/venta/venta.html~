@@ -51,7 +51,8 @@
         <td align=right>{{((venta.precio * venta.iva)/100) * venta.cantidad | number:2}}</td>
         <td align=right>{{ (venta.precio * ( 1+ venta.iva/100)) * venta.cantidad | number:2}}</td>
         <td ng-if="terminado==false"> <button class="btn btn-danger" ng-click="Borrar($index)">Borrar</button></td>
-    </table>  
+    </table> 
+      Código: {{codigo}} 
   </div>
 
   <div class="totalescaja">
@@ -83,7 +84,6 @@
       <br><strong> Dirección: </strong> {{ socio.direccion }}
       <strong> Población: </strong> {{ socio.poblacion }}
       <br><strong> Saldo:  </strong> {{ socio.saldo }}
-      {{contado}}-{{cliente}}
     </div>
   </div>
 

@@ -23,6 +23,8 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
     $scope.articulopr;
     $scope.respuesta;
     $scope.error; 
+    $scope.codigo;
+    $scope.cero=0;  
 
     $scope.listaVenta = [];
     $scope.listaProducto = [];
@@ -37,7 +39,11 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
           var productosArray = recibe.response.productos;
           console.log(JSON.stringify(productosArray));  
           $scope.listaProducto = productosArray;
+          var codigo=recibe.code;
+          console.log(JSON.stringify(codigo));
+          $scope.codigo=codigo;
           //store.set('token',recibe.response.token);
+          
         });
 
         backendAPIservice.getClientes().success(function (recibe) {        

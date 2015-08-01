@@ -6,35 +6,33 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
 
   return{
     getProductos: function() {        
-      return $http.get(CONFIG.APIURL+'/todosProductos.json',{callback: 'JSON_CALLBACK'},{'Content-Type': 'application/json'});      
-      /*return $http({
+      //return $http.get(CONFIG.APIURL+'/todosProductos.json');      
+      return $http({
         method: 'get',
         url: CONFIG.APIURL+'/todosProductos.json',
-        //headers: {'Authorization':'Bearer '+localStorage.getItem('token')},
-        //headers: {'Content-Type': 'application/json'},
+        //headers: {'Content-Type': 'application/json', 'HTTP_AUTHORIZATION': localStorage.getItem('token')},        
         //params: {callback: 'JSON_CALLBACK'},
-      });*/
-            
+      });            
     }, 
 
     getClientes: function() {
-      return $http.get(CONFIG.APIURL+'/todosClientes.json');
-      /*return $http({
+      //return $http.jsonp(CONFIG.APIURL+'/todosClientes.json');
+      return $http({
         method: 'get',
         url: CONFIG.APIURL+'/todosClientes.json',
-        //headers: {'Authorization':'Bearer '+localStorage.getItem('token')},
+        headers: {'Content-Type': 'application/json'},
         //params: {callback: 'JSON_CALLBACK'},
-      });*/
+      });
     },
 
     getTipos: function() {
-      return $http.get(CONFIG.APIURL+'/todosTipos.json');
-      /*return $http({
+      //return $http.jsonp(CONFIG.APIURL+'/todosTipos.json');
+      return $http({
         method: 'get',
         url: CONFIG.APIURL+'/todosTipos.json',
-        //headers: {'Authorization':'Bearer '+localStorage.getItem('token')},
+        headers: {'Content-Type': 'application/json'},
         //params: {callback: 'JSON_CALLBACK'},
-      });*/
+      });
     },
 
     postVenta: function(vcliente, vcontado, vcesta) {
@@ -70,7 +68,7 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
     },
 
     getSocios: function() {      
-      return $http.get(CONFIG.APIURL+'/todosClientesCuotas.json?callback=JSON_CALLBACK');
+      return $http.get(CONFIG.APIURL+'/todosClientesCuotas.json');
     },
 
     postCuotas: function(vsocios) {
@@ -78,7 +76,7 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
     },
 
     postLogin: function(username,password) {
-      return $http.post(CONFIG.APIURL+'/login',{username: username, password: password}, {'Content-Type': 'application/x-www-form-urlencoded'});
+      return $http.post(CONFIG.APIURL+'/login',{username: username, password: password},{'Content-Type': 'application/x-www-form-urlencoded'});
       /*return $http({
         method: 'POST',
         url: CONFIG.APIURL+'/login',
@@ -98,7 +96,6 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
         return localStorage.getItem('token');
       }];
       $httpProvider.interceptors.push('jwtInterceptor');
-    //}
   }])
 
 
