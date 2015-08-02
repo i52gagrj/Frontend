@@ -59,14 +59,14 @@ angular.module('Frontend.Cierre', ['ngRoute','angular-jwt','angular-storage'])
       else
       {
         store.remove('token');
-        //if(store.get('nombre') store.remove('nombre'); 
+        store.set('nombre', "Sin conexion");
         $location.path("/login");
       }
     } 
     else 
     {
       store.remove('token');
-      //if(store.get('nombre') store.remove('nombre');
+      store.set('nombre', "Sin conexion");
       $location.path("/login");
     }
 

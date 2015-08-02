@@ -42,7 +42,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
           var codigo=recibe.code;
           console.log(JSON.stringify(codigo));
           $scope.codigo=codigo;
-          //store.set('token',recibe.response.token);
+          store.set('token',recibe.response.token);
           
         });
 

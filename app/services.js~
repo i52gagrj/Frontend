@@ -16,7 +16,7 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
     }, 
 
     getClientes: function() {
-      return $http.jsonp(CONFIG.APIURL+'/todosClientes.json',{'Content-Type': 'application/json'});
+      return $http.get(CONFIG.APIURL+'/todosClientes.json',{'Content-Type': 'application/json'});
       /*return $http({
         method: 'get',
         url: CONFIG.APIURL+'/todosClientes.json',
@@ -26,7 +26,7 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
     },
 
     getTipos: function() {
-      return $http.jsonp(CONFIG.APIURL+'/todosTipos.json',{'Content-Type': 'application/json'});
+      return $http.get(CONFIG.APIURL+'/todosTipos.json',{'Content-Type': 'application/json'});
       /*return $http({
         method: 'get',
         url: CONFIG.APIURL+'/todosTipos.json',
@@ -41,7 +41,7 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
     },
 
     getCierreVentas: function() {
-      return $http.get(CONFIG.APIURL+'/cierreVentas.json',{'Content-Type': 'application/json'});
+      return $http.jsonp(CONFIG.APIURL+'/cierreVentas.json',{'Content-Type': 'application/json'});
     }, 
 
     getCierreLineas: function() {

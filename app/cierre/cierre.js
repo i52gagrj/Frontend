@@ -29,7 +29,6 @@ angular.module('Frontend.Cierre', ['ngRoute','angular-jwt','angular-storage'])
     $scope.listaVentas = [];
     $scope.listaLineas = [];
     
-    //if(store.get('token') && store.get('token')!=" "){
     if(store.get('token')){
       var token = store.get('token'); 
       if(!jwtHelper.isTokenExpired(token))
