@@ -78,6 +78,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
     };
 
     $scope.clienteElegido=function(value) {
+      if($scope.cliente==1){ $scope.contado=true; }
       if (value.id==$scope.cliente){
         return true;
       } else {

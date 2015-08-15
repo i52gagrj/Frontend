@@ -1,26 +1,35 @@
 <div>
-  <div class="articuloscaja" ng-if="terminado==false">  
-    <strong>VENTA:</strong>
-    <input type="text" size="2" ng-model="idventa"/>
-    <button ng-click="BuscarVenta(idventa)"> Buscar </button>
-    <br>
-    <strong>CLIENTE</strong>
-    <br>
-    <strong> Nombre: </strong> {{ ventaOriginal.socio }}
-    <strong> DNI: </strong> {{ ventaOriginal.dni }}<br>
-    <strong> Vendedor: </strong> {{ ventaOriginal.usuario }}<br><br> 
-    <strong> VENTA ORIGINAL</strong><br>
-    <strong> Fecha de venta: </strong> {{ ventaOriginal.fechaventa }}
-    <strong> Hora de venta: </strong> {{ ventaOriginal.horaventa }}
-    <table>
-      <tr>
+  <div class="container">
+    <h1>Devolución</h1>
+  </div> 
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6" ng-if="terminado==false">  
+    <h2>Venta:</h2>
+      <input type="text" size="2" ng-model="idventa"/>
+      <button ng-click="BuscarVenta(idventa)"> Buscar </button>
+      <br>
+      <h3>Cliente</h3>
+      <strong> Nombre: </strong> {{ ventaOriginal.socio }}
+      <strong> DNI: </strong> {{ ventaOriginal.dni }}<br>
+      <strong> Vendedor: </strong> {{ ventaOriginal.usuario }}<br><br> 
+      <h3> Venta original</h3>
+      <strong> Fecha de venta: </strong> {{ ventaOriginal.fechaventa }}
+      <strong> Hora de venta: </strong> {{ ventaOriginal.horaventa }}
+      <table class="table table-striped table-bordered">
+        <thead> 
+        <tr>
         <th align=left > Producto 
         <th align=center > Precio 
         <th align=center > Tipo IVA
         <th align=center > IVA
         <th align=center > Cantidad
         <th align=center > Total
-      </tr> 
+        </tr> 
+        </thead>
+        <tbody>
       <tr ng-repeat="linea in lineasOriginal">
         <td align=center >{{ linea.nombre }}  
         <td align=center >{{ linea.precio }}  
@@ -28,48 +37,55 @@
         <td align=center >{{ linea.precio * linea.iva /100 | number:2 }}
         <td align=center >{{ linea.cantidad }}  
         <td align=center >{{ linea.precio * (1 + (linea.iva/100)) * linea.cantidad | number:2 }} 
-      </tr> 
-    </table> 
-    <div ng-if="codigorecibido!=0"> 
+        </tr>
+        </tbody>
+      </table>  
+      <div ng-if="codigorecibido!=0"> 
+        {{respuesta}}
+      </div>
+    </div>
+
+    <div class="articuloscaja" ng-if="terminado==true"> 
       {{respuesta}}
+    </div>
+
+  <div class="col-md-6">
+    <strong>VENTA MODIFICADA</strong>
+      <table class="table table-striped table-bordered">
+        <thead> 
+        <tr>
+          <th align=center> Id 
+          <th align=center> Producto
+          <th align=center> Precio 
+          <th align=center> Tipo IVA
+          <th align=center> IVA 
+          <th align=center> Cantidad
+          <th align=center> Total
+        </tr> 
+        </thead>
+        <tbody>
+        <tr ng-repeat="x in lineasModificada" ng-if="x.borrar==false"> 
+          <td align=center ng-if="terminado==false">
+            <input size="2" ng-change="CambiarProducto($index)" ng-model= "x.idproducto" / ng-if="terminado==false">          
+          <td align=center ng-if="terminado==true"> {{ x.idproducto}}
+          <td align=left >{{ x.nombre }}
+          <td align=right >{{ x.precio }}
+          <td align=center >{{ x.iva }}  
+	  <td align=right >{{ (x.precio * x.iva /100)  | number:2}} 	  
+          <td align=center ng-if="terminado==false">
+            <input size="2" ng-change="TotalesModificado()" ng-model= "x.cantidad" />
+          <td align=center ng-if="terminado==true"> {{ x.cantidad}}
+          <td align=right >{{ (x.precio * 1 + (x.precio * x.iva /100)) * x.cantidad | number:2}}
+          <td align=right >
+             <button class="btn btn-danger" ng-click="Borrar($index)" ng-hide="terminado==true">Borrar</button>
+        </tr>
+        </tbody>
+      </table> 
     </div>
   </div>
 
-  <div class="articuloscaja" ng-if="terminado==true"> 
-    {{respuesta}}
-  </div>
-
-  <div class="cestacaja" >
-    <strong>VENTA MODIFICADA</strong>
-    <table>
-      <tr>
-        <th align=center> Id 
-        <th align=center> Producto
-        <th align=center> Precio 
-        <th align=center> Tipo IVA
-        <th align=center> IVA 
-        <th align=center> Cantidad
-        <th align=center> Total
-      </tr>
-      <tr ng-repeat="x in lineasModificada" ng-if="x.borrar==false"> 
-        <td align=center ng-if="terminado==false">
-          <input size="2" ng-change="CambiarProducto($index)" ng-model= "x.idproducto" / ng-if="terminado==false">          
-        <td align=center ng-if="terminado==true"> {{ x.idproducto}}
-        <td align=left >{{ x.nombre }}
-        <td align=right >{{ x.precio }}
-        <td align=center >{{ x.iva }}  
-	<td align=right >{{ (x.precio * x.iva /100)  | number:2}} 	  
-        <td align=center ng-if="terminado==false">
-          <input size="2" ng-change="TotalesModificado()" ng-model= "x.cantidad" />
-        <td align=center ng-if="terminado==true"> {{ x.cantidad}}
-        <td align=right >{{ (x.precio * 1 + (x.precio * x.iva /100)) * x.cantidad | number:2}}
-        <td align=right >
-           <button class="btn btn-danger" ng-click="Borrar($index)" ng-hide="terminado==true">Borrar</button>
-      </tr> 
-    </table> 
-  </div>
-
-  <div class="totalescaja"> 
+  <div class="row">
+  <div class="col-md-6">
     <strong>TOTAL ORIGINAL</strong>
     <br> 
     <strong>Base 21: </strong> {{ base21original | number:2 }}
@@ -97,7 +113,7 @@
     <strong ng-if="(totalmodificado - totaloriginal) > 0"> a pagar</strong>
     <strong ng-if="(totalmodificado - totaloriginal) < 0"> a devolver</strong>
     
-    <button ng-click="Finalizar()" ng-show="terminado==false"> Finalizar </button>  
+    <button ng-click="Finalizar()" ng-hide="terminado==true"> Finalizar </button>  
   </div>
-
+  </div> 
 </div>

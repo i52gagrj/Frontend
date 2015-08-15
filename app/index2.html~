@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="Frontend">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>TPV - Comercio Justo</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
+  <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="estilo.css">
+  
+</head>
+
+<body>
+<div ng-controller="IndexController">  
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" align="center">TPV Comercio Justo</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li ><a href="#/venta">Venta</a></li> 
+          <li ><a href="#/cierre">Cierre</a></li>  
+          <li ><a href="#/devolucion">Devolucion</a></li>  
+          <li ><a href="#/gestion">Gestion</a></li>  
+          <li ><a href="#/informes">Informes</a></li>  
+          <li ><a href="#/cuotas">Cuotas</a></li>
+          <li ><a ng-click="Logout()">Logout</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+
+    <div ng-view></div>
+    <footer>
+      i52gagrj
+    </footer>
+</div>
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  
+  <script type="text/javascript" src="https://cdn.rawgit.com/auth0/angular-jwt/master/dist/angular-jwt.js"></script>-->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-jwt/dist/angular-jwt.js"></script>
+  <script src="bower_components/a0-angular-storage/dist/angular-storage.js"></script>
+  <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="app.js"></script>
+  <script src="index.js"></script>
+  <script src="services.js"></script>
+  <script src="venta/venta.js"></script>
+  <script src="cierre/cierre.js"></script>
+  <script src="devolucion/devolucion.js"></script>
+  <script src="gestion/gestion.js"></script>
+  <script src="informes/informes.js"></script>
+  <script src="cuotas/cuotas.js"></script>
+  <script src="login/login.js"></script>
+
+</body>
+</html>

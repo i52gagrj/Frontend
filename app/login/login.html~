@@ -1,24 +1,32 @@
 <!--<section id="login">-->
-  <div class="contenido">
-    <div>
-      <div>
-        <div>
-          <strong>Login</strong>
-          <form name="loginForm" id="login-form" ng-submit="Login(username,password)" autocomplete="on">
-            <div>
-              <label>Usuario</label>
-              <input type="text" name="username" ng-model="username" id="username">
-            </div>
-            <div>
-              <label>Clave</label>
-              <input type="password" ng-model="password" name="password" id="password">
-            </div>
-            <input type="submit" id="btn-login" value="Login">
-          </form>
-          {{ mensaje }}
-          <hr>
-        </div>
-      </div> <!-- /.col-xs-12 -->
-    </div> <!-- /.row -->
-  </div> <!-- /.container -->
+<div>
+  <div class="container">
+    <h1>Login</h1>
+  </div> 
+</div>
+
+<div class="container">
+  <form class="form-horizontal" role="form" name="loginForm" id="login-form" ng-submit="Login(username,password)" autocomplete="on">
+    <div class="form-group">
+      <label for="username" class="col-lg-2 control-label">Usuario</label>
+      <div class="col-lg-10">
+        <input type="text" name="username" class="form-control" ng-model="username" id="username" placeholder="Usuario">
+      </div>
+    </div>
+    <div  class="form-group">
+      <label for="password" class="col-lg-2 control-label">Clave</label>
+      <div class="col-lg-10"> 
+        <input type="password" ng-model="password" class="form-control" name="password" id="password" placeholder="Contraseña">
+      </div>
+    </div>
+    <div class="form-group">  
+      <div class="col-lg-offset-2 col-lg-10">
+        <button type="submit" id="btn-login" value="Login">Conectar</button>
+      </div>
+    </div>
+  </form>
+  {{ mensaje }}
+  <hr>
+</div>
+
 <!--</section>-->
