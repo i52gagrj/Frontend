@@ -19,7 +19,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
     $scope.iva10=0.00; 
     $scope.base4=0.00;
     $scope.iva4=0.00; 
-    $scope.total=0.00;
+    $scope.total=0.00;        
     $scope.articulopr;
     $scope.respuesta;
     $scope.error; 
@@ -73,7 +73,18 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
 
     $scope.Aniadir=function(pid, pnombre, pprecio, piva)
     {
-      $scope.listaVenta.push({id:pid, nombre:pnombre, precio:pprecio, iva:piva, cantidad:1 });
+      var elemento; 
+      var anadido=false;
+      for(elemento in $scope.listaVenta) {
+        if($scope.listaVenta[elemento].id == pid) {
+          $scope.listaVenta[elemento].cantidad = $scope.listaVenta[elemento].cantidad+1;
+          anadido=true;
+        }
+      } 
+      if(anadido==false)
+      {
+        $scope.listaVenta.push({id:pid, nombre:pnombre, precio:pprecio, iva:piva, cantidad:1 });        
+      }
       $scope.Totales();
     };
 

@@ -1,4 +1,10 @@
-    <div class="contenido" ng-if="terminado==false">
+<div>
+  <div class="container center-block">
+    <h1 align="center">Cuotas</h1>
+  </div> 
+</div>
+
+    <div class="container" ng-if="terminado==false">
       <strong>Listado de cuotas a cargar</strong>
       <table>
         <tr>
@@ -23,6 +29,6 @@
       </div>   
     </div>
 
-    <div class="contenido" ng-if="terminado==true">
+    <div class="container" ng-if="terminado==true">
       {{respuesta}}
     </div>

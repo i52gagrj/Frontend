@@ -1,19 +1,21 @@
 <div>
   <div class="container center-block">
-    <h1>Venta</h1>
+    <h1 align="center">Venta</h1>
   </div> 
 </div>
 
 <div class="container">
   <div class="row">
-    <div class="col-md-6" ng-if="terminado==false">  
-      <h2>Articulos
-        <input size="8" ng-model="articulopr"></input>    
-        Tipos
-        <select name="clase" ng-model="filtrotipo">
+    <div class="col-md-6 panel panel-default" ng-if="terminado==false">  
+      <div class="panel-heading">
+        <h2 class="panel-title">Articulos</h2>
+        <span class="glyphicon glyphicon-search"></span>
+        <input size="8" ng-model="articulopr" align="left"></input>    
+        <span class="glyphicon glyphicon-filter" align="right"></span>         
+        <select name="clase" ng-model="filtrotipo" >
           <option ng-repeat="tipo in listaTipo">{{tipo.nombre}}
         </select>  
-      </h2>
+      </div>      
       <table class="table table-striped table-bordered">
         <thead> 
           <tr>
@@ -39,12 +41,14 @@
       </table>  
     </div>
 
-    <div class="col-md-6" ng-if="terminado==true">
+    <div class="col-md-6 panel panel-default" ng-if="terminado==true">
       <h2> {{respuesta}} </h2>
     </div>
 
-    <div class="col-md-6">
-      <h2>Cesta</h2>
+    <div class="col-md-6 panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title">Cesta</h1>
+      </div> 
       <table class="table table-striped table-bordered">
         <thead> 
           <tr>
@@ -74,15 +78,14 @@
   </div>
    
   <div class="row">
-    <div class="col-md-6">
-      <h2>Totales</h2>
-      <strong>Base 21: </strong> {{ base21 | number:2 }} <br>
-      <strong>Base 10: </strong> {{ base10 | number:2 }} <br>
-      <strong>Base 4: </strong> {{ base4 | number:2 }} <br>
-      <strong>IVA 21: </strong> {{ iva21 | number:2 }} <br>
-      <strong>IVA 10: </strong> {{ iva10 | number:2 }} <br>
-      <strong>IVA 4: </strong> {{ iva4 | number:2 }} <br>
-      <strong>Total: </strong> {{ total | number:2 }} <br>
+    <div class="col-md-6 panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title">Totales</h1>
+      </div> 
+      <strong>Base 21: </strong> {{ base21 | number:2 }} <strong>IVA 21: </strong> {{ iva21 | number:2 }} <br>
+      <strong>Base 10: </strong> {{ base10 | number:2 }} <strong>IVA 10: </strong> {{ iva10 | number:2 }} <br>
+      <strong>Base 4: </strong> {{ base4 | number:2 }} <strong>IVA 4: </strong> {{ iva4 | number:2 }}
+      <h3><strong>Total: </strong> {{ total | number:2 }} </h3>
       <button ng-click="Finalizar()" ng-if="terminado==false"> Finalizar </button>  
       <form ng-show="cliente!=1">
         <input type="radio" ng-model="contado" value="false"> Prepago
@@ -90,8 +93,10 @@
       </form>
     </div>     
 
-    <div class="col-md-6">
-      <h2>Cliente</h2>
+    <div class="col-md-6 panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title">Cliente</h1>
+      </div> 
       <strong>Código del Cliente:
         <input size="2" type="text" name="cliente" id="cliente" ng-model="cliente" value=1></input>
       </strong>
@@ -101,7 +106,6 @@
         <strong> Dirección: </strong> {{ socio.direccion }} <br>
         <strong> Población: </strong> {{ socio.poblacion }} <br>
         <strong> Saldo:  </strong> {{ socio.saldo }} <br>
-        <strong> Contado:  </strong> {{ contado }} <br>
       </div>
 
     </div>
