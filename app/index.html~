@@ -31,10 +31,24 @@
           <li ><a href="#/venta">Venta</a></li> 
           <li ><a href="#/cierre">Cierre</a></li>  
           <li ><a href="#/devolucion">Devolucion</a></li>  
-          <li ><a href="#/gestion">Gestion</a></li>  
+          <!--<li ><a href="#/gestion">Gestion</a></li>   
+          <li ><a href="#/informes">Informes</a></li>-->  
+          <li class="dropdown">
+            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gestion
+	    <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#/gestion/socios">Socios</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#/gestion/articulos">Articulos</a></li>
+              <li><a href="#/gestion/tipos">Tipos de Artículos</a></li>
+              <li><a href="#/gestion/proveedores">Proveedores</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#/gestion/usuarios">Usuarios</a></li>
+            </ul>
+          </li>  
           <li ><a href="#/informes">Informes</a></li>  
           <li ><a href="#/cuotas">Cuotas</a></li>
-          <li ><a ng-click="Logout()">{{usuario}}<span class="glyphicon glyphicon-off"></span></a></li>
+          <li ><a ng-click="Logout()">{{usuario}} <span class="glyphicon glyphicon-off"></span></a></li>
         </ul>  
       </div>
     </div>
@@ -68,6 +82,11 @@
   <script src="cierre/cierre.js"></script>
   <script src="devolucion/devolucion.js"></script>
   <script src="gestion/gestion.js"></script>
+  <script src="gestion/articulos/articulos.js"></script>
+  <script src="gestion/proveedores/proveedores.js"></script>
+  <script src="gestion/socios/socios.js"></script>
+  <script src="gestion/tipos/tipos.js"></script>
+  <script src="gestion/usuarios/usuarios.js"></script>
   <script src="informes/informes.js"></script>
   <script src="cuotas/cuotas.js"></script>
   <script src="login/login.js"></script>

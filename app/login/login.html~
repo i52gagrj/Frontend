@@ -7,7 +7,7 @@
 
 <div class="container">
   <form class="form-signin" role="form" name="loginForm" id="login-form" ng-submit="Login(username,password)" autocomplete="on">
-    <h2 class="form-signin-heading">Identifiquese:</h2>
+    <h2 class="form-signin-heading" align="center">Identifiquese:</h2>
     <!--<div class="form-group">-->
       <label for="username" class="sr-only">Usuario</label>
       <!--<div class="col-lg-10">-->

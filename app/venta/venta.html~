@@ -13,7 +13,8 @@
         <input size="8" ng-model="articulopr" align="left"></input>    
         <span class="glyphicon glyphicon-filter" align="right"></span>         
         <select name="clase" ng-model="filtrotipo" >
-          <option ng-repeat="tipo in listaTipo">{{tipo.nombre}}
+          <option value="">
+          <option ng-repeat="tipo in listaTipo" value="{{tipo.nombre}}">{{tipo.nombre}}
         </select>  
       </div>      
       <table class="table table-striped table-bordered">
@@ -28,7 +29,7 @@
           </tr> 
         </thead>
         <tbody>
-          <tr ng-repeat="producto in listaProducto | filter:articulopr" >
+          <tr ng-repeat="producto in listaProducto | filter:articulopr | filter:filtrotipo" >
             <td align=left>{{producto.nombre}}</td>
             <td align=left>{{producto.tipo}}</td> 
             <td align=right >{{producto.precio | number:2 }}</td>
@@ -85,7 +86,7 @@
       <strong>Base 21: </strong> {{ base21 | number:2 }} <strong>IVA 21: </strong> {{ iva21 | number:2 }} <br>
       <strong>Base 10: </strong> {{ base10 | number:2 }} <strong>IVA 10: </strong> {{ iva10 | number:2 }} <br>
       <strong>Base 4: </strong> {{ base4 | number:2 }} <strong>IVA 4: </strong> {{ iva4 | number:2 }}
-      <h3>Total: {{ total | number:2 }} </h3>
+      <h3><strong>Total: </strong> {{ total | number:2 }} </h3>
       <button ng-click="Finalizar()" ng-if="terminado==false"> Finalizar </button>  
       <form ng-show="cliente!=1">
         <input type="radio" ng-model="contado" value="false"> Prepago

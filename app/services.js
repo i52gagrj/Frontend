@@ -17,22 +17,10 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
 
     getClientes: function() {
       return $http.get(CONFIG.APIURL+'/todosClientes.json',{'Content-Type': 'application/json'});
-      /*return $http({
-        method: 'get',
-        url: CONFIG.APIURL+'/todosClientes.json',
-        headers: {'Content-Type': 'application/json'},
-        //params: {callback: 'JSON_CALLBACK'},
-      });*/
     },
 
     getTipos: function() {
       return $http.get(CONFIG.APIURL+'/todosTipos.json',{'Content-Type': 'application/json'});
-      /*return $http({
-        method: 'get',
-        url: CONFIG.APIURL+'/todosTipos.json',
-        headers: {'Content-Type': 'application/json'},
-        //params: {callback: 'JSON_CALLBACK'},
-      });*/
     },
 
     postVenta: function(vcliente, vcontado, vcesta) {
@@ -85,7 +73,21 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         data: {username: username, password: password}        
       })*/ 
-    } 
+    },
+
+   //////////////////////////GESTION///////////////////////////////
+
+    getListadoProveedores: function() {        
+      return $http.get(CONFIG.APIURL+'/listadoProveedores.json',{'Content-Type': 'application/json'});               
+    },
+
+    postProveedor: function(vid, vnombre, vnif, vdireccion, vpoblacion, vprovincia, vcp, vfijo, vmovil, vemail, vactivo) {
+      return $http.post(CONFIG.APIURL+'/recibirVenta',{id: vid, nombre: vnombre, nif: vnif, direccion: vdireccion, poblacion: vpoblacion, provincia: vprovincia, cp: vcp, fijo: vfijo, movil: vmovil, email: vemail, activo: vactivo},
+        {'Content-Type': 'application/x-www-form-urlencoded'});
+    },
+
+   //////////////////////FIN GESTION///////////////////////////////
+ 
   } 
   })
   .config(["$httpProvider", "jwtInterceptorProvider",  function ($httpProvider, jwtInterceptorProvider, store) 
