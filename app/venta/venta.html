@@ -92,6 +92,11 @@
         <input type="radio" ng-model="contado" value="false"> Prepago
         <input type="radio" ng-model="contado" value="true" ng-checked="contado==true"> Contado
       </form>
+        <input type="text" ng-model="prueba"><br>
+        <input type="checkbox" ng-model="activo"><br>
+        <strong> {{prueba}} 
+        <strong> {{activo}} 
+
     </div>     
 
     <div class="col-md-6 panel panel-default">
@@ -107,6 +112,10 @@
         <strong> Dirección: </strong> {{ socio.direccion }} <br>
         <strong> Población: </strong> {{ socio.poblacion }} <br>
         <strong> Saldo:  </strong> {{ socio.saldo }} <br>
+        <strong> {{contado}}<br></strong>
+
+        <strong> {{prueba}} </strong>
+        <strong> {{activo}} </strong> 
       </div>
 
     </div>

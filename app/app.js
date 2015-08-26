@@ -11,13 +11,13 @@ var Frontend=angular.module('Frontend', [
   'Frontend.Venta',
   'Frontend.Cierre',
   'Frontend.Devolucion',
+  'Frontend.Gestion.Cuotas',
   'Frontend.Gestion.Articulos',
   'Frontend.Gestion.Proveedores',
   'Frontend.Gestion.Socios',
   'Frontend.Gestion.Tipos',
   'Frontend.Gestion.Usuarios',
-  'Frontend.Informes',
-  'Frontend.Cuotas', 
+  'Frontend.Informes', 
   'Frontend.Login',
 ]);
 Frontend.constant('CONFIG', {

@@ -67,12 +67,6 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
 
     postLogin: function(username,password) {
       return $http.post(CONFIG.APIURL+'/login',{username: username, password: password},{'Content-Type': 'application/x-www-form-urlencoded'});
-      /*return $http({
-        method: 'POST',
-        url: CONFIG.APIURL+'/login',
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        data: {username: username, password: password}        
-      })*/ 
     },
 
    //////////////////////////GESTION///////////////////////////////
@@ -82,7 +76,16 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
     },
 
     postProveedor: function(vid, vnombre, vnif, vdireccion, vpoblacion, vprovincia, vcp, vfijo, vmovil, vemail, vactivo) {
-      return $http.post(CONFIG.APIURL+'/recibirVenta',{id: vid, nombre: vnombre, nif: vnif, direccion: vdireccion, poblacion: vpoblacion, provincia: vprovincia, cp: vcp, fijo: vfijo, movil: vmovil, email: vemail, activo: vactivo},
+      return $http.post(CONFIG.APIURL+'/recibeProveedor',{id: vid, nombre: vnombre, nif: vnif, direccion: vdireccion, poblacion: vpoblacion, provincia: vprovincia, cp: vcp, fijo: vfijo, movil: vmovil, email: vemail, activo: vactivo},
+        {'Content-Type': 'application/x-www-form-urlencoded'});
+    },
+
+    getListadoSocios: function() {        
+      return $http.get(CONFIG.APIURL+'/listadoSocios.json',{'Content-Type': 'application/json'});               
+    },
+
+    postSocio: function(vid, vnombre, vdni, vdireccion, vpoblacion, vprovincia, vcp, vfijo, vmovil, vemail, vactivo, vsaldo, vbaja) {
+      return $http.post(CONFIG.APIURL+'/recibeSocio',{id: vid, nombre: vnombre, dni: vdni, direccion: vdireccion, poblacion: vpoblacion, provincia: vprovincia, cp: vcp, fijo: vfijo, movil: vmovil, email: vemail, activo: vactivo, saldo: vsaldo, baja: vbaja},
         {'Content-Type': 'application/x-www-form-urlencoded'});
     },
 

@@ -25,6 +25,8 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
     $scope.error; 
     $scope.codigo;
     $scope.cero=0;  
+    $scope.prueba;
+    $scope.activo;
 
     $scope.listaVenta = [];
     $scope.listaProducto = [];
@@ -66,8 +68,8 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
     } 
     else 
     {
-      //store.remove('token');
-      //store.set('nombre', "Sin conexion");
+      store.remove('token');
+      store.set('nombre', "Sin conexion");
       $location.path("/login");
     }
 

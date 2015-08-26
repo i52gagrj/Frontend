@@ -13,7 +13,7 @@
         <input size="8" ng-model="articulopr" align="left"></input>    
         <span class="glyphicon glyphicon-filter" align="right"></span>         
         <select name="clase" ng-model="filtrotipo" >
-          <option value="">
+          <option value="">Todos los tipos
           <option ng-repeat="tipo in listaTipo" value="{{tipo.nombre}}">{{tipo.nombre}}
         </select>  
       </div>      
@@ -92,6 +92,9 @@
         <input type="radio" ng-model="contado" value="false"> Prepago
         <input type="radio" ng-model="contado" value="true" ng-checked="contado==true"> Contado
       </form>
+        <strong> {{prueba}} 
+        <strong> {{activo}} 
+
     </div>     
 
     <div class="col-md-6 panel panel-default">
@@ -107,6 +110,11 @@
         <strong> Dirección: </strong> {{ socio.direccion }} <br>
         <strong> Población: </strong> {{ socio.poblacion }} <br>
         <strong> Saldo:  </strong> {{ socio.saldo }} <br>
+        <strong> {{contado}}<br></strong>
+        <input type="text" ng-model="prueba"><br>
+        <input type="checkbox" ng-model="activo"><br>
+        <strong> {{prueba}} </strong>
+        <strong> {{activo}} </strong> 
       </div>
 
     </div>

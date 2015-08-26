@@ -6,46 +6,12 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12 panel panel-default" ng-if="editando==true">  
-     <table class="table table-bordered">
-        <thead> 
-          <tr>
-            <th align=center > Id
-            <th align=center > Nombre
-            <th align=center > NIF
-            <th align=center > Dirección
-            <th align=center > Población
-            <th align=center > Provincia
-            <th align=center > CP
-            <th align=center > Fijo
-            <th align=center > Movil
-            <th align=center > Email
-            <th align=center > Activo
-          </tr> 
-        </thead>
-        <tbody>
-          <tr>
-            <td align=center>{{id}}</td>
-            <td align=center>{{nombre}}</td> 
-            <td align=center>{{nif}}</td>
-            <td align=center>{{direccion}}</td>
-            <td align=center>{{poblacion}}</td>
-            <td align=center>{{provincia}}</td>
-            <td align=center>{{cp}}</td>
-            <td align=center>{{fijo}}</td>
-            <td align=center>{{movil}}</td>
-            <td align=center>{{email}}</td>
-            <td align=center>{{activo}}</td>
-            <td> <button class="btn btn-sm btn-primary" ng-click="">Guardar</button> </td>
-          </tr>
-        </tbody>
-      </table>   
-    <div>
-    <div class="col-md-12 panel panel-default" ng-if="editando==false">  
+    <div class="col-md-12 panel panel-default">  
       <div class="panel-heading">
         <h2 class="panel-title">Listado</h2>
         <span class="glyphicon glyphicon-search"></span>
-        <input size="8" ng-model="proveedorpr" align="left"></input>     
+        <input size="8" ng-model="proveedorpr" align="left"></input>
+        <span><button class="btn btn-sm btn-primary" ng-click="Insertar()">Añadir</button></span>     
       </div>      
       <table class="table table-striped table-bordered">
         <thead> 
@@ -76,11 +42,45 @@
             <td align=center>{{proveedor.movil}}</td>
             <td align=center>{{proveedor.email}}</td>
             <td align=center>{{proveedor.activo}}</td>
-            <td> <button class="btn btn-sm btn-primary" ng-click="">Modificar</button> </td>
-            <td> <button class="btn btn-sm btn-danger" ng-click="">Dar de baja</button> </td>
+            <td> <button class="btn btn-sm btn-primary" ng-click="Modificar(proveedor.id)">Modificar</button> </td>
+            <td> <button class="btn btn-sm btn-danger" ng-click="Anular(proveedor.id)">Dar de baja</button> </td>
+          </tr>
+          <tr>
+            <td align=center>{{id}}</td>
+            <td align=center>{{nombre}}</td> 
+            <td align=center>{{nif}}</td>
+            <td align=center>{{direccion}}</td>
+            <td align=center>{{poblacion}}</td>
+            <td align=center>{{provincia}}</td>
+            <td align=center>{{cp}}</td>
+            <td align=center>{{fijo}}</td>
+            <td align=center>{{movil}}</td>
+            <td align=center>{{email}}</td>
+            <td align=center>{{activo}}</td>
+            <td></td>
           </tr>
         </tbody>
       </table>  
     </div>
   </div> 
+
+  <div class="row">
+    <div class="col-md-12 panel panel-default" ng-if="editando==true">  
+      <form>
+        <label align=center>Id: </label><input size="2" type="text" ng-name="id" ng-model="id"><br>
+        <label align=center>Nombre: </label><input size="9" type="text" ng-name="nombre" ng-model="nombre"><br> 
+        <label align=center>NIF:</label><input size="9" type="text" ng-name="nif" ng-model="nif"><br>
+        <label align=center>Direccion: </label><input size="9" type="text" ng-name="direccion" ng-model="direccion"><br>
+        <label align=center>Poblacion: </label><input size="9" type="text" ng-name="poblacion" ng-model="poblacion"><br>
+        <label align=center>Provincia: </label><input size="9" type="text" ng-name="provincia" ng-model="provincia"></input><br>
+        <label align=center>CP:</label><input size="5" type="text" ng-name="cp" ng-model="cp"><br>
+        <label align=center>Telefono Fijo: </label><input size="8" type="text" ng-name="fijo" ng-model="fijo"><br>
+        <label align=center>Telefono Movil: </label><input size="8" type="text" ng-name="movil" ng-model="movil"><br>
+        <label align=center>Email: </label><input size="8" type="text" ng-name="email" ng-model="email"><br>
+        <label align=center>Activo: </label><input type="checkbox" ng-model="activo"><br>
+        <button class="btn btn-sm btn-primary" ng-click="Almacenar(id, nombre, nif, direccion, poblacion, provincia, cp, fijo, movil, email, activo)">Almacenar</button>
+        {{id}}-{{nombre}}-{{nif}}-{{direccion}}-{{poblacion}}-{{provincia}}-{{cp}}-{{fijo}}-{{movil}}-{{email}}-{{activo}}<br
+      </form>
+    </div>
+  </div>
 </div>
