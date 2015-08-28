@@ -1,28 +1,44 @@
-    <div class="container" ng-if="terminado==false">
-      <strong>Listado de cuotas a cargar</strong>
-      <table>
-        <tr>
-          <th align=center> Id 
-          <th align=center> Nombre
-          <th align=center> Saldo
-          <th align=center> Cuota
-        </tr>
-	<tr ng-repeat="x in listaSocios"> 
-          <td align=center >{{ x.id }}
-          <td align=center >{{ x.nombre }}
-          <td align=center >{{ x.saldo }}  
-          <!--{% if finalizado == false %} -->
-          <td align=center >
-            <input size="3" value= "x.cuota" ng-model="x.cuota" />
-          <!--{% else %}              
-            <td align=center > --
-          {% endif %}-->   
-      </table>  
-      <div ng-if="terminado==false">
-        <button ng-click="Finalizar()"> Finalizar </button> 
-      </div>   
-    </div>
+<div>
+  <div class="container center-block">
+    <h1 align="center">Gestión de admisión de cuotas</h1>
+  </div> 
+</div>
 
-    <div class="container" ng-if="terminado==true">
-      {{respuesta}}
-    </div>
+<div class="container">
+  <div class="row">  
+    <div class="col-md-12 panel panel-default" ng-if="terminado==false">  
+      <div class="panel-heading">
+        <h2 class="panel-title" align="center">Listado de cuotas a cargar</h2>
+      </div> 
+      <table class="table table-striped table-bordered">
+        <thead> 
+          <tr>
+            <th align=center> Id 
+            <th align=center> Nombre
+            <th align=center> Saldo
+            <th align=center> Cuota
+          </tr> 
+        </thead>
+        <tbody>
+	  <tr ng-repeat="x in listaSocios"> 
+            <td align=center >{{ x.id }}
+            <td align=center >{{ x.nombre }}
+            <td align=center >{{ x.saldo }}  
+            <td align=center >
+            <input size="3" value= "x.cuota" ng-model="x.cuota" />
+          </tr>
+        </tbody>
+      </table> 
+    </div>   
+  </div>    
+ 
+  <div class="row">
+    <div class="col-md-12 panel panel-default" ng-if="terminado==false">  
+      <button ng-click="Finalizar()"> Finalizar </button> 
+    </div>   
+  </div>   
+
+  <div class="container" ng-if="terminado==true">
+    {{respuesta}}
+  </div>
+</div>

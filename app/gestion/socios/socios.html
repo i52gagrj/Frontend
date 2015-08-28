@@ -36,19 +36,20 @@
       <table class="table table-striped table-bordered">
         <thead> 
           <tr>
-            <th align=center > Id
-            <th align=center > Nombre
-            <th align=center > DNI
-            <th align=center > Dirección
-            <th align=center > Población
-            <th align=center > Provincia
-            <th align=center > CP
-            <th align=center > Saldo
-            <th align=center > Fijo
-            <th align=center > Movil
-            <th align=center > Email
-            <th align=center > Activo
-            <th align=center > Fecha inactivo
+            <th align=center > Id </th>
+            <th align=center > Nombre </th>
+            <th align=center > DNI </th>
+            <th align=center > Dirección </th>
+            <th align=center > Población </th>
+            <th align=center > Provincia </th>
+            <th align=center > CP </th>
+            <th align=center > Saldo </th>
+            <th align=center > Fijo </th>
+            <th align=center > Movil </th>
+            <th align=center > Email </th>
+            <th align=center > Activo </th>
+            <th align=center > Fecha inactivo </th>
+            <th>
           </tr> 
         </thead>
         <tbody>
@@ -66,8 +67,10 @@
             <td align=center>{{socio.email}}</td>
             <td align=center>{{socio.activo}}</td>
             <td align=center>{{socio.fecha-inactivo}}</td>
-            <td> <button class="btn btn-sm btn-primary" ng-click="Modificar(socio.id)">Modificar</button> </td>
-            <td> <button class="btn btn-sm btn-danger" ng-click="Anular(socio.id)">Dar de baja</button> </td>
+            <td> 
+              <button class="btn btn-sm btn-primary" ng-click="Modificar(socio.id)">Modificar</button>
+              <button class="btn btn-sm btn-danger" ng-click="Anular(socio.id)">Dar de baja</button> 
+            </td>
           </tr>
         </tbody>
       </table>  

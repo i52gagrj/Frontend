@@ -46,6 +46,7 @@
             <th align=center > Movil
             <th align=center > Email
             <th align=center > Activo
+            <th> 
           </tr> 
         </thead>
         <tbody>
@@ -61,8 +62,10 @@
             <td align=center>{{proveedor.movil}}</td>
             <td align=center>{{proveedor.email}}</td>
             <td align=center>{{proveedor.activo}}</td>
-            <td> <button class="btn btn-sm btn-primary" ng-click="Modificar(proveedor.id)">Modificar</button> </td>
-            <td> <button class="btn btn-sm btn-danger" ng-click="Anular(proveedor.id)">Dar de baja</button> </td>
+            <td> 
+              <button class="btn btn-sm btn-primary" ng-click="Modificar(proveedor.id)">Modificar</button>
+              <button class="btn btn-sm btn-danger" ng-click="Anular(proveedor.id)">Dar de baja</button> 
+            </td>
           </tr>
         </tbody>
       </table>  

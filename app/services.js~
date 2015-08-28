@@ -89,6 +89,24 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
         {'Content-Type': 'application/x-www-form-urlencoded'});
     },
 
+    getListadoTipos: function() {        
+      return $http.get(CONFIG.APIURL+'/listadoTipos.json',{'Content-Type': 'application/json'});               
+    },
+
+    postTipo: function(vid, vnombre, vpadre) {
+      return $http.post(CONFIG.APIURL+'/recibeTipo',{id: vid, nombre: vnombre, padre: vpadre},
+        {'Content-Type': 'application/x-www-form-urlencoded'});
+    },
+
+    getListadoUsuarios: function() {        
+      return $http.get(CONFIG.APIURL+'/listadoUsuarios.json',{'Content-Type': 'application/json'});               
+    },
+
+    postUsuario: function(vid, vnombre, vdni, vusername, vpassword, vactivo, vsaldo, vbaja, vcambioclave) {
+      return $http.post(CONFIG.APIURL+'/recibeUsuario',{id: vid, nombre: vnombre, dni: vdni, username: vusername, password: vpassword, activo: vactivo, baja: vbaja, cambioclave: vcambioclave},
+        {'Content-Type': 'application/x-www-form-urlencoded'});
+    },
+
    //////////////////////FIN GESTION///////////////////////////////
  
   } 
