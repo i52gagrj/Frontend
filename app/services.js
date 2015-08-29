@@ -107,6 +107,15 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
         {'Content-Type': 'application/x-www-form-urlencoded'});
     },
 
+    getListadoProductos: function() {        
+      return $http.get(CONFIG.APIURL+'/listadoProductos.json',{'Content-Type': 'application/json'});               
+    },
+
+    postProducto: function(vid, vnombre, vtipo, vdescripcion, vstock, vprecio, viva, vactivo, vproveedor, vbaja) {
+      return $http.post(CONFIG.APIURL+'/recibeProducto',{id: vid, nombre: vnombre, tipo: vtipo, descripcion: vdescripcion, stock: vstock, precio: vprecio, iva: viva, activo: vactivo, proveedor: vproveedor, baja: vbaja},
+        {'Content-Type': 'application/x-www-form-urlencoded'});
+    },
+
    //////////////////////FIN GESTION///////////////////////////////
  
   } 

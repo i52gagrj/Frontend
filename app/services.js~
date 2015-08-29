@@ -102,8 +102,17 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
       return $http.get(CONFIG.APIURL+'/listadoUsuarios.json',{'Content-Type': 'application/json'});               
     },
 
-    postUsuario: function(vid, vnombre, vdni, vusername, vpassword, vactivo, vsaldo, vbaja, vcambioclave) {
+    postUsuario: function(vid, vnombre, vdni, vusername, vpassword, vactivo, vbaja, vcambioclave) {
       return $http.post(CONFIG.APIURL+'/recibeUsuario',{id: vid, nombre: vnombre, dni: vdni, username: vusername, password: vpassword, activo: vactivo, baja: vbaja, cambioclave: vcambioclave},
+        {'Content-Type': 'application/x-www-form-urlencoded'});
+    },
+
+    getListadoProductos: function() {        
+      return $http.get(CONFIG.APIURL+'/listadoProductos.json',{'Content-Type': 'application/json'});               
+    },
+
+    postProducto: function(vid, vnombre, vdni, vusername, vpassword, vactivo, vbaja, vcambioclave) {
+      return $http.post(CONFIG.APIURL+'/recibeProducto',{id: vid, nombre: vnombre, dni: vdni, username: vusername, password: vpassword, activo: vactivo, baja: vbaja, cambioclave: vcambioclave},
         {'Content-Type': 'application/x-www-form-urlencoded'});
     },
 

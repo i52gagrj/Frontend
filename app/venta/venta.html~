@@ -6,16 +6,62 @@
 
 <div class="container">
   <div class="row">
+    <div class="col-md-6 panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title">Totales</h1>
+      </div> 
+      <strong>Base 21: </strong> {{ base21 | number:2 }} <strong>IVA 21: </strong> {{ iva21 | number:2 }} <br>
+      <strong>Base 10: </strong> {{ base10 | number:2 }} <strong>IVA 10: </strong> {{ iva10 | number:2 }} <br>
+      <strong>Base 4: </strong> {{ base4 | number:2 }} <strong>IVA 4: </strong> {{ iva4 | number:2 }}
+      <h3><strong>Total: </strong> {{ total | number:2 }} </h3>
+      <button ng-click="Finalizar()" ng-if="terminado==false"> Finalizar </button>  
+      <form ng-show="cliente!=1">
+        <input type="radio" ng-model="contado" value="false"> Prepago
+        <input type="radio" ng-model="contado" value="true" ng-checked="contado==true"> Contado
+      </form>
+        <input type="text" ng-model="prueba"><br>
+        <input type="checkbox" ng-model="activo"><br>
+        <strong> {{prueba}} 
+        <strong> {{activo}} 
+
+    </div>     
+
+    <div class="col-md-6 panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title">Cliente</h1>
+      </div> 
+      <strong>Código del Cliente:
+        <input size="2" type="text" name="cliente" id="cliente" ng-model="cliente" value=1></input>
+      </strong>
+      <div ng-repeat="socio in listaSocio | filter:clienteElegido">     
+        <strong> Nombre: </strong>  {{ socio.nombre }} <br>
+        <strong> DNI: </strong> {{ socio.dni }} <br>
+        <strong> Dirección: </strong> {{ socio.direccion }} <br>
+        <strong> Población: </strong> {{ socio.poblacion }} <br>
+        <strong> Saldo:  </strong> {{ socio.saldo }} <br>
+        <strong> {{contado}}<br></strong>
+
+        <strong> {{prueba}} </strong>
+        <strong> {{activo}} </strong> 
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="row">
     <div class="col-md-6 panel panel-default" ng-if="terminado==false">  
       <div class="panel-heading">
-        <h2 class="panel-title">Articulos</h2>
-        <span class="glyphicon glyphicon-search"></span>
+        <h2 class="panel-title">Articulos </h2>
         <input size="8" ng-model="articulopr" align="left"></input>    
-        <span class="glyphicon glyphicon-filter" align="right"></span>         
+        <span class="glyphicon glyphicon-search"></span>        
+        <span> 
         <select name="clase" ng-model="filtrotipo" >
           <option value="">Todos los tipos
           <option ng-repeat="tipo in listaTipo" value="{{tipo.nombre}}">{{tipo.nombre}}
-        </select>  
+        </select>
+        <span class="glyphicon glyphicon-filter" align="right"></span>  
+        </span>
       </div>      
       <table class="table table-striped table-bordered">
         <thead> 
@@ -78,47 +124,4 @@
 
   </div>
    
-  <div class="row">
-    <div class="col-md-6 panel panel-default">
-      <div class="panel-heading">
-        <h2 class="panel-title">Totales</h1>
-      </div> 
-      <strong>Base 21: </strong> {{ base21 | number:2 }} <strong>IVA 21: </strong> {{ iva21 | number:2 }} <br>
-      <strong>Base 10: </strong> {{ base10 | number:2 }} <strong>IVA 10: </strong> {{ iva10 | number:2 }} <br>
-      <strong>Base 4: </strong> {{ base4 | number:2 }} <strong>IVA 4: </strong> {{ iva4 | number:2 }}
-      <h3><strong>Total: </strong> {{ total | number:2 }} </h3>
-      <button ng-click="Finalizar()" ng-if="terminado==false"> Finalizar </button>  
-      <form ng-show="cliente!=1">
-        <input type="radio" ng-model="contado" value="false"> Prepago
-        <input type="radio" ng-model="contado" value="true" ng-checked="contado==true"> Contado
-      </form>
-        <strong> {{prueba}} 
-        <strong> {{activo}} 
-
-    </div>     
-
-    <div class="col-md-6 panel panel-default">
-      <div class="panel-heading">
-        <h2 class="panel-title">Cliente</h1>
-      </div> 
-      <strong>Código del Cliente:
-        <input size="2" type="text" name="cliente" id="cliente" ng-model="cliente" value=1></input>
-      </strong>
-      <div ng-repeat="socio in listaSocio | filter:clienteElegido">     
-        <strong> Nombre: </strong>  {{ socio.nombre }} <br>
-        <strong> DNI: </strong> {{ socio.dni }} <br>
-        <strong> Dirección: </strong> {{ socio.direccion }} <br>
-        <strong> Población: </strong> {{ socio.poblacion }} <br>
-        <strong> Saldo:  </strong> {{ socio.saldo }} <br>
-        <strong> {{contado}}<br></strong>
-        <input type="text" ng-model="prueba"><br>
-        <input type="checkbox" ng-model="activo"><br>
-        <strong> {{prueba}} </strong>
-        <strong> {{activo}} </strong> 
-      </div>
-
-    </div>
-
-  </div>
-
 </div>

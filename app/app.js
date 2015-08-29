@@ -12,7 +12,7 @@ var Frontend=angular.module('Frontend', [
   'Frontend.Cierre',
   'Frontend.Devolucion',
   'Frontend.Gestion.Cuotas',
-  'Frontend.Gestion.Articulos',
+  'Frontend.Gestion.Productos',
   'Frontend.Gestion.Proveedores',
   'Frontend.Gestion.Socios',
   'Frontend.Gestion.Tipos',
