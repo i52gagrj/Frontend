@@ -81,13 +81,13 @@
   <script src="venta/venta.js"></script>
   <script src="cierre/cierre.js"></script>
   <script src="devolucion/devolucion.js"></script>
-  <script src="gestion/articulos/articulos.js"></script>
+  <script src="gestion/productos/productos.js"></script>
   <script src="gestion/proveedores/proveedores.js"></script>
   <script src="gestion/socios/socios.js"></script>
   <script src="gestion/tipos/tipos.js"></script>
   <script src="gestion/usuarios/usuarios.js"></script>
   <script src="gestion/cuotas/cuotas.js"></script>
-  <script src="informes/informes.js"></script>
+  <script src="informes/ventas/iventa.js"></script>
   <script src="login/login.js"></script>
 
 </body>

@@ -47,7 +47,16 @@
               <li><a href="#/gestion/usuarios">Usuarios</a></li>
             </ul>
           </li>  
-          <li ><a href="#/informes">Informes</a></li>            
+          <li class="dropdown">
+            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Informes
+	    <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#/informes/ventas">Ventas</a></li>
+              <li><a href="#">IVA</a></li>  
+              <li><a href="#">Socios</a></li>
+              <li><a href="#">Vendedores</a></li>
+            </ul>
+          </li>           
           <li ><a ng-click="Logout()">{{usuario}} <span class="glyphicon glyphicon-off"></span></a></li>
         </ul>  
       </div>
@@ -87,7 +96,7 @@
   <script src="gestion/tipos/tipos.js"></script>
   <script src="gestion/usuarios/usuarios.js"></script>
   <script src="gestion/cuotas/cuotas.js"></script>
-  <script src="informes/informes.js"></script>
+  <script src="informes/ventas/iventa.js"></script>
   <script src="login/login.js"></script>
 
 </body>

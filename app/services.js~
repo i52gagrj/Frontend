@@ -111,13 +111,20 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
       return $http.get(CONFIG.APIURL+'/listadoProductos.json',{'Content-Type': 'application/json'});               
     },
 
-    postProducto: function(vid, vnombre, vdni, vusername, vpassword, vactivo, vbaja, vcambioclave) {
-      return $http.post(CONFIG.APIURL+'/recibeProducto',{id: vid, nombre: vnombre, dni: vdni, username: vusername, password: vpassword, activo: vactivo, baja: vbaja, cambioclave: vcambioclave},
+    postProducto: function(vid, vnombre, vtipo, vdescripcion, vstock, vprecio, viva, vactivo, vproveedor, vbaja) {
+      return $http.post(CONFIG.APIURL+'/recibeProducto',{id: vid, nombre: vnombre, tipo: vtipo, descripcion: vdescripcion, stock: vstock, precio: vprecio, iva: viva, activo: vactivo, proveedor: vproveedor, baja: vbaja},
         {'Content-Type': 'application/x-www-form-urlencoded'});
     },
 
    //////////////////////FIN GESTION///////////////////////////////
- 
+
+   //////////////////////INFORMES//////////////////////////////////
+
+    getBuscaListadoVentas: function(fechainicio,fechafin) {
+      return $http.get(CONFIG.APIURL+'/buscarListadoVentas.json/'+fechainicio+'/'+fechafin,{'Content-Type': 'application/json'});
+    }
+
+   //////////////////FIN INFORMES////////////////////////////////// 
   } 
   })
   .config(["$httpProvider", "jwtInterceptorProvider",  function ($httpProvider, jwtInterceptorProvider, store) 

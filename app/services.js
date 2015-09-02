@@ -117,7 +117,14 @@ angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'
     },
 
    //////////////////////FIN GESTION///////////////////////////////
- 
+
+   //////////////////////INFORMES//////////////////////////////////
+
+    getBuscaListadoVentas: function(fechainicio,fechafin) {
+      return $http.get(CONFIG.APIURL+'/buscarListadoVentas.json/'+fechainicio+'/'+fechafin,{'Content-Type': 'application/json'});
+    }
+
+   //////////////////FIN INFORMES////////////////////////////////// 
   } 
   })
   .config(["$httpProvider", "jwtInterceptorProvider",  function ($httpProvider, jwtInterceptorProvider, store) 

@@ -16,9 +16,9 @@ var Frontend=angular.module('Frontend', [
   'Frontend.Gestion.Proveedores',
   'Frontend.Gestion.Socios',
   'Frontend.Gestion.Tipos',
-  'Frontend.Gestion.Usuarios',
-  'Frontend.Informes', 
+  'Frontend.Gestion.Usuarios', 
   'Frontend.Login',
+  'Frontend.Informes.Ventas',
 ]);
 Frontend.constant('CONFIG', {
         //APIURL: "http://192.168.1.3/TPVCJ1.2/web/app.php/caja/datos",
