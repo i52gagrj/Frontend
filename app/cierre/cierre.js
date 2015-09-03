@@ -19,11 +19,12 @@ angular.module('Frontend.Cierre', ['ngRoute','angular-jwt','angular-storage'])
     $scope.iva4=0.00; 
     $scope.contado=0.00; 
     $scope.prepago=0.00;
-    $scope.resto=0.00;    
+    $scope.resto;    
     $scope.respuesta;  
-    $scope.prueba="Prueba";
+    $scope.prueba;
     $scope.tokenDe;  
-    $scope.total=0.00;
+    $scope.total;
+    $scope.llevar;    
 
     $scope.anterior=0.00;      
     $scope.listaVentas = [];
@@ -124,6 +125,8 @@ angular.module('Frontend.Cierre', ['ngRoute','angular-jwt','angular-storage'])
       $scope.total=$scope.contado+($scope.anterior*1);
     };
 
+    
+
     $scope.Finalizar=function() {
       backendAPIservice.postCierre($scope.resto).success(function(recibe){
         var respuesta1 = recibe.response.respuesta;
@@ -132,6 +135,10 @@ angular.module('Frontend.Cierre', ['ngRoute','angular-jwt','angular-storage'])
         if(recibe.code==0) store.set('token',recibe.response.token);
         $scope.terminado=true;
       });
+    };
+
+    $scope.Recauda=function(resto) {
+      $scope.llevar = $scope.total - resto;
     };
 
 });

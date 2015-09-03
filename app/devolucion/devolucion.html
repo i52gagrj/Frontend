@@ -1,29 +1,66 @@
 <div>
   <div class="container">
-    <h1>Devolución</h1>
+    <h1 align="center">Devolución</h1>
   </div> 
 </div>
 
 <div class="container">
   <div class="row">
-    <div class="col-md-6" ng-if="terminado==false">  
-    <h2>Venta:</h2>
+    <div class="col-md-12 panel panel-default">
+      <h2>Venta a buscar</h2>
       <input type="text" size="2" ng-model="idventa"/>
       <button ng-click="BuscarVenta(idventa)"> Buscar </button>
       <br>
-      <h3>Cliente</h3>
-      <strong> Nombre: </strong> {{ ventaOriginal.socio }}
+      <strong> Cliente: </strong> {{ ventaOriginal.socio }}
       <strong> DNI: </strong> {{ ventaOriginal.dni }}<br>
-      <strong> Vendedor: </strong> {{ ventaOriginal.usuario }}<br><br> 
-      <h3> Venta original</h3>
+      <strong> Vendedor: </strong> {{ ventaOriginal.usuario }}<br>
       <strong> Fecha de venta: </strong> {{ ventaOriginal.fechaventa }}
-      <strong> Hora de venta: </strong> {{ ventaOriginal.horaventa }}
+      <strong> Hora de venta: </strong> {{ ventaOriginal.horaventa }}   
+    </div> 
+  </div>
+  
+  <div class="row">
+  <div class="col-md-6 panel panel-default">
+    <h2>Total original</h2>
+    <br> 
+    <strong>Base 21: </strong> {{ base21original | number:2 }}
+    <strong>Base 10: </strong> {{ base10original | number:2 }}
+    <strong>Base 4: </strong> {{ base4original | number:2 }}
+    <br>
+    <strong>IVA 21: </strong> {{ iva21original | number:2 }}
+    <strong>IVA 10: </strong> {{ iva10original | number:2 }}
+    <strong>IVA 4: </strong> {{ iva4original | number:2 }}
+    <br><strong>Total: </strong> {{ totaloriginal | number:2 }}
+  </div>
+
+  <div class="col-md-6 panel panel-default">
+    <h2>Total modificado</h2>
+    <br> 
+    <strong>Base 21: </strong>{{ base21modificado | number:2 }}
+    <strong>Base 10: </strong>{{ base10modificado | number:2 }}
+    <strong>Base 4: </strong>{{ base4modificado | number:2 }}      
+    <br>
+    <strong>IVA 21: </strong>{{ iva21modificado | number:2 }}
+    <strong>IVA 10: </strong>{{ iva10modificado | number:2 }}
+    <strong>IVA 4: </strong>{{ iva4modificado | number:2 }}
+    <br><strong>Total: </strong>{{ totalmodificado | number:2 }}
+    <strong>DIFERENCIA: </strong>{{ ( totalmodificado - totaloriginal | number:2  ) }}
+    <strong ng-if="(totalmodificado - totaloriginal) > 0"> a pagar</strong>
+    <strong ng-if="(totalmodificado - totaloriginal) < 0"> a devolver</strong>
+    
+    <button type="button" class="btn btn-success btn-sm" ng-click="Finalizar()" ng-hide="terminado==true"> Finalizar </button>  
+  </div>
+  </div> 
+
+  <div class="row">
+    <div class="col-md-6 panel panel-default" ng-if="terminado==false">  
+    <h2>Venta original</h2>
       <table class="table table-striped table-bordered">
         <thead> 
         <tr>
         <th align=left > Producto 
         <th align=center > Precio 
-        <th align=center > Tipo IVA
+        <th align=center > % IVA
         <th align=center > IVA
         <th align=center > Cantidad
         <th align=center > Total
@@ -49,15 +86,15 @@
       {{respuesta}}
     </div>
 
-  <div class="col-md-6">
-    <strong>VENTA MODIFICADA</strong>
+  <div class="col-md-6 panel panel-default">
+    <h2>Venta modificada</h2>
       <table class="table table-striped table-bordered">
         <thead> 
         <tr>
           <th align=center> Id 
           <th align=center> Producto
           <th align=center> Precio 
-          <th align=center> Tipo IVA
+          <th align=center> % IVA
           <th align=center> IVA 
           <th align=center> Cantidad
           <th align=center> Total
@@ -77,43 +114,12 @@
           <td align=center ng-if="terminado==true"> {{ x.cantidad}}
           <td align=right >{{ (x.precio * 1 + (x.precio * x.iva /100)) * x.cantidad | number:2}}
           <td align=right >
-             <button class="btn btn-danger" ng-click="Borrar($index)" ng-hide="terminado==true">Borrar</button>
+             <button class="btn btn-danger btn-xs" ng-click="Borrar($index)" ng-hide="terminado==true"><span class="glyphicon glyphicon-remove"></span></button>
         </tr>
         </tbody>
       </table> 
     </div>
   </div>
 
-  <div class="row">
-  <div class="col-md-6">
-    <strong>TOTAL ORIGINAL</strong>
-    <br> 
-    <strong>Base 21: </strong> {{ base21original | number:2 }}
-    <strong>Base 10: </strong> {{ base10original | number:2 }}
-    <strong>Base 4: </strong> {{ base4original | number:2 }}
-    <br>
-    <strong>IVA 21: </strong> {{ iva21original | number:2 }}
-    <strong>IVA 10: </strong> {{ iva10original | number:2 }}
-    <strong>IVA 4: </strong> {{ iva4original | number:2 }}
-    <br><strong>Total: </strong> {{ totaloriginal | number:2 }}
-  </div>
 
-  <div class="clientecaja">
-    <strong>TOTAL MODIFICADO</strong>
-    <br> 
-    <strong>Base 21: </strong>{{ base21modificado | number:2 }}
-    <strong>Base 10: </strong>{{ base10modificado | number:2 }}
-    <strong>Base 4: </strong>{{ base4modificado | number:2 }}      
-    <br>
-    <strong>IVA 21: </strong>{{ iva21modificado | number:2 }}
-    <strong>IVA 10: </strong>{{ iva10modificado | number:2 }}
-    <strong>IVA 4: </strong>{{ iva4modificado | number:2 }}
-    <br><strong>Total: </strong>{{ totalmodificado | number:2 }}
-    <strong>DIFERENCIA: </strong>{{ ( totalmodificado - totaloriginal | number:2  ) }}
-    <strong ng-if="(totalmodificado - totaloriginal) > 0"> a pagar</strong>
-    <strong ng-if="(totalmodificado - totaloriginal) < 0"> a devolver</strong>
-    
-    <button ng-click="Finalizar()" ng-hide="terminado==true"> Finalizar </button>  
-  </div>
-  </div> 
 </div>
