@@ -133,5 +133,10 @@ angular.module('Frontend.Gestion.Productos', ['ngRoute','angular-jwt','angular-s
       $scope.editando=false;
     };
 
+    $scope.Cancelar=function()
+    {
+      $scope.editando=false;      
+    };    
+
 
 });
