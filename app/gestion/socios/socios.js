@@ -54,11 +54,6 @@ angular.module('Frontend.Gestion.Socios', ['ngRoute','angular-jwt','angular-stor
       $location.path("/login");
     }
 
-    $scope.Cancelar=function()
-    {
-      $scope.editando=false;
-    };
-
     $scope.Insertar=function()
     {
       $scope.editando=true;

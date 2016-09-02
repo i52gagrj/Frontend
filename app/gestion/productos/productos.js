@@ -114,12 +114,12 @@ angular.module('Frontend.Gestion.Productos', ['ngRoute','angular-jwt','angular-s
         }
       } 
       $scope.Almacenar($scope.id, $scope.nombre, $scope.tipo, $scope.descripcion, $scope.stock, $scope.precio, $scope.iva, $scope.activo, $scope.proveedor, $scope.baja); 
-    };
+    }
 
-    $scope.Cancelar=function()
+    $scope.Cambiarclave=function()
     {
-      $scope.editando=false;
-    };
+      $scope.cambioclave=true;
+    }
 
     $scope.Almacenar=function(id, nombre, tipo, descripcion, stock, precio, iva, activo, proveedor, baja)
     {
