@@ -25,9 +25,6 @@ angular.module('Frontend.Cierre', ['ngRoute','angular-jwt','angular-storage'])
     $scope.tokenDe;  
     $scope.total;
     $scope.llevar;
-    $scope.fechaultima;
-    $scope.fechahoy;    
-
     $scope.anterior=0.00;      
     $scope.listaVentas = [];
     $scope.listaLineas = [];
@@ -132,13 +129,7 @@ angular.module('Frontend.Cierre', ['ngRoute','angular-jwt','angular-storage'])
     $scope.Finalizar=function() {
       backendAPIservice.postCierre($scope.resto).success(function(recibe){
         var respuesta1 = recibe.response.respuesta;
-        var fecha1 = recibe.response.fechahoy;
-        var fecha2 = recibe.response.fechaultima;
         console.log(JSON.stringify(respuesta1));
-        console.log(JSON.stringify(fecha1));
-        console.log(JSON.stringify(fecha2));
-        $scope.fechahoy = fecha1;
-        $scope.fechaultima = fecha2;
         $scope.respuesta = respuesta1;
         if(recibe.code==0) store.set('token',recibe.response.token);
         $scope.terminado=true;
