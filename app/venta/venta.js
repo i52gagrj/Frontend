@@ -139,7 +139,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       });
     };
 
-    $scope.Continuar = function() {
+    $scope.Continuar=function() {
       $state.reload();
-    };
+    }
 });
