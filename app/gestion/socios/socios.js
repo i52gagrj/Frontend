@@ -83,6 +83,11 @@ angular.module('Frontend.Gestion.Socios', ['ngRoute','angular-jwt','angular-stor
       } 
     };
 
+    $scope.Cancelar=function()
+    {
+      $scope.editando=false;
+    };
+
     $scope.Anular=function(pid)
     {
       var elemento;
