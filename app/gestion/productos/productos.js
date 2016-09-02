@@ -13,14 +13,14 @@ angular.module('Frontend.Gestion.Productos', ['ngRoute','angular-jwt','angular-s
     $scope.editando=false; 
 
     $scope.id=0;
+    $scope.activo=true;
     $scope.nombre; 
     $scope.tipo;
     $scope.descripcion;
     $scope.stock;
 
     $scope.precio;
-    $scope.iva;
-    $scope.activo;
+    $scope.iva;    
     $scope.proveedor=" ";
     $scope.baja; 
 
