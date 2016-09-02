@@ -1,6 +1,7 @@
 <div>
   <div class="container">
     <h1 align="center">Devolución</h1>
+    <h2 align="center">(Solo para ventas realizadas en la misma jornada)</h2>
   </div> 
 </div>
 
@@ -82,8 +83,9 @@
       </div>
     </div>
 
-    <div class="articuloscaja" ng-if="terminado==true"> 
-      {{respuesta}}
+    <div class="col-md-6 panel panel-default" ng-if="terminado==true"> 
+      <h2>{{respuesta}}</h2>h2>
+      <a href="#/venta">Pulse aquí para continuar</a>
     </div>
 
   <div class="col-md-6 panel panel-default">
