@@ -202,5 +202,5 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
         store.set('nombre', "Sin conexion");
         $location.path("/login");
       }    
-    }
+    };
 });
