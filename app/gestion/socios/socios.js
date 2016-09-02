@@ -121,5 +121,10 @@ angular.module('Frontend.Gestion.Socios', ['ngRoute','angular-jwt','angular-stor
       $scope.editando=false;
     };
 
+    /*$scope.Cancelar=function()
+    {
+      $scope.editando=false;      
+    };*/
+
 
 });
