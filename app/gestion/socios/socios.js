@@ -22,7 +22,7 @@ angular.module('Frontend.Gestion.Socios', ['ngRoute','angular-jwt','angular-stor
     $scope.fijo;
     $scope.movil;
     $scope.email;
-    $scope.activo;
+    $scope.activo=true;
     $scope.saldo;
     $scope.baja;
     $scope.respuesta;
