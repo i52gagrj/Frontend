@@ -13,6 +13,7 @@ angular.module('Frontend.Gestion.Socios', ['ngRoute','angular-jwt','angular-stor
     $scope.editando=false; 
 
     $scope.id=0;
+    $scope.activo=true;
     $scope.nombre; 
     $scope.dni;
     $scope.direccion;
@@ -21,8 +22,7 @@ angular.module('Frontend.Gestion.Socios', ['ngRoute','angular-jwt','angular-stor
     $scope.cp;
     $scope.fijo;
     $scope.movil;
-    $scope.email;
-    $scope.activo=true;
+    $scope.email;    
     $scope.saldo;
     $scope.baja;
     $scope.respuesta;
