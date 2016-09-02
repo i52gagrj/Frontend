@@ -11,7 +11,6 @@ angular.module('Frontend.Gestion.Socios', ['ngRoute','angular-jwt','angular-stor
 
 .controller('GestionSociosController', function($scope, store, jwtHelper, $http, backendAPIservice, $location) {
     $scope.editando=false; 
-
     $scope.id=0;
     $scope.nombre; 
     $scope.dni;
@@ -83,10 +82,10 @@ angular.module('Frontend.Gestion.Socios', ['ngRoute','angular-jwt','angular-stor
       } 
     };
 
-    $scope.Cancelar=function()
+    /*$scope.Cancelar=function()
     {
       $scope.editando=false;
-    };
+    };*/
 
     $scope.Anular=function(pid)
     {
