@@ -9,7 +9,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
   });
 }])
 
-.controller('VentaController', function($scope, store, jwtHelper, $http, backendAPIservice, $location, $state) {
+.controller('VentaController', function($scope, store, jwtHelper, $http, backendAPIservice, $location) {
     $scope.terminado=false;
     $scope.contado=true;
     $scope.cliente=1;
@@ -137,9 +137,5 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
         if(recibe.code==0) store.set('token',recibe.response.token);
         $scope.terminado=true;
       });
-    };
-
-    $scope.Continuar=function() {
-      $state.reload();
-    };
+    }
 });
