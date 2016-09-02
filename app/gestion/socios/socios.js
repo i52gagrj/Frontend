@@ -76,7 +76,7 @@ angular.module('Frontend.Gestion.Socios', ['ngRoute','angular-jwt','angular-stor
           $scope.fijo=$scope.listaSocios[elemento].fijo;
           $scope.movil=$scope.listaSocios[elemento].movil;
           $scope.email=$scope.listaSocios[elemento].email;
-          $scope.activo=true;
+          $scope.activo=$scope.listaSocios[elemento].activo;
           $scope.saldo=$scope.listaSocios[elemento].saldo;
           $scope.baja=false;
         }
