@@ -93,7 +93,7 @@ angular.module('Frontend.Devolucion', ['ngRoute','angular-jwt','angular-storage'
             }
             else              
             {
-              $terminado = true;
+              $scope.terminado = true;
               if($scope.codigorecibido==3) $scope.respuesta="La venta indicada no existe";
               if($scope.codigorecibido==4) $scope.respuesta="Las devoluciones solo se pueden tramitar el mismo dia de la venta";
               //if($scope.codigorecibido==5) $scope.respuesta="La caja ya está cerrada, la devolución no se puede tramitar";                            
