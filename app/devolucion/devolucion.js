@@ -91,9 +91,10 @@ angular.module('Frontend.Devolucion', ['ngRoute','angular-jwt','angular-storage'
                 //$scope.cargado==true;
               });
             }
-            else
+            else              
             {
-              $scope.respuesta="La venta indicada no existe";
+              if($scope.codigorecibido==3) $scope.respuesta="La venta indicada no existe";
+              if($scope.codigorecibido==4) $scope.respuesta="Las devoluciones solo se pueden tramitar el mismo dia de la venta";
             }
           });
         }
