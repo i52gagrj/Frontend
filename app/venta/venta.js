@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage', 'pdfmake'])
+angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage','pdfmake'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/venta', {
