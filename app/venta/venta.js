@@ -9,7 +9,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
   });
 }])
 
-.controller('VentaController', function($scope, store, jwtHelper, $http, backendAPIservice, $location, $window, document) {
+.controller('VentaController', function($scope, store, jwtHelper, $http, backendAPIservice, $location, $window) {
     $scope.terminado=false;
     $scope.contado=true;
     $scope.cliente=1;
