@@ -133,8 +133,10 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
     $scope.Finalizar=function() {
       backendAPIservice.postVenta($scope.cliente, $scope.contado, $scope.listaVenta).success(function(recibe){
         var respuesta1 = recibe.response.respuesta;
+        var numventa = recibe.response.venta;
         console.log(JSON.stringify(respuesta1));
         $scope.respuesta = respuesta1;
+        $scope.numventa = numventa;
         if(recibe.code==0) store.set('token',recibe.response.token);
         $scope.terminado=true;
       });
