@@ -27,6 +27,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
     $scope.cero=0;  
     $scope.prueba;
     $scope.activo;
+    $scope.numventa;
 
     $scope.listaVenta = [];
     $scope.listaProducto = [];
