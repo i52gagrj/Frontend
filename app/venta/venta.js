@@ -144,6 +144,18 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage','htm
     };
 
     $scope.Continuar=function() {
+      html2canvas(document.getElementById('imprimeesto'), {
+        onrendered: function (canvas) {
+          var data = canvas.toDataURL();
+          var docDefinition = {
+            content: [{
+              image: data,
+              width: 500,
+            }]
+          };
+          pdfMake.createPdf(docDefinition).download("Score_Details.pdf");
+        }
+      })
       $scope.terminado=false;
       $scope.contado=true;
       $scope.cliente=1;
