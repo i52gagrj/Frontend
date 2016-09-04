@@ -9,7 +9,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
   });
 }])
 
-.controller('VentaController', function($scope, store, jwtHelper, $http, backendAPIservice, $location) {
+.controller('VentaController', function($scope, store, jwtHelper, $http, backendAPIservice, $location, $window) {
     $scope.terminado=false;
     $scope.contado=true;
     $scope.cliente=1;
@@ -143,14 +143,6 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       });
     };
 
-    /*$scope.printDiv=function(divName) {
-        var printContents = document.getElementById(divName).innerHTML;
-        var originalContents = document.body.innerHTML;        
-        document.body.innerHTML = printContents;
-        window.print();
-        document.body.innerHTML = originalContents;
-    };*/
-
     $scope.Continuar=function() {
       /*html2canvas(document.getElementById('imprimeesto'), {
         onrendered: function (canvas) {
@@ -227,4 +219,13 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
         $location.path("/login");
       }    
     };
+
+    $scope.printDiv=function(divName){
+      var printContents = document.getElementById(divName).innerHTML;
+      var originalContents = document.body.innerHTML;        
+      document.body.innerHTML = printContents;
+      window.print();
+      document.body.innerHTML = originalContents;
+    };
+
 });
