@@ -137,7 +137,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
         /////////////////////////////////
         console.log(JSON.stringify(respuesta1));
         $scope.respuesta = respuesta1;
-        $scope.numventa = numventa;
+        //$scope.numventa = numventa;
         if(recibe.code==0) store.set('token',recibe.response.token);
         $scope.terminado=true;
       });
