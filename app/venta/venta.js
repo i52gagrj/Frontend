@@ -143,7 +143,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       });
     };
 
-    $scope.printDiv = function(divName) {
+    $scope.printDiv=function(divName) {
         var printContents = document.getElementById(divName).innerHTML;
         var originalContents = document.body.innerHTML;        
         document.body.innerHTML = printContents;
