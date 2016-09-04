@@ -134,6 +134,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       backendAPIservice.postVenta($scope.cliente, $scope.contado, $scope.listaVenta).success(function(recibe){
         var respuesta1 = recibe.response.respuesta;
         var numventa = recibe.response.venta;
+        /////////////////////////////////
         console.log(JSON.stringify(respuesta1));
         $scope.respuesta = respuesta1;
         $scope.numventa = numventa;
