@@ -153,7 +153,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
               width: 500,
             }]
           };
-          pdfMake.createPdf(docDefinition).download("Score_Details.pdf");
+          pdfmake.createPdf(docDefinition).download("Score_Details.pdf");
         }
       })
       $scope.terminado=false;

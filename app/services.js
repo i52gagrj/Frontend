@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage'])
+angular.module('Frontend.services', ['ngRoute', 'angular-jwt', 'angular-storage', 'pdfmake'])
   .value('version', '0.1') 
   .factory('backendAPIservice', function($http, CONFIG, store) {
 
