@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage','pdfmake','html2canvas'])
+angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/venta', {
@@ -9,7 +9,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage','pdf
   });
 }])
 
-.controller('VentaController', function($scope, store, jwtHelper, $http, backendAPIservice, $location, pdfMake, html2canvas) {
+.controller('VentaController', function($scope, store, jwtHelper, $http, backendAPIservice, $location) {
     $scope.terminado=false;
     $scope.contado=true;
     $scope.cliente=1;
@@ -144,7 +144,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage','pdf
     };
 
     $scope.Continuar=function() {
-      html2canvas(document.getElementById('imprimeesto'), {
+      /*html2canvas(document.getElementById('imprimeesto'), {
         onrendered: function (canvas) {
           var data = canvas.toDataURL();
           var docDefinition = {
@@ -155,7 +155,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage','pdf
           };
           pdfMake.createPdf(docDefinition).download("Score_Details.pdf");
         }
-      })
+      })*/
       $scope.terminado=false;
       $scope.contado=true;
       $scope.cliente=1;
