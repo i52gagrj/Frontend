@@ -9,7 +9,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
   });
 }])
 
-.controller('VentaController', function($scope, store, jwtHelper, $http, backendAPIservice, $location, pdfMake) {
+.controller('VentaController', function($scope, store, jwtHelper, $http, backendAPIservice, $location) {
     $scope.terminado=false;
     $scope.contado=true;
     $scope.cliente=1;
