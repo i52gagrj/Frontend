@@ -144,7 +144,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
     };
 
     $scope.Continuar=function() {
-      /*html2canvas(document.getElementById('imprimeesto'), {
+      html2canvas(document.getElementById('imprimeesto'), {
         onrendered: function (canvas) {
           var data = canvas.toDataURL();
           var docDefinition = {
@@ -153,9 +153,9 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
               width: 500,
             }]
           };
-          pdfmake.createPdf(docDefinition).download("Score_Details.pdf");
+          pdfMake.createPdf(docDefinition).download("Score_Details.pdf");
         }
-      })*/
+      })
       $scope.terminado=false;
       $scope.contado=true;
       $scope.cliente=1;
