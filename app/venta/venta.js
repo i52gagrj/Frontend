@@ -220,12 +220,19 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       }    
     };
 
-    $scope.printDiv=function(divName){
+    /*$scope.printDiv=function(divName){
       var printContents = document.getElementById(divName).innerHTML;
       var originalContents = document.body.innerHTML;        
       document.body.innerHTML = printContents;
       window.print();
       document.body.innerHTML = originalContents;
+    };*/
+    $scope.printDiv = function(divName) {
+      var printContents = document.getElementById(divName).innerHTML;
+      var popupWin = window.open('', '_blank', 'width=300,height=300');
+      popupWin.document.open();
+      popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="style.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
+      popupWin.document.close();
     };
 
 });
