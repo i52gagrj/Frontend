@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage','pdfMake'])
+angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/venta', {
@@ -142,6 +142,36 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage','pdf
         $scope.terminado=true;
       });
     };
+
+    $scope.printDiv = function (divName) {
+
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;      
+
+        if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+            var popupWin = window.open('', '_blank', 'width=600,height=600,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
+            popupWin.window.focus();
+            popupWin.document.write('<!DOCTYPE html><html><head>' +
+                '<link rel="stylesheet" type="text/css" href="style.css" />' +
+                '</head><body onload="window.print()"><div class="reward-body">' + printContents + '</div></html>');
+            popupWin.onbeforeunload = function (event) {
+                popupWin.close();
+                return '.\n';
+            };
+            popupWin.onabort = function (event) {
+                popupWin.document.close();
+                popupWin.close();
+            }
+        } else {
+            var popupWin = window.open('', '_blank', 'width=800,height=600');
+            popupWin.document.open();
+            popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="style.css" /></head><body onload="window.print()">' + printContents + '</html>');
+            popupWin.document.close();
+        }
+        popupWin.document.close();
+
+        return true;
+    }
 
     $scope.Continuar=function() {
       /*html2canvas(document.getElementById('imprimeesto'), {
