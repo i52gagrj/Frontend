@@ -228,15 +228,15 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       document.body.innerHTML = originalContents;
     };*/
 
-    $scope.printDiv = function(divName) {
+    /*$scope.printDiv = function(divName) {
       var printContents = document.getElementById(divName).innerHTML;
       var popupWin = window.open('', '_blank', 'width=300,height=300');
       popupWin.document.open();
       popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="app.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
       popupWin.document.close();
-    };
-    
-    /*$scope.printDiv = function (divName) {
+    };*/
+
+    $scope.printDiv = function (divName) {
 
       var printContents = document.getElementById(divName).innerHTML;
       var originalContents = document.body.innerHTML;      
@@ -245,7 +245,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
           var popupWin = window.open('', '_blank', 'width=600,height=600,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
           popupWin.window.focus();
           popupWin.document.write('<!DOCTYPE html><html><head>' +
-              '<link rel="stylesheet" type="text/css" href="style.css" />' +
+              '<link rel="stylesheet" type="text/css" href="app.css" />' +
               '</head><body onload="window.print()"><div class="reward-body">' + printContents + '</div></html>');
           popupWin.onbeforeunload = function (event) {
               popupWin.close();
@@ -258,13 +258,15 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       } else {
           var popupWin = window.open('', '_blank', 'width=800,height=600');
           popupWin.document.open();
-          popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="style.css" /></head><body onload="window.print()">' + printContents + '</html>');
+          popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="app.css" /></head><body onload="window.print()">' + printContents + '</html>');
           popupWin.document.close();
       }
       popupWin.document.close();
 
       return true;
-    };*/
+    };
+
+
 
 
 
