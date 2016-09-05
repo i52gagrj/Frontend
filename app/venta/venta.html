@@ -31,7 +31,7 @@
         <strong>Código del Cliente:
           <input size="2" type="text" name="cliente" id="cliente" ng-model="cliente" value=1></input>
         </strong>
-        <div ng-repeat="socio in listaSocio | filter:clienteElegido()">     
+        <div ng-repeat="socio in listaSocio | filter:clienteElegido">     
           <strong> Nombre: </strong>  {{ socio.nombre }} <br>
           <strong> DNI: </strong> {{ socio.dni }} <br>
           <strong> Dirección: </strong> {{ socio.direccion }} <br>
