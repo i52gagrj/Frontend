@@ -5,6 +5,32 @@
 </div>
 
 <div class="container" ng-if="terminado==false && error==false">
+  <div class="row">
+    <div class="col-md-6 panel panel-default">  
+      <h2>Ventas del dia</h2>
+      <table class="table table-striped table-bordered">
+        <thead> 
+        <tr>
+          <th align=center > Nº de Venta 
+          <th align=center > Fecha
+          <th align=center > Hora
+          <th align=center > Cliente
+          <th align=center > Contado
+        </tr> 
+        </thead>
+        <tbody>
+        <tr ng-repeat="venta in listaVentas">
+          <td align=center >{{ venta.id }}</td> 
+          <td align=center >{{ venta.fechaventa }}</td> 
+          <td align=center >{{ venta.horaventa }}</td> 
+          <td align=center >{{ venta.socio }}</td> 
+          <td align=center >{{ venta.contado }}</td> 
+        </tr>
+        </tbody>
+      </table> 
+    </div> 
+   
+  </div>
 
   <div class="row"> 
     <div class="col-md-6 panel panel-default">
@@ -34,33 +60,6 @@
       <br><button type="button" class="btn btn-success btn-sm" ng-click="Finalizar()" ng-show="terminado==false"> Finalizar </button>
     </div>     
   </div>
-
-  <div class="row">
-    <div class="col-md-6 panel panel-default">  
-      <h2>Ventas del dia</h2>
-      <table class="table table-striped table-bordered">
-        <thead> 
-        <tr>
-          <th align=center > Nº de Venta 
-          <th align=center > Fecha
-          <th align=center > Hora
-          <th align=center > Cliente
-          <th align=center > Contado
-        </tr> 
-        </thead>
-        <tbody>
-        <tr ng-repeat="venta in listaVentas">
-          <td align=center >{{ venta.id }}</td> 
-          <td align=center >{{ venta.fechaventa }}</td> 
-          <td align=center >{{ venta.horaventa }}</td> 
-          <td align=center >{{ venta.socio }}</td> 
-          <td align=center >{{ venta.contado }}</td> 
-        </tr>
-        </tbody>
-      </table> 
-    </div> 
-  </div>
-
 </div>  
 
 <div class="row" ng-if="terminado==true && error==false">
@@ -82,20 +81,21 @@
       <strong>IVA 21%: </strong> {{ iva4 | number:2 }} 
     </div>
 
-    <div class="col-md-6 panel panel-default">
+    <div class="col-md-6 panel panel-default" ng-if="error==false">
       <h2>Cierre</h2>
       <strong>Cantidad en caja: </strong> {{ total | number:2 }}
       <br>
-      <strong >Cantidad a dejar en caja:</strong> {{ resto }}
+      <strong ng-show="terminado==false">Cantidad a dejar en caja:</strong>
+      <input type="text" size="6" ng-model="resto" ng-show="terminado==false"></input>
       <br><strong> Cantidad retirada: </strong>{{ total - resto | number:2 }}    
     </div>     
   </div>
 </div>  
 
-<div class="row">
+<div class="row" ng-if="error==true">
   <div class="col-md-12 panel panel-default" align="center">
     <h2> {{respuesta}} </h2>
-    <button ng-click="Salir()"> Continuar </button>
+      <button ng-click="Salir()"> Continuar </button>
   </div>
 </div> 
 
