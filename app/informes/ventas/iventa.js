@@ -116,13 +116,17 @@ angular.module('Frontend.Informes.Ventas', ['ngRoute','angular-jwt','angular-sto
       $scope.total = $scope.totalbase + $scope.total;
     };
 
+    $scope.Continuar=function() {
+      $scope.error = false;
+    };  
+
     $scope.printDiv = function(divName) {
       var printContents = document.getElementById(divName).innerHTML;
       var popupWin = window.open('', '_blank', 'width=300,height=300');
       popupWin.document.open();
       popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="app.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
       popupWin.document.close();
-            $scope.terminado=false;
+      $scope.terminado=false;
     };        
 
 });

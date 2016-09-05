@@ -18,7 +18,11 @@
         <label>hasta (AAAAMMDD): </label><input size="8" value= "fechafin" ng-model="fechafin" ></input>
         </div>
         <br>
-        <div align="center"><button ng-click="BuscarListadoVentas(fechainicio, fechafin)" ng-if="consulta==false"> Listar </button></div>
+        <div align="center"><button ng-click="BuscarListadoVentas(fechainicio, fechafin)"> Listar </button></div>
+        <div class="container" ng-if="error" align="center">
+          {{respuesta}}
+          <button > Continuar </button>
+        </div>
       </div> 
       <div ng-if="consulta==true">
       <table class="table table-striped table-bordered">
@@ -104,11 +108,9 @@
  
   <div class="row"> 
     <div class="col-md-12 panel panel-default" ng-if="consulta==true" align="center">
-      <button ng-click="printDiv('imprimeesto')" align=center> Imprimir </button>
+      <button ng-click="printDiv('imprimeesto')"> Imprimir </button>
+      <button > Volver a Ventas </button>
     </div>  
   </div>   
 
-  <div class="container" ng-if="error">
-    {{respuesta}}
-  </div>
 </div>
