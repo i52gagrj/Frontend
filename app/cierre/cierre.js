@@ -36,19 +36,9 @@ angular.module('Frontend.Cierre', ['ngRoute','angular-jwt','angular-storage'])
       {
         backendAPIservice.getCierreVentas().success(function (recibe) {        
           var VentasArray = recibe.response.ventas;
-          var codigo = recibe.code; 
           console.log(JSON.stringify(VentasArray));  
           $scope.listaVentas = VentasArray;
           store.set('token',recibe.response.token);
-          $scope.codigorecibido=codigo;  
-          if($scope.codigorecibido==3) 
-          {  
-            var respuesta = recibe.response.respuesta;
-            console.log(JSON.stringify(respuesta));
-            $scope.respuesta=respuesta; 
-            $scope.error=true;          
-            $scope.terminado=true;
-          }  
         });
 
         backendAPIservice.getCierreLineas().success(function (recibe) {        
@@ -140,22 +130,15 @@ angular.module('Frontend.Cierre', ['ngRoute','angular-jwt','angular-storage'])
     $scope.Finalizar=function() {
       backendAPIservice.postCierre($scope.resto).success(function(recibe){
         var respuesta1 = recibe.response.respuesta;
-        var codigo = recibe.code;        
         console.log(JSON.stringify(respuesta1));
         $scope.respuesta = respuesta1;
         if(recibe.code==0) store.set('token',recibe.response.token);
         $scope.terminado=true;
-        $scope.codigorecibido=codigo;  
-        if($scope.codigorecibido==3) $scope.error=true;
       });
     };
 
     $scope.Recauda=function(resto) {
       $scope.llevar = $scope.total - resto;
     };
-
-    $scope.Salir=function() {
-      $location.path("/venta");
-    };  
 
 });
