@@ -4,178 +4,172 @@
   </div> 
 </div>
 
-<div ng-show="cerrado==false">
-  <div class="container" ng-show="terminado==false">
+<div class="container" ng-show="terminado==false">
+  <div class="row">
+    <div class="col-md-6 panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title">Totales</h1>
+      </div> 
+      <strong>Base 21: </strong> {{ base21 | number:2 }} <strong>IVA 21: </strong> {{ iva21 | number:2 }} <br>
+      <strong>Base 10: </strong> {{ base10 | number:2 }} <strong>IVA 10: </strong> {{ iva10 | number:2 }} <br>
+      <strong>Base 4: </strong> {{ base4 | number:2 }} <strong>IVA 4: </strong> {{ iva4 | number:2 }}
+      <h3><strong>Total: </strong> {{ total | number:2 }} </h3>
+      <button ng-click="Finalizar()" ng-if="terminado==false"> Finalizar </button>  
+      <form ng-show="cliente!=1">
+        <input type="radio" ng-model="contado" value="false"> Prepago
+        <input type="radio" ng-model="contado" value="true" ng-checked="contado==true"> Contado
+      </form>      
+    </div>     
 
-    <div class="row">
+    <div class="col-md-6 panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title">Cliente</h1>
+      </div> 
+      <strong>Código del Cliente:
+        <input size="2" type="text" name="cliente" id="cliente" ng-model="cliente" value=1></input>
+      </strong>
+      <div ng-repeat="socio in listaSocio | filter:clienteElegido">     
+        <strong> Nombre: </strong>  {{ socio.nombre }} <br>
+        <strong> DNI: </strong> {{ socio.dni }} <br>
+        <strong> Dirección: </strong> {{ socio.direccion }} <br>
+        <strong> Población: </strong> {{ socio.poblacion }} <br>
+        <strong> Saldo:  </strong> {{ socio.saldo }} <br>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 panel panel-default" ng-if="terminado==false">  
+      <div class="panel-heading">
+        <h2 class="panel-title">Articulos </h2>
+        <input size="8" ng-model="articulopr" align="left"></input>    
+        <span class="glyphicon glyphicon-search"></span>        
+        <span> 
+        <select name="clase" ng-model="filtrotipo" >
+          <option value="">Todos los tipos
+          <option ng-repeat="tipo in listaTipo" value="{{tipo.nombre}}">{{tipo.nombre}}
+        </select>
+        <span class="glyphicon glyphicon-filter" align="right"></span>  
+        </span>
+      </div>      
+      <table class="table table-striped table-bordered">
+        <thead> 
+          <tr>
+            <th align=center > Nombre
+            <th align=center > Tipo
+            <th align=center > Base
+            <th align=center > Tipo IVA
+            <th align=center > IVA
+            <th align=center > Total
+          </tr> 
+        </thead>
+        <tbody>
+          <tr ng-repeat="producto in listaProducto | filter:articulopr | filter:filtrotipo" >
+            <td align=left>{{producto.nombre}}</td>
+            <td align=left>{{producto.tipo}}</td> 
+            <td align=right >{{producto.precio | number:2 }}</td>
+            <td align=right >{{ producto.iva }}</td>
+            <td align=right >{{ (producto.precio * producto.iva)/100 | number:2 }}</td>
+            <td align=right >{{ producto.precio * (1 + producto.iva/100) | number:2}}</td>
+            <td> <button class="btn btn-sm btn-default" ng-click="Aniadir(producto.id, producto.nombre, producto.precio, producto.iva)"><span class="glyphicon glyphicon-shopping-cart"></span></button></td>
+          </tr>
+        </tbody>
+      </table>  
+    </div>
+
+    <div class="col-md-6 panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title">Cesta</h1>
+      </div> 
+      <table class="table table-striped table-bordered">
+        <thead> 
+          <tr>
+            <th align=center> Artículo
+            <th align=center> Cantidad
+            <th align=center> Base
+            <th align=center> Tipo IVA
+            <th align=center> IVA
+            <th align=center> Total
+         </tr> 
+        </thead>
+        <tbody>
+          <tr ng-repeat="venta in listaVenta">
+           <td align=left>{{ venta.nombre }}</td>
+           <td align=right ng-if="terminado==false"><input size="2" type="text" ng-change="Totales()" ng-model="listaVenta[$index].cantidad"></td>
+           <td align=right ng-if="terminado==true">{{ venta.cantidad }}</td>
+           <td align=right>{{ venta.precio * venta.cantidad | number:2 }}</td>
+           <td align=center>{{ venta.iva }}</td>
+           <td align=right>{{((venta.precio * venta.iva)/100) * venta.cantidad | number:2}}</td>
+           <td align=right>{{ (venta.precio * ( 1+ venta.iva/100)) * venta.cantidad | number:2}}</td>
+           <td ng-if="terminado==false"> <button class="btn btn-sm btn-danger" ng-click="Borrar($index)"><span class="glyphicon glyphicon-remove"></span></button></td>
+          </tr>
+        </tbody>
+      </table>  
+    </div>
+
+  </div>   
+</div>
+
+<div class="container center-block" ng-if="terminado==true">
+  <div id="imprimeesto">
+    <div class="panel-heading">
+      <h2 class="panel-title">Cliente</h1>
+    </div> 
+    <strong>Código del Cliente: {{socio.id}}</strong>
+    <div ng-repeat="socio in listaSocio | filter:clienteElegido">     
+      <strong> Nombre: </strong>  {{ socio.nombre }} <br>
+      <strong> DNI: </strong> {{ socio.dni }} <br>
+      <strong> Dirección: </strong> {{ socio.direccion }} <br>
+      <strong> Población: </strong> {{ socio.poblacion }} <br>
+      <strong> Saldo:  </strong> {{ socio.saldo }} <br>
+    </div>
+
+
+
+    <div class="col-md-6 panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title">Venta {{numventa}}</h1>
+      </div> 
+      <table class="table table-striped table-bordered">
+        <thead> 
+          <tr>
+            <th align=center> Artículo
+            <th align=center> Cantidad
+            <th align=center> Base
+            <th align=center> Tipo IVA
+            <th align=center> IVA
+            <th align=center> Total
+         </tr> 
+        </thead>
+        <tbody>
+          <tr ng-repeat="venta in listaVenta">
+           <td align=left>{{ venta.nombre }}</td>
+           <td align=right>{{ venta.cantidad }}</td>
+           <td align=right>{{ venta.precio * venta.cantidad | number:2 }}</td>
+           <td align=center>{{ venta.iva }}</td>
+           <td align=right>{{((venta.precio * venta.iva)/100) * venta.cantidad | number:2}}</td>
+           <td align=right>{{ (venta.precio * ( 1+ venta.iva/100)) * venta.cantidad | number:2}}</td>
+           <td ng-if="terminado==false"> <button class="btn btn-sm btn-danger" ng-click="Borrar($index)"><span class="glyphicon glyphicon-remove"></span></button></td>
+          </tr>
+        </tbody>
+      </table>  
       <div class="col-md-6 panel panel-default">
         <div class="panel-heading">
-          <h2 class="panel-title">Totales</h2>
+          <h2 class="panel-title">Totales</h1>
         </div> 
         <strong>Base 21: </strong> {{ base21 | number:2 }} <strong>IVA 21: </strong> {{ iva21 | number:2 }} <br>
         <strong>Base 10: </strong> {{ base10 | number:2 }} <strong>IVA 10: </strong> {{ iva10 | number:2 }} <br>
         <strong>Base 4: </strong> {{ base4 | number:2 }} <strong>IVA 4: </strong> {{ iva4 | number:2 }}
         <h3><strong>Total: </strong> {{ total | number:2 }} </h3>
-        <button ng-click="Finalizar()" ng-if="terminado==false"> Finalizar </button>  
-        <form ng-show="cliente!=1">
-          <input type="radio" ng-model="contado" value="false"> Prepago
-          <input type="radio" ng-model="contado" value="true" ng-checked="contado==true"> Contado
-        </form>      
-      </div>     
-
-      <div class="col-md-6 panel panel-default">
-        <div class="panel-heading">
-          <h2 class="panel-title">Cliente</h2>
-        </div> 
-        <strong>Código del Cliente:
-          <input size="2" type="text" name="cliente" id="cliente" ng-model="cliente" value=1></input>
-        </strong>
-        <div ng-repeat="socio in listaSocio | filter:clienteElegido">     
-          <strong> Nombre: </strong>  {{ socio.nombre }} <br>
-          <strong> DNI: </strong> {{ socio.dni }} <br>
-          <strong> Dirección: </strong> {{ socio.direccion }} <br>
-          <strong> Población: </strong> {{ socio.poblacion }} <br>
-          <strong> Saldo:  </strong> {{ socio.saldo }} <br>
-        </div>
-
-      </div>
+        <strong ng-if="contado==false">Prepago</strong>  
+        <strong ng-if="contado==true">Contado</strong>   
+      </div> 
     </div>
-
-    <div class="row">
-
-      <div class="col-md-6 panel panel-default" ng-if="terminado==false">  
-        <div class="panel-heading">
-          <h2 class="panel-title">Articulos </h2>
-          <input size="8" ng-model="articulopr" align="left"></input>    
-          <span class="glyphicon glyphicon-search"></span>        
-          <span> 
-          <select name="clase" ng-model="filtrotipo" >
-            <option value="">Todos los tipos
-            <option ng-repeat="tipo in listaTipo" value="{{tipo.nombre}}">{{tipo.nombre}}
-          </select>
-          <span class="glyphicon glyphicon-filter" align="right"></span>  
-          </span>
-        </div>      
-        <table class="table table-striped table-bordered">
-          <thead> 
-            <tr>
-              <th align=center > Nombre
-              <th align=center > Tipo
-              <th align=center > Base
-              <th align=center > Tipo IVA
-              <th align=center > IVA
-              <th align=center > Total
-            </tr> 
-          </thead>
-          <tbody>
-            <tr ng-repeat="producto in listaProducto | filter:articulopr | filter:filtrotipo" >
-              <td align=left>{{producto.nombre}}</td>
-              <td align=left>{{producto.tipo}}</td> 
-              <td align=right >{{producto.precio | number:2 }}</td>
-              <td align=right >{{ producto.iva }}</td>
-              <td align=right >{{ (producto.precio * producto.iva)/100 | number:2 }}</td>
-              <td align=right >{{ producto.precio * (1 + producto.iva/100) | number:2}}</td>
-              <td> <button class="btn btn-sm btn-default" ng-click="Aniadir(producto.id, producto.nombre, producto.precio, producto.iva)"><span class="glyphicon glyphicon-shopping-cart"></span></button></td>
-            </tr>
-          </tbody>
-        </table>  
-      </div>
-
-      <div class="col-md-6 panel panel-default">
-        <div class="panel-heading">
-          <h2 class="panel-title">Cesta</h2>
-        </div> 
-        <table class="table table-striped table-bordered">
-          <thead> 
-            <tr>
-              <th align=center> Artículo
-              <th align=center> Cantidad
-              <th align=center> Base
-              <th align=center> Tipo IVA
-              <th align=center> IVA
-              <th align=center> Total
-           </tr> 
-          </thead>
-          <tbody>
-            <tr ng-repeat="venta in listaVenta">
-             <td align=left>{{ venta.nombre }}</td>
-             <td align=right ng-if="terminado==false"><input size="2" type="text" ng-change="Totales()" ng-model="listaVenta[$index].cantidad"></td>
-             <td align=right ng-if="terminado==true">{{ venta.cantidad }}</td>
-             <td align=right>{{ venta.precio * venta.cantidad | number:2 }}</td>
-             <td align=center>{{ venta.iva }}</td>
-             <td align=right>{{((venta.precio * venta.iva)/100) * venta.cantidad | number:2}}</td>
-             <td align=right>{{ (venta.precio * ( 1+ venta.iva/100)) * venta.cantidad | number:2}}</td>
-             <td ng-if="terminado==false"> <button class="btn btn-sm btn-danger" ng-click="Borrar($index)"><span class="glyphicon glyphicon-remove"></span></button></td>
-            </tr>
-          </tbody>
-        </table>  
-      </div>
-
-    </div>   
   </div>
-
-  <div class="container center-block" ng-if="terminado==true">
-    <div id="imprimeesto">
-      <div class="col-md-12 panel panel-default">
-        <div class="panel-heading">
-          <h2 class="panel-title">Cliente</h2>
-        </div> 
-        <strong>Código del Cliente: {{socio.id}}</strong>
-        <div ng-repeat="socio in listaSocio | filter:clienteElegido">     
-          <strong> Nombre: </strong>  {{ socio.nombre }} <br>
-          <strong> DNI: </strong> {{ socio.dni }} <br>
-          <strong> Dirección: </strong> {{ socio.direccion }} <br>
-          <strong> Población: </strong> {{ socio.poblacion }} <br>
-          <strong> Saldo:  </strong> {{ socio.saldo }} <br>
-        </div>
-      </div>  
-
-      <div class="col-md-12 panel panel-default">
-        <div class="panel-heading">
-          <h2 class="panel-title">Venta {{numventa}}</h2>
-        </div> 
-        <table class="table table-striped table-bordered">
-          <thead> 
-            <tr>
-              <th align=center> Artículo
-              <th align=center> Cantidad
-              <th align=center> Base
-              <th align=center> Tipo IVA
-              <th align=center> IVA
-              <th align=center> Total
-           </tr> 
-          </thead>
-          <tbody>
-            <tr ng-repeat="venta in listaVenta">
-             <td align=left>{{ venta.nombre }}</td>
-             <td align=right>{{ venta.cantidad }}</td>
-             <td align=right>{{ venta.precio * venta.cantidad | number:2 }}</td>
-             <td align=center>{{ venta.iva }}</td>
-             <td align=right>{{((venta.precio * venta.iva)/100) * venta.cantidad | number:2}}</td>
-             <td align=right>{{ (venta.precio * ( 1+ venta.iva/100)) * venta.cantidad | number:2}}</td>
-             <td ng-if="terminado==false"> <button class="btn btn-sm btn-danger" ng-click="Borrar($index)"><span class="glyphicon glyphicon-remove"></span></button></td>
-            </tr>
-          </tbody>
-        </table>  
-        <div class="col-md-12 panel panel-default">
-          <div class="panel-heading">
-            <h2 class="panel-title">Totales</h2>
-          </div> 
-          <strong>Base 21: </strong> {{ base21 | number:2 }} <strong>IVA 21: </strong> {{ iva21 | number:2 }} <br>
-          <strong>Base 10: </strong> {{ base10 | number:2 }} <strong>IVA 10: </strong> {{ iva10 | number:2 }} <br>
-          <strong>Base 4: </strong> {{ base4 | number:2 }} <strong>IVA 4: </strong> {{ iva4 | number:2 }}
-          <h3><strong>Total: </strong> {{ total | number:2 }} </h3>
-          <strong ng-if="contado==false">Prepago</strong>  
-          <strong ng-if="contado==true">Contado</strong>   
-        </div> 
-      </div>
-    </div>
-    <h2> {{respuesta}} </h2>
-    <button ng-click="printDiv('imprimeesto')"> Imprimir </button>
-    <button ng-click="Continuar()"> Continuar </button> 
-  </div>
-</div>
-
-<div class="col-md-12 panel panel-default" ng-if="cerrado==true">
-  <h2 align=center>La caja ya está cerrrada por hoy</h2>
+  <h2> {{respuesta}} </h2>
+  <button ng-click="printDiv('imprimeesto')"> Imprimir </button>
+  <button ng-click="Continuar()"> Continuar </button>
+ 
 </div>
