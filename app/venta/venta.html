@@ -3,7 +3,7 @@
     <h1 align="center">Venta</h1>
   </div> 
 </div>
-<div ng-if="cierre=false">
+
 <div class="container" ng-show="terminado==false">
   <div class="row">
     <div class="col-md-6 panel panel-default">
@@ -114,20 +114,21 @@
 
 <div class="container center-block" ng-if="terminado==true">
   <div id="imprimeesto">
-    <div class="col-md-6 panel panel-default"> 
-      <div class="panel-heading">
-        <h2 class="panel-title">Cliente</h2>
-      </div> 
-      <strong>Código del Cliente: {{socio.id}}</strong>
-      <div ng-repeat="socio in listaSocio | filter:clienteElegido">     
-        <strong> Nombre: </strong>  {{ socio.nombre }} <br>
-        <strong> DNI: </strong> {{ socio.dni }} <br>
-        <strong> Dirección: </strong> {{ socio.direccion }} <br>
-        <strong> Población: </strong> {{ socio.poblacion }} <br>
-      </div>
+    <div class="panel-heading">
+      <h2 class="panel-title">Cliente</h1>
+    </div> 
+    <strong>Código del Cliente: {{socio.id}}</strong>
+    <div ng-repeat="socio in listaSocio | filter:clienteElegido">     
+      <strong> Nombre: </strong>  {{ socio.nombre }} <br>
+      <strong> DNI: </strong> {{ socio.dni }} <br>
+      <strong> Dirección: </strong> {{ socio.direccion }} <br>
+      <strong> Población: </strong> {{ socio.poblacion }} <br>
+      <strong> Saldo:  </strong> {{ socio.saldo }} <br>
     </div>
 
-    <div class="col-md-12 panel panel-default">
+
+
+    <div class="col-md-6 panel panel-default">
       <div class="panel-heading">
         <h2 class="panel-title">Venta {{numventa}}</h1>
       </div> 
@@ -156,7 +157,7 @@
       </table>  
       <div class="col-md-6 panel panel-default">
         <div class="panel-heading">
-          <h2 class="panel-title">Totales</h2>
+          <h2 class="panel-title">Totales</h1>
         </div> 
         <strong>Base 21: </strong> {{ base21 | number:2 }} <strong>IVA 21: </strong> {{ iva21 | number:2 }} <br>
         <strong>Base 10: </strong> {{ base10 | number:2 }} <strong>IVA 10: </strong> {{ iva10 | number:2 }} <br>
@@ -167,16 +168,8 @@
       </div> 
     </div>
   </div>
-  <div class="row"> 
-    <div class="col-md-12 panel panel-default" align="center">
-      <h2> {{respuesta}} </h2>
-      <button ng-click="printDiv('imprimeesto')"> Imprimir </button>
-      <button ng-click="Continuar()"> Continuar </button>
-    </div>
-  </div>  
-</div>
-
-<div class="col-md-6 panel panel-default">
-  {{respuesta}}
-</div>
+  <h2> {{respuesta}} </h2>
+  <button ng-click="printDiv('imprimeesto')"> Imprimir </button>
+  <button ng-click="Continuar()"> Continuar </button>
+ 
 </div>
