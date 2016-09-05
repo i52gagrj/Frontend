@@ -75,7 +75,6 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
           else
           {
             $scope.cierre = true; 
-            $scope.terminado = true; 
             var respuesta2 = recibe.response.respuesta;            
             console.log(JSON.stringify(respuesta2));                        
             $scope.respuesta = respuesta2;
@@ -264,6 +263,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
     $scope.printDiv = function (divName) {
       var printContents = document.getElementById(divName).innerHTML;
       var originalContents = document.body.innerHTML;      
+
       if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
           var popupWin = window.open('', '_blank', 'width=600,height=600,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
           popupWin.window.focus();
@@ -278,15 +278,19 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
               popupWin.document.close();
               popupWin.close();
           }
-      } 
-      else {
+      } else {
           var popupWin = window.open('', '_blank', 'width=800,height=600');
           popupWin.document.open();
           popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="app.css" /></head><body onload="window.print()">' + printContents + '</html>');
           popupWin.document.close();
       }
       popupWin.document.close();
+
       return true;
     };
+
+
+
+
 
 });
