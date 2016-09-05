@@ -11,6 +11,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
 
 .controller('VentaController', function($scope, store, jwtHelper, $http, backendAPIservice, $location, $window) {
     $scope.terminado=false;
+    $scope.cerrado=false;
     $scope.contado=true;
     $scope.cliente=1;
     $scope.base21=0.00;
