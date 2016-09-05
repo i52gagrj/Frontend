@@ -13,7 +13,7 @@ angular.module('Frontend.Devolucion', ['ngRoute','angular-jwt','angular-storage'
     //$scope.cargado=false;   
     $scope.terminado=false;   
     $scope.error=false;   
-    $scope.cierre=false;   
+    $scope.cerrado=false;   
     $scope.base21original=0.00;
     $scope.iva21original=0.00;
     $scope.base10original=0.00;
@@ -30,7 +30,7 @@ angular.module('Frontend.Devolucion', ['ngRoute','angular-jwt','angular-storage'
     $scope.totalmodificado=0.00; 
     $scope.diferencia=0.00;  
     $scope.idventa; 
-    $scope.codigorecibido; 
+    $scope.codigo; 
     $scope.respuesta; 
        
     $scope.ventaOriginal = [];
@@ -43,21 +43,26 @@ angular.module('Frontend.Devolucion', ['ngRoute','angular-jwt','angular-storage'
     {
       var token = store.get('token'); 
       if(!jwtHelper.isTokenExpired(token))
-      {     
-        backendAPIservice.getProductos().success(function (recibe) {    
-          var codigo1 = recibe.response.code;
-          $scope.codigorecibido = codigo1;
-          if(codigo1 == 0)
-          {   
-            var productosArray = recibe.response.productos;
-            console.log(JSON.stringify(productosArray));  
-            $scope.listaProducto = productosArray;
-          }
-          else 
-          {
-
+      {
+        backendAPIservice.getProductos().success(function (recibe) {       
+          var productosArray = recibe.response.productos;            
+          store.set('token',recibe.response.token);
+          var codigo1=recibe.code;
+          console.log(JSON.stringify(codigo2));
+          $scope.codigo=codigo1
+          if($scope.codigo!=0) 
+          {  
+            $scope.cerrado=true;
+            var respuesta1 = recibe.response.respuesta;
+            console.log(JSON.stringify(respuesta1));
+            $scope.respuesta = respuesta1;
           }  
-        });
+          else
+          {  
+            console.log(JSON.stringify(productosArray));  
+            $scope.listaProducto = productosArray;              
+          }
+        });        
       }
       else
       {
@@ -80,8 +85,8 @@ angular.module('Frontend.Devolucion', ['ngRoute','angular-jwt','angular-storage'
           backendAPIservice.getBuscaVenta(idventa).success(function(recibe){
             var codigo = recibe.code;
             console.log(JSON.stringify(codigo)); 
-            $scope.codigorecibido=codigo;  
-            if($scope.codigorecibido==0)
+            $scope.codigo=codigo;  
+            if($scope.codigo==0)
             { 
               $scope.error = false;             
               var recibeVenta = recibe.response.venta;
@@ -109,7 +114,7 @@ angular.module('Frontend.Devolucion', ['ngRoute','angular-jwt','angular-storage'
               console.log(JSON.stringify(respuesta));
               $scope.respuesta = respuesta;
               if($scope.codigorecibido==4) $scope.error=true;
-              if($scope.codigorecibido==3) $scope.cierre=true;
+              if($scope.codigorecibido==3) $scope.cerrado=true;
               //if($scope.codigorecibido==5) $scope.respuesta="La caja ya está cerrada, la devolución no se puede tramitar";                            
             }
           });
