@@ -8,7 +8,7 @@
     <div class="row">
       <div class="col-md-6 panel panel-default">
         <div class="panel-heading">
-          <h2 class="panel-title">Totales</h1>
+          <h2 class="panel-title">Totales</h2>
         </div> 
         <strong>Base 21: </strong> {{ base21 | number:2 }} <strong>IVA 21: </strong> {{ iva21 | number:2 }} <br>
         <strong>Base 10: </strong> {{ base10 | number:2 }} <strong>IVA 10: </strong> {{ iva10 | number:2 }} <br>
@@ -173,5 +173,7 @@
     <button ng-click="Continuar()"> Continuar </button>
   </div> 
 <div ng-if="cierre==true">
-  {{respuesta}}
+  <div class="col-md-12 panel panel-default" ng-if="terminado==true">  
+    <h2> {{respuesta}} </h2>
+  </div>
 </div>
