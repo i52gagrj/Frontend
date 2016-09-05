@@ -13,6 +13,7 @@ angular.module('Frontend.Devolucion', ['ngRoute','angular-jwt','angular-storage'
     //$scope.cargado=false;   
     $scope.terminado=false;   
     $scope.error=false;   
+    $scope.cierre=false;   
     $scope.base21original=0.00;
     $scope.iva21original=0.00;
     $scope.base10original=0.00;
@@ -43,10 +44,19 @@ angular.module('Frontend.Devolucion', ['ngRoute','angular-jwt','angular-storage'
       var token = store.get('token'); 
       if(!jwtHelper.isTokenExpired(token))
       {     
-        backendAPIservice.getProductos().success(function (recibe) {       
-          var productosArray = recibe.response.productos;
-          console.log(JSON.stringify(productosArray));  
-          $scope.listaProducto = productosArray;
+        backendAPIservice.getProductos().success(function (recibe) {    
+          var codigo1 = recibe.response.code;
+          $scope.codigorecibido = codigo1;
+          if(codigoProducto == 0)
+          {   
+            var productosArray = recibe.response.productos;
+            console.log(JSON.stringify(productosArray));  
+            $scope.listaProducto = productosArray;
+          }
+          else 
+          {
+
+          }  
         });
       }
       else
@@ -95,9 +105,11 @@ angular.module('Frontend.Devolucion', ['ngRoute','angular-jwt','angular-storage'
             }
             else              
             {
-              $scope.error = true;
-              if($scope.codigorecibido==3) $scope.respuesta="La venta indicada no existe";
-              if($scope.codigorecibido==4) $scope.respuesta="Las devoluciones solo se pueden tramitar el mismo dia de la venta";
+              var respuesta = recibe.response.respuesta;
+              console.log(JSON.stringify(respuesta));
+              $scope.respuesta = respuesta;
+              if($scope.codigorecibido==4) $scope.error=true;
+              if($scope.codigorecibido==3) $scope.cierre=true;
               //if($scope.codigorecibido==5) $scope.respuesta="La caja ya está cerrada, la devolución no se puede tramitar";                            
             }
           });

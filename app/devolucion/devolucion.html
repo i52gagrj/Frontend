@@ -10,7 +10,8 @@
       <h2>Venta a buscar</h2>
       <input type="text" size="2" ng-model="idventa"/>
       <button ng-click="BuscarVenta(idventa)"> Buscar </button>
-      <br>
+    </div>
+    <div class="col-md-12 panel panel-default" ng-if="error==false"> 
       <strong> Cliente: </strong> {{ ventaOriginal.socio }}
       <strong> DNI: </strong> {{ ventaOriginal.dni }}<br>
       <strong> Vendedor: </strong> {{ ventaOriginal.usuario }}<br>
@@ -20,6 +21,11 @@
   </div>
   
   <div class="col-md-12 panel panel-default" ng-if="error==true">
+    <h2 align=center>{{respuesta}}</h2>
+    <button ng-Click="Continuar()" align=center>Continuar</button>  
+  </div>
+
+  <div class="col-md-12 panel panel-default" ng-if="cierre==true">
     <h2 align=center>{{respuesta}}</h2>
     <button ng-Click="Continuar()" align=center>Continuar</button>  
   </div>
@@ -183,7 +189,7 @@
       <div class="col-md-12 panel panel-default" align="center">
         <h2 align=center>{{respuesta}}</h2>
         <button ng-click="printDiv('imprimeesto')" align=center> Imprimir </button>
-        
+
       </div>
     </div>    
   </div>
