@@ -86,7 +86,7 @@
       <h2>Cierre</h2>
       <strong>Cantidad en caja: </strong> {{ total | number:2 }}
       <br>
-      <strong >Cantidad a dejar en caja:</strong> {{resto}}
+      <strong >Cantidad a dejar en caja:</strong> {{ resto }}
       <br><strong> Cantidad retirada: </strong>{{ total - resto | number:2 }}    
     </div>     
   </div>
@@ -95,7 +95,7 @@
 <div class="row">
   <div class="col-md-12 panel panel-default" align="center">
     <h2> {{respuesta}} </h2>
-      <button ng-click="Salir()"> Continuar </button>
+    <button ng-click="Salir()"> Continuar </button>
   </div>
 </div> 
 
