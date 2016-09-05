@@ -158,6 +158,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       })*/
       $scope.terminado=false;
       $scope.contado=true;
+      $scope.cerrado=false;
       $scope.cliente=1;
       $scope.base21=0.00;
       $scope.iva21=0.00;
@@ -185,6 +186,8 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
         {     
           backendAPIservice.getProductos().success(function (recibe) {       
             var productosArray = recibe.response.productos;
+            var codigo = recibe.code;
+            if(codigo!=0 $scope.cerrado=true); 
             console.log(JSON.stringify(productosArray));  
             $scope.listaProducto = productosArray;
             store.set('token',recibe.response.token);
