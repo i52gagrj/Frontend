@@ -36,9 +36,17 @@ angular.module('Frontend.Cierre', ['ngRoute','angular-jwt','angular-storage'])
       {
         backendAPIservice.getCierreVentas().success(function (recibe) {        
           var VentasArray = recibe.response.ventas;
+          var codigo = recibe.code; 
           console.log(JSON.stringify(VentasArray));  
           $scope.listaVentas = VentasArray;
           store.set('token',recibe.response.token);
+          $scope.codigorecibido=codigo;  
+          if($scope.codigorecibido==3) 
+          {  
+            $scope.respuesta=VentasArray; 
+            $scope.error=true;          
+            $scope.terminado=true;
+          }  
         });
 
         backendAPIservice.getCierreLineas().success(function (recibe) {        
