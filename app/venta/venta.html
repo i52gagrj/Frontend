@@ -4,7 +4,7 @@
   </div> 
 </div>
 
-<div class="container" ng-show="cerrado==false">
+<div class="container" ng-if="cerrado==false">
   <div class="container" ng-show="terminado==false">
 
     <div class="row">
@@ -185,7 +185,7 @@
   </div>
 </div>  
 
-<div class="container" ng-show="cerrado==true">
+<div class="container" ng-if="cerrado==true">
   <div class="col-md-12 panel panel-default" >
     <h2> {{respuesta}} </h2>
     <h2>No se podrá realizar ninguna venta hasta mañana</h2>
