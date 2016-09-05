@@ -43,7 +43,9 @@ angular.module('Frontend.Cierre', ['ngRoute','angular-jwt','angular-storage'])
           $scope.codigorecibido=codigo;  
           if($scope.codigorecibido==3) 
           {  
-            $scope.respuesta=VentasArray; 
+            var respuesta = recibe.response.respuesta;
+            console.log(JSON.stringify(respuesta));
+            $scope.respuesta=respuesta; 
             $scope.error=true;          
             $scope.terminado=true;
           }  
