@@ -11,7 +11,6 @@ angular.module('Frontend.Cierre', ['ngRoute','angular-jwt','angular-storage'])
 
 .controller('CierreController', function($scope, store, jwtHelper, $http, backendAPIservice, $location) {
     $scope.terminado=false;   
-    $scope.error=false;
     $scope.base21=0.00;
     $scope.iva21=0.00;
     $scope.base10=0.00;
