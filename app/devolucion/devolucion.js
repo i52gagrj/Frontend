@@ -47,7 +47,7 @@ angular.module('Frontend.Devolucion', ['ngRoute','angular-jwt','angular-storage'
         backendAPIservice.getProductos().success(function (recibe) {    
           var codigo1 = recibe.response.code;
           $scope.codigorecibido = codigo1;
-          if(codigoProducto == 0)
+          if(codigo1 == 0)
           {   
             var productosArray = recibe.response.productos;
             console.log(JSON.stringify(productosArray));  

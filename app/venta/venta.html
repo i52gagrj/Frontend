@@ -3,7 +3,7 @@
     <h1 align="center">Venta</h1>
   </div> 
 </div>
-
+<div ng-if="cierre=false">
 <div class="container" ng-show="terminado==false">
   <div class="row">
     <div class="col-md-6 panel panel-default">
@@ -156,7 +156,7 @@
       </table>  
       <div class="col-md-6 panel panel-default">
         <div class="panel-heading">
-          <h2 class="panel-title">Totales</h1>
+          <h2 class="panel-title">Totales</h2>
         </div> 
         <strong>Base 21: </strong> {{ base21 | number:2 }} <strong>IVA 21: </strong> {{ iva21 | number:2 }} <br>
         <strong>Base 10: </strong> {{ base10 | number:2 }} <strong>IVA 10: </strong> {{ iva10 | number:2 }} <br>
@@ -174,4 +174,9 @@
       <button ng-click="Continuar()"> Continuar </button>
     </div>
   </div>  
+</div>
+
+<div class="col-md-6 panel panel-default">
+  {{respuesta}}
+</div>
 </div>
