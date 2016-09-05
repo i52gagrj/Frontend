@@ -4,7 +4,7 @@
   </div> 
 </div>
 
-<div class="container" ng-if="terminado==false">
+<div class="container" ng-if="terminado==false && error==false">
   <div class="row">
     <div class="col-md-6 panel panel-default">  
       <h2>Ventas del dia</h2>
@@ -62,9 +62,9 @@
   </div>
 </div>  
 
-<div class="row" ng-if="terminado==true">
+<div class="row" ng-if="terminado==true && error==false">
   <div class="row"> 
-    <div class="col-md-6 panel panel-default" ng-if="error==false">
+    <div class="col-md-6 panel panel-default">
       <h2>Ingresos</h2>
       <strong>En efectivo: </strong> {{ contado | number:2 }}
       <strong>En prepago: </strong>  {{ prepago | number:2 }}
@@ -97,5 +97,11 @@
   </div>
 </div>  
 
+<div class="row" ng-if="error==true">
+  <div class="col-md-12 panel panel-default" align="center">
+    <h2> {{respuesta}} </h2>
+      <button ng-click="Salir()"> Continuar </button>
+  </div>
+</div> 
 
 
