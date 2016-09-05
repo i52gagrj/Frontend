@@ -11,7 +11,6 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
 
 .controller('VentaController', function($scope, store, jwtHelper, $http, backendAPIservice, $location, $window) {
     $scope.terminado=false;
-    $scope.cierre=false;
     $scope.contado=true;
     $scope.cliente=1;
     $scope.base21=0.00;
@@ -34,8 +33,11 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
     $scope.listaProducto = [];
     $scope.listaSocio = [];  
     $scope.listaTipo = [];  
-
-
+        
+    if(store.get('token')){
+      var token = store.get('token'); 
+      if(!jwtHelper.isTokenExpired(token))
+      {     
         backendAPIservice.getProductos().success(function (recibe) {       
           var productosArray = recibe.response.productos;
           console.log(JSON.stringify(productosArray));  
@@ -44,45 +46,19 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
           
         });
 
-        
-    if(store.get('token')){
-      var token = store.get('token'); 
-      if(!jwtHelper.isTokenExpired(token))
-      {     
-        backendAPIservice.getProductos().success(function (recibe) {   
-          var codigoProductos = recibe.code;          
-          if(codigoProductos==0)
-          {
-            var productosArray = recibe.response.productos;
-            console.log(JSON.stringify(productosArray));  
-            $scope.listaProducto = productosArray;
-            store.set('token',recibe.response.token);
-
-            backendAPIservice.getClientes().success(function (recibe) {        
-              var sociosArray = recibe.response.socios;
-              console.log(JSON.stringify(sociosArray));
-              $scope.listaSocio = sociosArray;
-              store.set('token',recibe.response.token);
-            });
-
-            backendAPIservice.getTipos().success(function (recibe) {        
-              var tiposArray = recibe.response.tipos;
-              console.log(JSON.stringify(tiposArray));
-              $scope.listaTipo = tiposArray;
-              store.set('token',recibe.response.token);
-            });  
-          }  
-          else
-          {
-            $scope.cierre = true; 
-            var respuesta2 = recibe.response.respuesta;            
-            console.log(JSON.stringify(respuesta2));                        
-            $scope.respuesta = respuesta2;
-            store.set('token',recibe.response.token);                
-          }
+        backendAPIservice.getClientes().success(function (recibe) {        
+          var sociosArray = recibe.response.socios;
+          console.log(JSON.stringify(sociosArray));
+          $scope.listaSocio = sociosArray;
+          store.set('token',recibe.response.token);
         });
 
-
+        backendAPIservice.getTipos().success(function (recibe) {        
+          var tiposArray = recibe.response.tipos;
+          console.log(JSON.stringify(tiposArray));
+          $scope.listaTipo = tiposArray;
+          store.set('token',recibe.response.token);
+        });
       }
       else
       {
@@ -252,15 +228,16 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       document.body.innerHTML = originalContents;
     };*/
 
-    /*$scope.printDiv = function(divName) {
+    $scope.printDiv = function(divName) {
       var printContents = document.getElementById(divName).innerHTML;
       var popupWin = window.open('', '_blank', 'width=300,height=300');
       popupWin.document.open();
       popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="app.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
       popupWin.document.close();
-    };*/
+    };
 
-    $scope.printDiv = function (divName) {
+    /*$scope.printDiv = function (divName) {
+
       var printContents = document.getElementById(divName).innerHTML;
       var originalContents = document.body.innerHTML;      
 
@@ -287,7 +264,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       popupWin.document.close();
 
       return true;
-    };
+    };*/
 
 
 
