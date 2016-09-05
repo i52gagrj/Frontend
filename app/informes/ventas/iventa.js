@@ -120,6 +120,11 @@ angular.module('Frontend.Informes.Ventas', ['ngRoute','angular-jwt','angular-sto
       $scope.error = false;
     };  
 
+    $scope.Salir=function() {
+      $location.path("/venta");
+    };  
+
+
     $scope.printDiv = function(divName) {
       var printContents = document.getElementById(divName).innerHTML;
       var popupWin = window.open('', '_blank', 'width=300,height=300');

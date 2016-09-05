@@ -11,6 +11,7 @@ angular.module('Frontend.Cierre', ['ngRoute','angular-jwt','angular-storage'])
 
 .controller('CierreController', function($scope, store, jwtHelper, $http, backendAPIservice, $location) {
     $scope.terminado=false;   
+    $scope.error=false;
     $scope.base21=0.00;
     $scope.iva21=0.00;
     $scope.base10=0.00;
@@ -129,15 +130,22 @@ angular.module('Frontend.Cierre', ['ngRoute','angular-jwt','angular-storage'])
     $scope.Finalizar=function() {
       backendAPIservice.postCierre($scope.resto).success(function(recibe){
         var respuesta1 = recibe.response.respuesta;
+        var codigo = recibe.code;        
         console.log(JSON.stringify(respuesta1));
         $scope.respuesta = respuesta1;
         if(recibe.code==0) store.set('token',recibe.response.token);
         $scope.terminado=true;
+        $scope.codigorecibido=codigo;  
+          if($scope.codigorecibido==3) $scope.error=true;
       });
     };
 
     $scope.Recauda=function(resto) {
       $scope.llevar = $scope.total - resto;
     };
+
+    $scope.Salir=function() {
+      $location.path("/venta");
+    };  
 
 });

@@ -179,7 +179,13 @@
         <strong>DIFERENCIA: </strong>{{ ( totalmodificado - totaloriginal | number:2  ) }}
       </div> 
     </div>
-    <button ng-click="printDiv('imprimeesto')" align=center> Imprimir </button>
+    <div class="row"> 
+      <div class="col-md-12 panel panel-default" align="center">
+        <h2 align=center>{{respuesta}}</h2>
+        <button ng-click="printDiv('imprimeesto')" align=center> Imprimir </button>
+        
+      </div>
+    </div>    
   </div>
 </div>  
 
