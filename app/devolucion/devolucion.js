@@ -48,7 +48,7 @@ angular.module('Frontend.Devolucion', ['ngRoute','angular-jwt','angular-storage'
           var productosArray = recibe.response.productos;            
           store.set('token',recibe.response.token);
           var codigo1=recibe.code;
-          console.log(JSON.stringify(codigo2));
+          console.log(JSON.stringify(codigo1));
           $scope.codigo=codigo1
           if($scope.codigo!=0) 
           {  
@@ -78,7 +78,7 @@ angular.module('Frontend.Devolucion', ['ngRoute','angular-jwt','angular-storage'
 
     $scope.BuscarVenta=function(idventa) {
       //if(store.get('token') && store.get('token')!=" "){
-      $store.error=false;  
+      $scope.error=false;  
       if(store.get('token')){
         var token = store.get('token'); 
         if(!jwtHelper.isTokenExpired(token))
