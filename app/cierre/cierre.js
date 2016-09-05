@@ -20,7 +20,7 @@ angular.module('Frontend.Cierre', ['ngRoute','angular-jwt','angular-storage'])
     $scope.iva4=0.00; 
     $scope.contado=0.00; 
     $scope.prepago=0.00;
-    $scope.resto=0.00;    
+    $scope.resto;    
     $scope.respuesta;  
     $scope.prueba;
     $scope.tokenDe;  
