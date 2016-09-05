@@ -13,6 +13,7 @@ angular.module('Frontend.Informes.Ventas', ['ngRoute','angular-jwt','angular-sto
     $scope.listaVentas = [];
     $scope.terminado=false;
     $scope.consulta=false;
+    $scope.error=false;
     $scope.fechainicio;
     $scope.fechafin;
     $scope.fechasvalidas=false;
@@ -87,7 +88,11 @@ angular.module('Frontend.Informes.Ventas', ['ngRoute','angular-jwt','angular-sto
         $location.path("/login");
       }
     }
-    else $scope.respuesta="La fecha de inicio debe ser menor que la fecha de fin";
+    else 
+    {
+      $scope.respuesta="La fecha de inicio debe ser menor que la fecha de fin";
+      $scope.error=true;
+    }
     };
 
     $scope.Totales=function() {
@@ -111,8 +116,13 @@ angular.module('Frontend.Informes.Ventas', ['ngRoute','angular-jwt','angular-sto
       $scope.total = $scope.totalbase + $scope.total;
     };
 
-    $scope.Imprimir=function() {    
-  
-    }
+    $scope.printDiv = function(divName) {
+      var printContents = document.getElementById(divName).innerHTML;
+      var popupWin = window.open('', '_blank', 'width=300,height=300');
+      popupWin.document.open();
+      popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="app.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
+      popupWin.document.close();
+            $scope.terminado=false;
+    };        
 
 });

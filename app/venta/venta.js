@@ -234,6 +234,68 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       popupWin.document.open();
       popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="app.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
       popupWin.document.close();
+            $scope.terminado=false;
+      $scope.contado=true;
+      $scope.cliente=1;
+      $scope.base21=0.00;
+      $scope.iva21=0.00;
+      $scope.base10=0.00;
+      $scope.iva10=0.00; 
+      $scope.base4=0.00;
+      $scope.iva4=0.00; 
+      $scope.total=0.00;        
+      $scope.articulopr;
+      $scope.respuesta;
+      $scope.error; 
+      $scope.codigo;
+      $scope.cero=0;  
+      $scope.prueba;
+      $scope.activo;
+
+      $scope.listaVenta = [];
+      $scope.listaProducto = [];
+      $scope.listaSocio = [];  
+      $scope.listaTipo = [];  
+          
+      if(store.get('token')){
+        var token = store.get('token'); 
+        if(!jwtHelper.isTokenExpired(token))
+        {     
+          backendAPIservice.getProductos().success(function (recibe) {       
+            var productosArray = recibe.response.productos;
+            console.log(JSON.stringify(productosArray));  
+            $scope.listaProducto = productosArray;
+            store.set('token',recibe.response.token);
+            
+          });
+
+          backendAPIservice.getClientes().success(function (recibe) {        
+            var sociosArray = recibe.response.socios;
+            console.log(JSON.stringify(sociosArray));
+            $scope.listaSocio = sociosArray;
+            store.set('token',recibe.response.token);
+          });
+
+          backendAPIservice.getTipos().success(function (recibe) {        
+            var tiposArray = recibe.response.tipos;
+            console.log(JSON.stringify(tiposArray));
+            $scope.listaTipo = tiposArray;
+            store.set('token',recibe.response.token);
+          });
+        }
+        else
+        {
+          store.remove('token');
+          store.set('nombre', "Sin conexion");
+          $location.path("/login");
+        }
+      } 
+      else 
+      {
+        store.remove('token');
+        store.set('nombre', "Sin conexion");
+        $location.path("/login");
+      }  
     };
 
     /*$scope.printDiv = function (divName) {
