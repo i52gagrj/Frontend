@@ -15,6 +15,10 @@
         <button ng-click="BuscarVenta(idventa)"> Buscar </button>
       </div>   
     </div>
+    <div class="col-md-12 panel panel-default" ng-if"error==true">
+      <h2 align=center>{{respuesta}}</h2>
+      <h2 align=center>Realice otra busqueda</h2>
+    </div>
     <div class="col-md-12 panel panel-default" ng-if="error==false"> 
       <div class="panel-heading">    
         <h2 class="panel-title"> Cliente </h2>

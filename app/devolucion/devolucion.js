@@ -78,6 +78,7 @@ angular.module('Frontend.Devolucion', ['ngRoute','angular-jwt','angular-storage'
 
     $scope.BuscarVenta=function(idventa) {
       //if(store.get('token') && store.get('token')!=" "){
+      $store.error=false;  
       if(store.get('token')){
         var token = store.get('token'); 
         if(!jwtHelper.isTokenExpired(token))
