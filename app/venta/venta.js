@@ -39,11 +39,20 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       if(!jwtHelper.isTokenExpired(token))
       {     
         backendAPIservice.getProductos().success(function (recibe) {       
-          var productosArray = recibe.response.productos;
-          console.log(JSON.stringify(productosArray));  
-          $scope.listaProducto = productosArray;
+          var productosArray = recibe.response.productos;            
           store.set('token',recibe.response.token);
-          
+          if(recibe.code!=0) 
+          {  
+            $scope.cerrado=true;
+            var respuesta1 = recibe.response.respuesta;
+            console.log(JSON.stringify(respuesta1));
+            $scope.respuesta = respuesta1;
+          }  
+          else
+          {  
+            console.log(JSON.stringify(productosArray));  
+            $scope.listaProducto = productosArray;              
+          }
         });
 
         backendAPIservice.getClientes().success(function (recibe) {        
@@ -138,7 +147,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
         console.log(JSON.stringify(numventa));
         $scope.respuesta = respuesta1;
         $scope.numventa = numventa;
-        if(recibe.code==0) store.set('token',recibe.response.token);
+        store.set('token',recibe.response.token);
         $scope.terminado=true;
       });
     };
@@ -185,13 +194,20 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
         if(!jwtHelper.isTokenExpired(token))
         {     
           backendAPIservice.getProductos().success(function (recibe) {       
-            var productosArray = recibe.response.productos;
-            var codigo = recibe.code;
-            if(codigo!=0 $scope.cerrado=true); 
-            console.log(JSON.stringify(productosArray));  
-            $scope.listaProducto = productosArray;
+            var productosArray = recibe.response.productos;            
             store.set('token',recibe.response.token);
-            
+            if(recibe.code!=0) 
+            {  
+              $scope.cerrado=true;
+              var respuesta1 = recibe.response.respuesta;
+              console.log(JSON.stringify(respuesta1));
+              $scope.respuesta = respuesta1;
+            }  
+            else
+            {  
+              console.log(JSON.stringify(productosArray));  
+              $scope.listaProducto = productosArray;              
+            }
           });
 
           backendAPIservice.getClientes().success(function (recibe) {        
