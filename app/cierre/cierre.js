@@ -136,7 +136,7 @@ angular.module('Frontend.Cierre', ['ngRoute','angular-jwt','angular-storage'])
         if(recibe.code==0) store.set('token',recibe.response.token);
         $scope.terminado=true;
         $scope.codigorecibido=codigo;  
-          if($scope.codigorecibido==3) $scope.error=true;
+        if($scope.codigorecibido==3) $scope.error=true;
       });
     };
 

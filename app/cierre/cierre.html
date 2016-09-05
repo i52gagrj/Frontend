@@ -90,14 +90,9 @@
       <br><strong> Cantidad retirada: </strong>{{ total - resto | number:2 }}    
     </div>     
   </div>
-
-  <div class="col-md-12 panel panel-default" align="center">
-    <h2> {{respuesta}} </h2>
-      <button ng-click="Salir()"> Continuar </button>
-  </div>
 </div>  
 
-<div class="row" ng-if="error==true">
+<div class="row">
   <div class="col-md-12 panel panel-default" align="center">
     <h2> {{respuesta}} </h2>
       <button ng-click="Salir()"> Continuar </button>
