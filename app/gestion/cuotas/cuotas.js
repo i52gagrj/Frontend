@@ -49,5 +49,10 @@ angular.module('Frontend.Gestion.Cuotas', ['ngRoute','angular-jwt','angular-stor
         if(recibe.code==0) store.set('token',recibe.response.token);
         $scope.terminado=true;
       });
-    }
+
+    };
+
+    $scope.Cancelar=function() {
+      $location.path("/venta");
+    };
 });
