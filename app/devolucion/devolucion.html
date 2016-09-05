@@ -15,11 +15,13 @@
         <button ng-click="BuscarVenta(idventa)"> Buscar </button>
       </div>   
     </div>
+
     <div class="col-md-12 panel panel-default" ng-if"error==true">
       <h2 align=center>{{respuesta}}</h2>
       <h2 align=center>Realice otra busqueda</h2>
     </div>
-    <div class="col-md-12 panel panel-default" ng-if="error==false"> 
+
+    <div class="col-md-12 panel panel-default"> 
       <div class="panel-heading">    
         <h2 class="panel-title"> Cliente </h2>
       </div>  
@@ -33,7 +35,7 @@
     </div> 
   </div>
   
-  <div class="col-md-12 panel panel-default" ng-if="error==true">
+  <!--<div class="col-md-12 panel panel-default" ng-if="error==true">
     <h2 align=center>{{respuesta}}</h2>
     <button ng-Click="Continuar()" align=center>Continuar</button>  
   </div>
@@ -41,7 +43,7 @@
   <div class="col-md-12 panel panel-default" ng-if="cierre==true">
     <h2 align=center>{{respuesta}}</h2>
     <button ng-Click="Continuar()" align=center>Continuar</button>  
-  </div>
+  </div>-->
 
   <div class="row" ng-if="error==false">
     <div class="col-md-6 panel panel-default">     
