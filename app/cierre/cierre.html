@@ -1,6 +1,6 @@
 <div>
   <div class="container">
-    <h1>Cierre </h1>{{resto}}
+    <h1>Cierre </h1>{{resto}} - {{total}}
   </div> 
 </div>
 
@@ -29,9 +29,9 @@
       <strong>Cantidad en caja: </strong> {{ total | number:2 }}
       <br>
       <strong>Cantidad a dejar en caja:</strong>
-      <input type="text" size="6" ng-model="resto" ng-show="terminado==false"></input>
+      <input type="text" size="6" ng-model="resto"></input>
       <br><strong> Cantidad retirada: </strong>{{ total - resto | number:2 }}    
-      <br><button type="button" class="btn btn-success btn-sm" ng-click="Finalizar()" ng-show="terminado==false"> Finalizar </button>
+      <br><button type="button" class="btn btn-success btn-sm" ng-click="Finalizar()"> Finalizar </button>
     </div>     
   </div>
 
