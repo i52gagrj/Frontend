@@ -75,6 +75,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
           else
           {
             $scope.cierre = true; 
+            $scope.terminado = true; 
             var respuesta2 = recibe.response.respuesta;            
             console.log(JSON.stringify(respuesta2));                        
             $scope.respuesta = respuesta2;
@@ -89,14 +90,14 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
         store.remove('token');
         store.set('nombre', "Sin conexion");
         $location.path("/login");
-      };
+      }
     } 
     else 
     {
       store.remove('token');
       store.set('nombre', "Sin conexion");
       $location.path("/login");
-    };
+    }
 
     $scope.Aniadir=function(pid, pnombre, pprecio, piva)
     {
