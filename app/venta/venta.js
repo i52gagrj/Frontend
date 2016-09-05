@@ -50,7 +50,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       if(!jwtHelper.isTokenExpired(token))
       {     
         backendAPIservice.getProductos().success(function (recibe) {   
-          var codigoProductos = recibe.response.code;          
+          var codigoProductos = recibe.code;          
           if(codigoProductos==0)
           {
             var productosArray = recibe.response.productos;
