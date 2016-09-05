@@ -12,6 +12,7 @@ angular.module('Frontend.Devolucion', ['ngRoute','angular-jwt','angular-storage'
 .controller('DevolucionController', function($scope, store, jwtHelper, $http, backendAPIservice, $location) {
     //$scope.cargado=false;   
     $scope.terminado=false;   
+    $scope.error=false;   
     $scope.base21original=0.00;
     $scope.iva21original=0.00;
     $scope.base10original=0.00;
@@ -93,7 +94,7 @@ angular.module('Frontend.Devolucion', ['ngRoute','angular-jwt','angular-storage'
             }
             else              
             {
-              $scope.terminado = true;
+              $scope.error = true;
               if($scope.codigorecibido==3) $scope.respuesta="La venta indicada no existe";
               if($scope.codigorecibido==4) $scope.respuesta="Las devoluciones solo se pueden tramitar el mismo dia de la venta";
               //if($scope.codigorecibido==5) $scope.respuesta="La caja ya está cerrada, la devolución no se puede tramitar";                            
@@ -195,5 +196,9 @@ angular.module('Frontend.Devolucion', ['ngRoute','angular-jwt','angular-storage'
         if(recibe.code==0) store.set('token',recibe.response.token);
         $scope.terminado=true;
       });
+    };
+
+    $scope.Continuar=function() {
+      $scope.error=false;
     }
 });
