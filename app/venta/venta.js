@@ -50,7 +50,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       if(!jwtHelper.isTokenExpired(token))
       {     
         backendAPIservice.getProductos().success(function (recibe) {   
-          var codigoProductos = recibe.code;          
+          var codigoProductos = recibe.response.code;          
           if(codigoProductos==0)
           {
             var productosArray = recibe.response.productos;
@@ -89,14 +89,14 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
         store.remove('token');
         store.set('nombre', "Sin conexion");
         $location.path("/login");
-      }
+      };
     } 
     else 
     {
       store.remove('token');
       store.set('nombre', "Sin conexion");
       $location.path("/login");
-    }
+    };
 
     $scope.Aniadir=function(pid, pnombre, pprecio, piva)
     {
@@ -261,10 +261,8 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
     };*/
 
     $scope.printDiv = function (divName) {
-
       var printContents = document.getElementById(divName).innerHTML;
       var originalContents = document.body.innerHTML;      
-
       if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
           var popupWin = window.open('', '_blank', 'width=600,height=600,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
           popupWin.window.focus();
@@ -279,19 +277,15 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
               popupWin.document.close();
               popupWin.close();
           }
-      } else {
+      } 
+      else {
           var popupWin = window.open('', '_blank', 'width=800,height=600');
           popupWin.document.open();
           popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="app.css" /></head><body onload="window.print()">' + printContents + '</html>');
           popupWin.document.close();
       }
       popupWin.document.close();
-
       return true;
     };
-
-
-
-
 
 });
