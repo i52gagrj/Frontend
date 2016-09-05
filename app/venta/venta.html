@@ -114,16 +114,18 @@
 
 <div class="container center-block" ng-if="terminado==true">
   <div id="imprimeesto">
-    <div class="panel-heading">
-      <h2 class="panel-title">Cliente</h1>
-    </div> 
-    <strong>Código del Cliente: {{socio.id}}</strong>
-    <div ng-repeat="socio in listaSocio | filter:clienteElegido">     
-      <strong> Nombre: </strong>  {{ socio.nombre }} <br>
-      <strong> DNI: </strong> {{ socio.dni }} <br>
-      <strong> Dirección: </strong> {{ socio.direccion }} <br>
-      <strong> Población: </strong> {{ socio.poblacion }} <br>
-      <strong> Saldo:  </strong> {{ socio.saldo }} <br>
+    <div class="col-md-6 panel panel-default"> 
+      <div class="panel-heading">
+        <h2 class="panel-title">Cliente</h2>
+      </div> 
+      <strong>Código del Cliente: {{socio.id}}</strong>
+      <div ng-repeat="socio in listaSocio | filter:clienteElegido">     
+        <strong> Nombre: </strong>  {{ socio.nombre }} <br>
+        <strong> DNI: </strong> {{ socio.dni }} <br>
+        <strong> Dirección: </strong> {{ socio.direccion }} <br>
+        <strong> Población: </strong> {{ socio.poblacion }} <br>
+        <strong> Saldo:  </strong> {{ socio.saldo }} <br>
+      </div>
     </div>
 
 

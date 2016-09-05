@@ -21,7 +21,7 @@
         <div align="center"><button ng-click="BuscarListadoVentas(fechainicio, fechafin)"> Listar </button></div>
         <div class="container" ng-if="error" align="center">
           {{respuesta}}
-          <button > Continuar </button>
+          <button ng-click="Continuar()"> Continuar </button>
         </div>
       </div> 
       <div ng-if="consulta==true">

@@ -228,15 +228,15 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       document.body.innerHTML = originalContents;
     };*/
 
-    $scope.printDiv = function(divName) {
+    /*$scope.printDiv = function(divName) {
       var printContents = document.getElementById(divName).innerHTML;
       var popupWin = window.open('', '_blank', 'width=300,height=300');
       popupWin.document.open();
       popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="app.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
       popupWin.document.close();
-    };
+    };*/
 
-    /*$scope.printDiv = function (divName) {
+    $scope.printDiv = function (divName) {
 
       var printContents = document.getElementById(divName).innerHTML;
       var originalContents = document.body.innerHTML;      
@@ -264,7 +264,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       popupWin.document.close();
 
       return true;
-    };*/
+    };
 
 
 
