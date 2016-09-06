@@ -25,6 +25,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
     $scope.respuesta;
     $scope.error; 
     $scope.codigo;
+    $scope.codigo2;
     $scope.cero=0;  
     $scope.prueba;
     $scope.activo;
@@ -43,20 +44,20 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
         backendAPIservice.getProductos().success(function (recibe) {       
           var productosArray = recibe.response.productos;            
           store.set('token',recibe.response.token);
-          //var codigo2=recibe.code;
-          //console.log(JSON.stringify(codigo2));
-          //$scope.codigo=codigo2
-          if(recibe.code!=0) 
+          var codigo2=recibe.code;
+          console.log(JSON.stringify(codigo2));
+          $scope.codigo2=codigo2
+          if($scope.codigo2==0) 
+          {  
+            console.log(JSON.stringify(productosArray));  
+            $scope.listaProducto = productosArray;            
+          }  
+          else
           {  
             $scope.cerrado=true;
             var respuesta1 = recibe.response.respuesta;
             console.log(JSON.stringify(respuesta1));
-            $scope.respuesta = respuesta1;
-          }  
-          else
-          {  
-            console.log(JSON.stringify(productosArray));  
-            $scope.listaProducto = productosArray;              
+            $scope.respuesta = respuesta1;              
           }
         });
 
@@ -105,7 +106,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       $scope.Totales();
     };
 
-    $scope.CambiarCliente=function(index) {
+    /*$scope.CambiarCliente=function(index) {
       var elemento=0;
       for(elemento in $scope.listaSocio) {
         if($scope.listaSocio[elemento].id == index){
@@ -116,7 +117,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
           $scope.socio.saldo = $scope.listaSocio[elemento].saldo;          
         }    
       }
-    };    
+    };*/    
 
     $scope.clienteElegido=function(value) {
       if($scope.cliente==1){ $scope.contado=true; }

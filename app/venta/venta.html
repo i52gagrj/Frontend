@@ -30,15 +30,13 @@
         </div> 
         <strong>Código del Cliente:</strong>
         <input size="2" type="text" name="cliente" id="cliente" ng-model="cliente" value=1></input>
-        <input size="2" ng-change="CambiarCliente($index)" ng-model="cliente" value=1></input>
-        <!--<div ng-repeat="socio in listaSocio | filter:clienteElegido">-->
-        
+        <div ng-repeat="socio in listaSocio | filter:clienteElegido">        
           <strong> Nombre: </strong>  {{ socio.nombre }} <br>
           <strong> DNI: </strong> {{ socio.dni }} <br>
           <strong> Dirección: </strong> {{ socio.direccion }} <br>
           <strong> Población: </strong> {{ socio.poblacion }} <br>
           <strong> Saldo:  </strong> {{ socio.saldo }} <br>
-        <!--</div>-->
+        </div>
       </div>
 
     </div>
