@@ -114,8 +114,8 @@ angular.module('Frontend.Devolucion', ['ngRoute','angular-jwt','angular-storage'
               var respuesta = recibe.response.respuesta;
               console.log(JSON.stringify(respuesta));
               $scope.respuesta = respuesta;
-              if($scope.codigorecibido==4) $scope.error=true;
-              if($scope.codigorecibido==3) $scope.cerrado=true;
+              if($scope.codigo==4) {$scope.error=true;}
+              if($scope.codigo==3) {$scope.cerrado=true;}
               //if($scope.codigorecibido==5) $scope.respuesta="La caja ya está cerrada, la devolución no se puede tramitar";                            
             }
           });
