@@ -5,35 +5,35 @@
 </div>
 
 <div class="container" ng-if="terminado==false">
-  <div class="row">
-    <div class="col-md-12 panel panel-default">
-      <div class="panel-heading">    
-        <h2 class="panel-title" align=center>Venta a buscar</h2>
-      </div>  
-      <div align=center>
-        <input type="text" size="2" ng-model="idventa"/>
-        <button ng-click="BuscarVenta(idventa)"> Buscar </button>
-      </div>   
-    </div>
-
-    <div class="col-md-12 panel panel-default" ng-if="error==true || cerrado==true">
-      <h2 align=center>{{respuesta}}</h2>
-      <h2 align=center>Realice otra busqueda</h2>
-    </div>
-
-    <div class="col-md-12 panel panel-default"> 
-      <div class="panel-heading">    
-        <h2 class="panel-title" align=center> Datos de la Venta </h2>
-      </div>  
-      <strong> Id Cliente: </strong> {{ ventaOriginal.socio }}
-      <strong> DNI: </strong> {{ ventaOriginal.dni }}<br>
-      <strong> Direccion: </strong> {{ ventaOriginal.direccion }}
-      <strong> Poblacion: </strong> {{ ventaOriginal.poblacion }}<br>      
-      <strong> Vendedor: </strong> {{ ventaOriginal.usuario }}<br>
-      <strong> Fecha de venta: </strong> {{ ventaOriginal.fechaventa }}
-      <strong> Hora de venta: </strong> {{ ventaOriginal.horaventa }}   
-    </div> 
+ 
+  <div class="col-md-12 panel panel-default">
+    <div class="panel-heading">    
+      <h2 class="panel-title" align=center>Venta a buscar</h2>
+    </div>  
+    <div align=center>
+      <input type="text" size="2" ng-model="idventa"/>
+      <button ng-click="BuscarVenta(idventa)"> Buscar </button>
+    </div>   
   </div>
+
+  <div class="col-md-12 panel panel-default" ng-if="error==true">
+    <h2 align=center>{{respuesta}}</h2>
+    <h2 align=center>Realice otra busqueda</h2>
+  </div>
+
+  <div class="col-md-12 panel panel-default"> 
+    <div class="panel-heading">    
+      <h2 class="panel-title" align=center> Datos de la Venta </h2>
+    </div>  
+    <strong> Id Cliente: </strong> {{ ventaOriginal.socio }}
+    <strong> DNI: </strong> {{ ventaOriginal.dni }}<br>
+    <strong> Direccion: </strong> {{ ventaOriginal.direccion }}
+    <strong> Poblacion: </strong> {{ ventaOriginal.poblacion }}<br>      
+    <strong> Vendedor: </strong> {{ ventaOriginal.usuario }}<br>
+    <strong> Fecha de venta: </strong> {{ ventaOriginal.fechaventa }}
+    <strong> Hora de venta: </strong> {{ ventaOriginal.horaventa }}   
+  </div> 
+  
   
   <!--<div class="col-md-12 panel panel-default" ng-if="error==true">
     <h2 align=center>{{respuesta}}</h2>
@@ -74,8 +74,7 @@
       <br><strong>Total: </strong>{{ totalmodificado | number:2 }}
       <strong>DIFERENCIA: </strong>{{ ( totalmodificado - totaloriginal | number:2  ) }}
       <strong ng-if="(totalmodificado - totaloriginal) > 0"> a pagar</strong>
-      <strong ng-if="(totalmodificado - totaloriginal) < 0"> a devolver</strong>
-      
+      <strong ng-if="(totalmodificado - totaloriginal) < 0"> a devolver</strong>      
       <button type="button" class="btn btn-success btn-sm" ng-click="Finalizar()" ng-hide="terminado==true"> Finalizar </button>  
     </div>
   </div> 
@@ -113,42 +112,43 @@
       </div>-->
     </div>
 
-  <div class="col-md-6 panel panel-default">
-    <div class="panel-heading">    
-      <h2 class="panel-title" align=center>Venta modificada</h2>
-    </div>  
-    <table class="table table-striped table-bordered">
-      <thead> 
-      <tr>
-        <th align=center> Id 
-        <th align=center> Producto
-        <th align=center> Precio 
-        <th align=center> % IVA
-        <th align=center> IVA 
-        <th align=center> Cantidad
-        <th align=center> Total
-      </tr> 
-      </thead>
-      <tbody>
-        <tr ng-repeat="x in lineasModificada" ng-if="x.borrar==false"> 
-          <td align=center ng-if="terminado==false">
-            <input size="2" ng-change="CambiarProducto($index)" ng-model= "x.idproducto">          
-          <td align=center ng-if="terminado==true"> {{ x.idproducto}}
-          <td align=left >{{ x.nombre }}
-          <td align=right >{{ x.precio }}
-          <td align=center >{{ x.iva }}  
-  	      <td align=right >{{ (x.precio * x.iva /100)  | number:2}} 	  
-          <td align=center ng-if="terminado==false">
-            <input size="2" ng-change="TotalesModificado()" ng-model= "x.cantidad" />
-          <td align=center ng-if="terminado==true"> {{ x.cantidad}}
-          <td align=right >{{ (x.precio * 1 + (x.precio * x.iva /100)) * x.cantidad | number:2}}
-          <td align=right >
-             <button class="btn btn-danger btn-xs" ng-click="Borrar($index)" ng-hide="terminado==true"><span class="glyphicon glyphicon-remove"></span></button>
-        </tr>
-      </tbody>
-    </table> 
+    <div class="col-md-6 panel panel-default">
+      <div class="panel-heading">    
+        <h2 class="panel-title" align=center>Venta modificada</h2>
+      </div>  
+      <table class="table table-striped table-bordered">
+        <thead> 
+        <tr>
+          <th align=center> Id 
+          <th align=center> Producto
+          <th align=center> Precio 
+          <th align=center> % IVA
+          <th align=center> IVA 
+          <th align=center> Cantidad
+          <th align=center> Total
+        </tr> 
+        </thead>
+        <tbody>
+          <tr ng-repeat="x in lineasModificada" ng-if="x.borrar==false"> 
+            <td align=center ng-if="terminado==false">
+              <input size="2" ng-change="CambiarProducto($index)" ng-model= "x.idproducto">          
+            <td align=center ng-if="terminado==true"> {{ x.idproducto}}
+            <td align=left >{{ x.nombre }}
+            <td align=right >{{ x.precio }}
+            <td align=center >{{ x.iva }}  
+    	      <td align=right >{{ (x.precio * x.iva /100)  | number:2}} 	  
+            <td align=center ng-if="terminado==false">
+              <input size="2" ng-change="TotalesModificado()" ng-model= "x.cantidad" />
+            <td align=center ng-if="terminado==true"> {{ x.cantidad}}
+            <td align=right >{{ (x.precio * 1 + (x.precio * x.iva /100)) * x.cantidad | number:2}}
+            <td align=right >
+               <button class="btn btn-danger btn-xs" ng-click="Borrar($index)" ng-hide="terminado==true"><span class="glyphicon glyphicon-remove"></span></button>
+          </tr>
+        </tbody>
+      </table> 
+    </div>
+
   </div>
-</div>
 
 </div>
 
@@ -158,14 +158,13 @@
     <div class="col-md-12 panel panel-default"> 
       <div class="panel-heading">
         <h2 class="panel-title">Cliente</h2>
-      </div> 
-      <strong>Código del Cliente: {{ventaOriginal.socio}}</strong>
+      </div>       
       <div ng-repeat="socio in listaSocio | filter:clienteElegido">     
-      <strong> Cliente: </strong> {{ ventaOriginal.socio }}
-      <strong> DNI: </strong> {{ ventaOriginal.dni }}<br>
-      <strong> Direccion: </strong> {{ ventaOriginal.direccion }}
-      <strong> Poblacion: </strong> {{ ventaOriginal.poblacion }}<br>              
-      <strong> Fecha de venta: </strong> {{ ventaOriginal.fechaventa }}
+        <strong> Cliente: </strong> {{ ventaOriginal.nombre }}
+        <strong> DNI: </strong> {{ ventaOriginal.dni }}<br>
+        <strong> Direccion: </strong> {{ ventaOriginal.direccion }}
+        <strong> Poblacion: </strong> {{ ventaOriginal.poblacion }}<br>              
+        <strong> Fecha de venta: </strong> {{ ventaOriginal.fechaventa }}
       </div>
     </div>
 
