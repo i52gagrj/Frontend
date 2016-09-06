@@ -31,7 +31,8 @@
         <strong>Código del Cliente:
           <input size="2" type="text" name="cliente" id="cliente" ng-model="cliente" value=1></input>
         </strong>
-        <div ng-repeat="socio in listaSocio | filter:clienteElegido">     
+        <!--<div ng-repeat="socio in listaSocio | filter:clienteElegido"> -->    
+        <div ng-repeat="socio in listaSocio | filter:cliente">             
           <strong> Nombre: </strong>  {{ socio.nombre }} <br>
           <strong> DNI: </strong> {{ socio.dni }} <br>
           <strong> Dirección: </strong> {{ socio.direccion }} <br>
@@ -44,7 +45,7 @@
 
     <div class="row">
 
-      <div class="col-md-6 panel panel-default" ng-if="terminado==false">  
+      <div class="col-md-6 panel panel-default">  
         <div class="panel-heading">
           <h2 class="panel-title" align=center>Articulos </h2>
         </div>        
@@ -76,7 +77,11 @@
               <td align=right >{{ producto.iva }}</td>
               <td align=right >{{ (producto.precio * producto.iva)/100 | number:2 }}</td>
               <td align=right >{{ producto.precio * (1 + producto.iva/100) | number:2}}</td>
-              <td> <button class="btn btn-sm btn-default" ng-click="Aniadir(producto.id, producto.nombre, producto.precio, producto.iva)"><span class="glyphicon glyphicon-shopping-cart"></span></button></td>
+              <td> 
+                <button class="btn btn-sm btn-default" ng-click="Aniadir(producto.id, producto.nombre, producto.precio, producto.iva)">
+                  <span class="glyphicon glyphicon-shopping-cart"></span>
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>  
