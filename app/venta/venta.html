@@ -17,7 +17,7 @@
         <strong>Base 10: </strong> {{ base10 | number:2 }} <strong>IVA 10: </strong> {{ iva10 | number:2 }} <br>
         <strong>Base 4: </strong> {{ base4 | number:2 }} <strong>IVA 4: </strong> {{ iva4 | number:2 }}
         <h3><strong>Total: </strong> {{ total | number:2 }} </h3>
-        <button ng-click="Finalizar()" ng-if="terminado==false"> Finalizar </button>  
+        <button ng-click="Finalizar()"> Finalizar </button>  
         <form ng-show="cliente!=1">
           <input type="radio" ng-model="contado" value="false"> Prepago
           <input type="radio" ng-model="contado" value="true" ng-checked="contado==true"> Contado
@@ -29,7 +29,7 @@
           <h2 class="panel-title" align="center">Cliente</h2>
         </div>
         <strong>Código del Cliente:</strong>
-        <input size="2" type="text" name="cliente" id="cliente2" ng-model="cliente2" value=1 ng-if="terminado==false"></input>        
+        <input size="2" type="text" name="cliente" id="cliente" ng-model="cliente" value=1></input>        
         <div ng-repeat="socio in listaSocio | filter:clienteElegido">             
           <strong> Nombre: </strong>  {{ socio.nombre }} <br>
           <strong> DNI: </strong> {{ socio.dni }} <br>
