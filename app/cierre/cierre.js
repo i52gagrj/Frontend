@@ -11,6 +11,7 @@ angular.module('Frontend.Cierre', ['ngRoute','angular-jwt','angular-storage'])
 
 .controller('CierreController', function($scope, store, jwtHelper, $http, backendAPIservice, $location) {
     $scope.terminado=false;   
+    $scope.cerrado=false;
     $scope.base21=0.00;
     $scope.iva21=0.00;
     $scope.base10=0.00;
@@ -19,6 +20,7 @@ angular.module('Frontend.Cierre', ['ngRoute','angular-jwt','angular-storage'])
     $scope.iva4=0.00; 
     $scope.contado=0.00; 
     $scope.prepago=0.00;
+    $scope.codigo;
     $scope.resto;    
     $scope.respuesta;  
     $scope.prueba;
@@ -33,11 +35,25 @@ angular.module('Frontend.Cierre', ['ngRoute','angular-jwt','angular-storage'])
       var token = store.get('token'); 
       if(!jwtHelper.isTokenExpired(token))
       {
-        backendAPIservice.getCierreVentas().success(function (recibe) {        
-          var VentasArray = recibe.response.ventas;
-          console.log(JSON.stringify(VentasArray));  
-          $scope.listaVentas = VentasArray;
-          store.set('token',recibe.response.token);
+        backendAPIservice.getCierreVentas().success(function (recibe) {
+          var codigo=recibe.code;
+          console.log(JSON.stringify(codigo));
+          $scope.codigo=codigo;
+          if($scope.codigo==0) 
+          {                  
+            var VentasArray = recibe.response.ventas;
+            console.log(JSON.stringify(VentasArray));  
+            $scope.listaVentas = VentasArray;
+            store.set('token',recibe.response.token);
+          }
+          else
+          {
+            $scope.cerrado=true;
+            var respuesta1 = recibe.response.respuesta;
+            console.log(JSON.stringify(respuesta1));
+            $scope.respuesta = respuesta1;              
+            store.set('token',recibe.response.token);            
+          }  
         });
 
         backendAPIservice.getCierreLineas().success(function (recibe) {        
