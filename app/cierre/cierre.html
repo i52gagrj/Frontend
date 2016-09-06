@@ -4,76 +4,85 @@
   </div> 
 </div>
 
-<div class="container" ng-show="terminado==false">
+<div class="container" ng-show="cerrado==false">
 
-  <div class="row"> 
+  <div class="container" ng-show="terminado==false">
 
-    <div class="col-md-6 panel panel-default">
-      <div class="panel-heading">
-        <h2 class="panel-title" align=center>Ingresos</h2>
-      </div>  
-      <strong>En efectivo: </strong> {{ contado | number:2 }}
-      <strong>En prepago: </strong>  {{ prepago | number:2 }}
-      <br><br>
-      <h3><strong>Desglose del IVA</strong></h3>
-      <br> 
-      <strong>Base Imponible 21%: </strong> {{ base21 | number:2 }}
-      <strong>IVA 21%: </strong> {{ iva21 | number:2 }}
-      <br>
-      <strong>Base Imponible 10%: </strong> {{ base10 | number:2 }}
-      <strong>IVA 10%: </strong> {{ iva10 | number:2 }}
-      <br> 
-      <strong>Base Imponible 4%: </strong> {{ base4 | number:2 }}
-      <strong>IVA 21%: </strong> {{ iva4 | number:2 }} 
+    <div class="row"> 
+
+      <div class="col-md-6 panel panel-default">
+        <div class="panel-heading">
+          <h2 class="panel-title" align=center>Ingresos</h2>
+        </div>  
+        <strong>En efectivo: </strong> {{ contado | number:2 }}
+        <strong>En prepago: </strong>  {{ prepago | number:2 }}
+        <br><br>
+        <h3><strong>Desglose del IVA</strong></h3>
+        <br> 
+        <strong>Base Imponible 21%: </strong> {{ base21 | number:2 }}
+        <strong>IVA 21%: </strong> {{ iva21 | number:2 }}
+        <br>
+        <strong>Base Imponible 10%: </strong> {{ base10 | number:2 }}
+        <strong>IVA 10%: </strong> {{ iva10 | number:2 }}
+        <br> 
+        <strong>Base Imponible 4%: </strong> {{ base4 | number:2 }}
+        <strong>IVA 21%: </strong> {{ iva4 | number:2 }} 
+      </div>
+
+      <div class="col-md-6 panel panel-default">
+        <div class="panel-heading"> 
+          <h2 class="panel-title" align=center>Cierre</h2>
+        </div>  
+        <strong>Cantidad en caja: </strong> {{ total | number:2 }}
+        <br>
+        <strong ng-show="terminado==false">Cantidad a dejar en caja:</strong>
+        <input type="text" size="6" ng-model="resto" ng-show="terminado==false"></input>
+        <br><strong> Cantidad retirada: </strong>{{ total - resto | number:2 }}    
+        <!--<strong ng-show="terminado==true">{{ resto }}</strong>         -->
+        <br><button type="button" class="btn btn-success btn-sm" ng-click="Finalizar()" ng-show="terminado==false"> Finalizar </button>
+      </div>     
+
     </div>
 
-    <div class="col-md-6 panel panel-default">
+    <div class="col-md-12 panel panel-default" ng-if="terminado==false"> 
       <div class="panel-heading"> 
-        <h2 class="panel-title" align=center>Cierre</h2>
+        <h2 class="panel-title" align="center">Ventas del dia</h2>
       </div>  
-      <strong>Cantidad en caja: </strong> {{ total | number:2 }}
-      <br>
-      <strong ng-show="terminado==false">Cantidad a dejar en caja:</strong>
-      <input type="text" size="6" ng-model="resto" ng-show="terminado==false"></input>
-      <br><strong> Cantidad retirada: </strong>{{ total - resto | number:2 }}    
-      <!--<strong ng-show="terminado==true">{{ resto }}</strong>         -->
-      <br><button type="button" class="btn btn-success btn-sm" ng-click="Finalizar()" ng-show="terminado==false"> Finalizar </button>
-    </div>     
-
+      <table class="table table-striped table-bordered">
+        <thead> 
+        <tr>
+          <th align=center > Nº de Venta 
+          <th align=center > Fecha
+          <th align=center > Hora
+          <th align=center > Cliente
+          <th align=center > Contado
+        </tr> 
+        </thead>
+        <tbody>
+        <tr ng-repeat="venta in listaVentas">
+          <td align=center >{{ venta.id }}</td> 
+          <td align=center >{{ venta.fechaventa }}</td> 
+          <td align=center >{{ venta.horaventa }}</td> 
+          <td align=center >{{ venta.socio }}</td> 
+          <td align=center >{{ venta.contado }}</td> 
+        </tr>
+        </tbody>
+      </table> 
+    </div> 
+     
   </div>
 
-  <div class="col-md-12 panel panel-default" ng-if="terminado==false"> 
-    <div class="panel-heading"> 
-      <h2 class="panel-title" align="center">Ventas del dia</h2>
-    </div>  
-    <table class="table table-striped table-bordered">
-      <thead> 
-      <tr>
-        <th align=center > Nº de Venta 
-        <th align=center > Fecha
-        <th align=center > Hora
-        <th align=center > Cliente
-        <th align=center > Contado
-      </tr> 
-      </thead>
-      <tbody>
-      <tr ng-repeat="venta in listaVentas">
-        <td align=center >{{ venta.id }}</td> 
-        <td align=center >{{ venta.fechaventa }}</td> 
-        <td align=center >{{ venta.horaventa }}</td> 
-        <td align=center >{{ venta.socio }}</td> 
-        <td align=center >{{ venta.contado }}</td> 
-      </tr>
-      </tbody>
-    </table> 
-  </div> 
-   
+  <div class="container" ng-show="terminado==true">
+    <div class="col-md-12 panel panel-default">  
+      <h2> {{respuesta}} </h2>
+    </div>
+  </div>  
+
 </div>
 
-<div class="container" ng-show="terminado==true">
-  <div class="col-md-12 panel panel-default">  
-    <h2> {{respuesta}} </h2>
-  </div>
-</div>  
-
+<div class="container" ng-show="cerrado==true">
+  <div class="col-md-12 panel panel-default">
+    <h2 align=center> {{respuesta}} </h2>
+  </div>  
+</div>
 
