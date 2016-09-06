@@ -4,7 +4,7 @@
   </div> 
 </div>
 
-<div class="container" ng-show="terminado==false">
+<div class="container" ng-if="terminado==false">
   <div class="row">
     <div class="col-md-6 panel panel-default">
       <div class="panel-heading">
@@ -112,7 +112,7 @@
   </div>   
 </div>
 
-<div class="container center-block">
+<div class="container center-block" ng-if="terminado==true">
   <div id="imprimeesto">
     <div class="col-md-6 panel panel-default"> 
       <div class="panel-heading">
