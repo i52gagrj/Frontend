@@ -112,9 +112,22 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       $scope.Totales();
     };
 
+    /*$scope.CambiarCliente=function(index) {
+      var elemento=0;
+      for(elemento in $scope.listaSocio) {
+        if($scope.listaSocio[elemento].id == index){
+          $scope.socio.nombre = $scope.listaSocio[elemento].nombre;
+          $scope.socio.dni = $scope.listaSocio[elemento].dni;
+          $scope.socio.direccion = $scope.listaSocio[elemento].direccion;
+          $scope.socio.poblacion = $scope.listaSocio[elemento].poblacion;          
+          $scope.socio.saldo = $scope.listaSocio[elemento].saldo;          
+        }    
+      }
+    };*/    
+
     $scope.clienteElegido=function(value) {
       if($scope.cliente==1){ $scope.contado=true; }
-      if(value.id==$scope.cliente){
+      if (value.id==$scope.cliente){
         return true;
       } else {
         return false;
@@ -180,7 +193,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       $scope.terminado=false;
       $scope.contado=true;
       $scope.cerrado=false;
-      //$scope.cliente=1;
+      $scope.cliente=1;
       $scope.base21=0.00;
       $scope.iva21=0.00;
       $scope.base10=0.00;
