@@ -14,7 +14,7 @@
       <strong>Base 10: </strong> {{ base10 | number:2 }} <strong>IVA 10: </strong> {{ iva10 | number:2 }} <br>
       <strong>Base 4: </strong> {{ base4 | number:2 }} <strong>IVA 4: </strong> {{ iva4 | number:2 }}
       <h3><strong>Total: </strong> {{ total | number:2 }} </h3>
-      <button ng-click="Finalizar()" ng-if="terminado==false"> Finalizar </button>  
+      <button ng-click="Finalizar()"> Finalizar </button>  
       <form ng-show="cliente!=1">
         <input type="radio" ng-model="contado" value="false"> Prepago
         <input type="radio" ng-model="contado" value="true" ng-checked="contado==true"> Contado
@@ -41,7 +41,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-6 panel panel-default" ng-if="terminado==false">  
+    <div class="col-md-6 panel panel-default">  
       <div class="panel-heading">
         <h2 class="panel-title">Articulos </h2>
         <input size="8" ng-model="articulopr" align="left"></input>    
