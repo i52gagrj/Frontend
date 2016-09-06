@@ -6,24 +6,14 @@
 
 <div class="container" ng-show="terminado==false">
 
-  <div class="col-md-12 panel panel-default">
-    <div class="panel-heading">    
-      <h2 class="panel-title" align=center>Venta a buscar</h2>
-    </div>  
-    <input type="text" size="2" ng-model="idventa"/>
-    <button ng-click="BuscarVenta(idventa)"> Buscar </button>      
-  </div>
-
-  <div class="col-md-12 panel panel-default" ng-if="error==true">
-    <h2 align=center>{{respuesta}}</h2>
-    <h2 align=center>Realice otra busqueda</h2>
-  </div>
-
   <div class="col-md-12 panel panel-default"> 
     <div class="panel-heading">    
       <h2 class="panel-title" align=center> Datos de la Venta </h2>
     </div>  
-    <strong> Cliente: </strong> {{ ventaOriginal.nombre }}
+    <strong> Venta: </strong>
+    <input type="text" size="2" ng-model="idventa"/>
+    <button ng-click="BuscarVenta(idventa)"> Buscar </button>
+    <strong> Cliente: </strong> {{ ventaOriginal.socio }}
     <strong> DNI: </strong> {{ ventaOriginal.dni }}<br>
     <strong> Direccion: </strong> {{ ventaOriginal.direccion }}
     <strong> Poblacion: </strong> {{ ventaOriginal.poblacion }}<br>      
@@ -32,6 +22,10 @@
     <strong> Hora de venta: </strong> {{ ventaOriginal.horaventa }}   
   </div> 
   
+  <div class="col-md-12 panel panel-default" ng-if="error==true">
+    <h2 align=center>{{respuesta}}</h2>
+    <h2 align=center>Realice otra busqueda</h2>
+  </div>
   
   <!--<div class="col-md-12 panel panel-default" ng-if="error==true">
     <h2 align=center>{{respuesta}}</h2>
@@ -151,18 +145,16 @@
 
 <div class="container" ng-show="terminado==true">
   <div id="imprimeesto">
+  
     <div class="col-md-12 panel panel-default"> 
       <div class="panel-heading">
         <h2 class="panel-title">Cliente</h2>
-      </div> 
-      <strong>Código del Cliente: {{ventaOriginal.socio}}</strong>
-      <div ng-repeat="socio in listaSocio | filter:clienteElegido">     
+      </div>             
       <strong> Cliente: </strong> {{ ventaOriginal.socio }}
       <strong> DNI: </strong> {{ ventaOriginal.dni }}<br>
       <strong> Direccion: </strong> {{ ventaOriginal.direccion }}
       <strong> Poblacion: </strong> {{ ventaOriginal.poblacion }}<br>              
       <strong> Fecha de venta: </strong> {{ ventaOriginal.fechaventa }}
-      </div>
     </div>
 
     <div class="col-md-12 panel panel-default">
