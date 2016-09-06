@@ -46,7 +46,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
           store.set('token',recibe.response.token);
           var codigo2=recibe.code;
           console.log(JSON.stringify(codigo2));
-          $scope.codigo2=codigo2
+          $scope.codigo2=codigo2;
           if($scope.codigo2==0) 
           {  
             console.log(JSON.stringify(productosArray));  
