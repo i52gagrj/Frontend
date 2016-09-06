@@ -14,7 +14,6 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
     $scope.cerrado=false;
     $scope.contado=true;
     $scope.cliente=1;
-    $scope.cliente2=1;
     $scope.base21=0.00;
     $scope.iva21=0.00;
     $scope.base10=0.00;
@@ -26,12 +25,10 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
     $scope.respuesta;
     $scope.error; 
     $scope.codigo;
-    $scope.codigo2;
     $scope.cero=0;  
     $scope.prueba;
     $scope.activo;
     $scope.numventa;
-    //$scope.socio;
 
     $scope.listaVenta = [];
     $scope.listaProducto = [];
@@ -49,15 +46,15 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
           store.set('token',recibe.response.token);          
         });*/        
         backendAPIservice.getProductos().success(function (recibe) {                           
-          store.set('token',recibe.response.token);
-          var codigo2=recibe.code;
-          console.log(JSON.stringify(codigo2));
-          $scope.codigo2=codigo2;
-          if($scope.codigo2==0) 
+          var codigo=recibe.code;
+          console.log(JSON.stringify(codigo));
+          $scope.codigo=codigo;
+          if($scope.codigo==0) 
           {  
             var productosArray = recibe.response.productos; 
             console.log(JSON.stringify(productosArray));  
-            $scope.listaProducto = productosArray;            
+            $scope.listaProducto = productosArray;   
+            store.set('token',recibe.response.token);         
           }  
           else
           {  
@@ -65,6 +62,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
             var respuesta1 = recibe.response.respuesta;
             console.log(JSON.stringify(respuesta1));
             $scope.respuesta = respuesta1;              
+            store.set('token',recibe.response.token);
           }
         });
 
@@ -115,8 +113,8 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
     };
 
     $scope.clienteElegido=function(value) {
-      if($scope.cliente2==1){ $scope.contado=true; }
-      if (value.id==$scope.cliente2)
+      if($scope.cliente==1){ $scope.contado=true; }
+      if (value.id==$scope.cliente)
       {
         return true;
       } 
