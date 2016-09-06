@@ -68,6 +68,13 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
           }
         });
 
+        backendAPIservice.getTipos().success(function (recibe) {        
+          var tiposArray = recibe.response.tipos;
+          console.log(JSON.stringify(tiposArray));
+          $scope.listaTipo = tiposArray;
+          store.set('token',recibe.response.token);
+        });        
+
         backendAPIservice.getClientes().success(function (recibe) {        
           var sociosArray = recibe.response.socios;
           console.log(JSON.stringify(sociosArray));
@@ -75,12 +82,6 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
           store.set('token',recibe.response.token);
         });
 
-        backendAPIservice.getTipos().success(function (recibe) {        
-          var tiposArray = recibe.response.tipos;
-          console.log(JSON.stringify(tiposArray));
-          $scope.listaTipo = tiposArray;
-          store.set('token',recibe.response.token);
-        });
       }
       else
       {
