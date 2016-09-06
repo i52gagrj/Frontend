@@ -44,24 +44,23 @@ angular.module('Frontend.Devolucion', ['ngRoute','angular-jwt','angular-storage'
       var token = store.get('token'); 
       if(!jwtHelper.isTokenExpired(token))
       {
-        backendAPIservice.getProductos().success(function (recibe) {                           
-          var codigo=recibe.code;
-          console.log(JSON.stringify(codigo));
-          $scope.codigo=codigo;
-          if($scope.codigo==0) 
-          {  
-            var productosArray = recibe.response.productos; 
-            console.log(JSON.stringify(productosArray));  
-            $scope.listaProducto = productosArray;   
-            store.set('token',recibe.response.token);         
-          }  
-          else
+        backendAPIservice.getProductos().success(function (recibe) {       
+          var productosArray = recibe.response.productos;            
+          store.set('token',recibe.response.token);
+          var codigo1=recibe.code;
+          console.log(JSON.stringify(codigo1));
+          $scope.codigo=codigo1
+          if($scope.codigo!=0) 
           {  
             $scope.cerrado=true;
             var respuesta1 = recibe.response.respuesta;
             console.log(JSON.stringify(respuesta1));
-            $scope.respuesta = respuesta1;              
-            store.set('token',recibe.response.token);
+            $scope.respuesta = respuesta1;
+          }  
+          else
+          {  
+            console.log(JSON.stringify(productosArray));  
+            $scope.listaProducto = productosArray;              
           }
         });        
       }
@@ -93,8 +92,7 @@ angular.module('Frontend.Devolucion', ['ngRoute','angular-jwt','angular-storage'
               $scope.error = false;             
               var recibeVenta = recibe.response.venta;
               console.log(JSON.stringify(recibeVenta));
-              $scope.ventaOriginal = recibeVenta; 
-
+              $scope.ventaOriginal = recibeVenta;   
               backendAPIservice.getBuscaListaVenta(idventa).success(function(recibe){
                 var recibeLista = recibe.response.lineas;
                 console.log(JSON.stringify(recibeLista));  
@@ -102,7 +100,6 @@ angular.module('Frontend.Devolucion', ['ngRoute','angular-jwt','angular-storage'
                 store.set('token',recibe.response.token);
                 $scope.TotalesOriginal();
               });
-              
               backendAPIservice.getBuscaListaVenta(idventa).success(function(recibe){
                 var recibeLista2 = recibe.response.lineas;
                 console.log(JSON.stringify(recibeLista2));  
