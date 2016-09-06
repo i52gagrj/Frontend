@@ -41,13 +41,13 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       var token = store.get('token'); 
       if(!jwtHelper.isTokenExpired(token))
       {     
-        backendAPIservice.getProductos().success(function (recibe) {       
+        /*backendAPIservice.getProductos().success(function (recibe) {       
           var productosArray = recibe.response.productos;
           console.log(JSON.stringify(productosArray));  
           $scope.listaProducto = productosArray;
           store.set('token',recibe.response.token);          
-        });        
-        /*backendAPIservice.getProductos().success(function (recibe) {       
+        });*/        
+        backendAPIservice.getProductos().success(function (recibe) {       
           var productosArray = recibe.response.productos;            
           store.set('token',recibe.response.token);
           //var codigo2=recibe.code;
@@ -65,7 +65,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
             console.log(JSON.stringify(respuesta1));
             $scope.respuesta = respuesta1;              
           }
-        });*/
+        });
 
         backendAPIservice.getClientes().success(function (recibe) {        
           var sociosArray = recibe.response.socios;
@@ -112,24 +112,14 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       $scope.Totales();
     };
 
-    /*$scope.CambiarCliente=function(index) {
-      var elemento=0;
-      for(elemento in $scope.listaSocio) {
-        if($scope.listaSocio[elemento].id == index){
-          $scope.socio.nombre = $scope.listaSocio[elemento].nombre;
-          $scope.socio.dni = $scope.listaSocio[elemento].dni;
-          $scope.socio.direccion = $scope.listaSocio[elemento].direccion;
-          $scope.socio.poblacion = $scope.listaSocio[elemento].poblacion;          
-          $scope.socio.saldo = $scope.listaSocio[elemento].saldo;          
-        }    
-      }
-    };*/    
-
     $scope.clienteElegido=function(value) {
       if($scope.cliente==1){ $scope.contado=true; }
-      if (value.id==$scope.cliente){
+      if (value.id==$scope.cliente)
+      {
         return true;
-      } else {
+      } 
+      else 
+      {
         return false;
       } 
     };   
@@ -218,7 +208,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
         var token = store.get('token'); 
         if(!jwtHelper.isTokenExpired(token))
         {     
-          /*backendAPIservice.getProductos().success(function (recibe) {       
+          backendAPIservice.getProductos().success(function (recibe) {       
             var productosArray = recibe.response.productos;            
             store.set('token',recibe.response.token);
             if(recibe.code!=0) 
@@ -233,14 +223,14 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
               console.log(JSON.stringify(productosArray));  
               $scope.listaProducto = productosArray;              
             }
-          });*/
+          });
 
-          backendAPIservice.getProductos().success(function (recibe) {       
+          /*backendAPIservice.getProductos().success(function (recibe) {       
             var productosArray = recibe.response.productos;
             console.log(JSON.stringify(productosArray));  
             $scope.listaProducto = productosArray;
             store.set('token',recibe.response.token);          
-          });            
+          });  */          
 
           backendAPIservice.getClientes().success(function (recibe) {        
             var sociosArray = recibe.response.socios;
