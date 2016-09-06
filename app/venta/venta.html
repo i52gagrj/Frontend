@@ -6,9 +6,7 @@
 
 <div class="container" ng-show="cerrado==false">
 <div class="container" ng-show="terminado==false">
-
   <div class="row">
-
     <div class="col-md-6 panel panel-default">
       <div class="panel-heading">
         <h2 class="panel-title">Totales</h2>
@@ -38,12 +36,12 @@
         <strong> Población: </strong> {{ socio.poblacion }} <br>
         <strong> Saldo:  </strong> {{ socio.saldo }} <br>
       </div>
+
     </div>
 
   </div>
 
   <div class="row">
-
     <div class="col-md-6 panel panel-default" ng-if="terminado==false">  
       <div class="panel-heading">
         <h2 class="panel-title">Articulos </h2>
@@ -179,6 +177,8 @@
     <button ng-click="printDiv('imprimeesto')"> Imprimir </button>
     <button ng-click="Continuar()"> Continuar </button>
   </div>  
+ 
 </div>
-
+<div>
+</div>
 </div>
