@@ -37,7 +37,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
     $scope.listaSocio = [];  
     $scope.listaTipo = [];  
         
-    /*if(store.get('token')){
+    if(store.get('token')){
       var token = store.get('token'); 
       if(!jwtHelper.isTokenExpired(token))
       {     
@@ -87,9 +87,9 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       store.remove('token');
       store.set('nombre', "Sin conexion");
       $location.path("/login");
-    }*/
+    }
 
-    if(store.get('token')){
+    /*if(store.get('token')){
       var token = store.get('token'); 
       if(!jwtHelper.isTokenExpired(token))
       {     
@@ -126,7 +126,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       store.remove('token');
       store.set('nombre', "Sin conexion");
       $location.path("/login");
-    }
+    }*/
 
     $scope.Aniadir=function(pid, pnombre, pprecio, piva)
     {
