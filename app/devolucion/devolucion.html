@@ -149,13 +149,13 @@
 
   <div id="imprimeesto">
 
-    <div class="col-md-12 panel panel-default"> 
+    <div class="col-md-6 panel panel-default"> 
       <div class="panel-heading">
         <h2 class="panel-title" align=center>Cliente</h2>
       </div>             
-      <strong> Cliente: </strong> {{ ventaOriginal.socio }}
+      <strong> Cliente: </strong> {{ ventaOriginal.socio }}<br>
       <strong> DNI: </strong> {{ ventaOriginal.dni }}<br>
-      <strong> Direccion: </strong> {{ ventaOriginal.direccion }}
+      <strong> Direccion: </strong> {{ ventaOriginal.direccion }}<br>
       <strong> Poblacion: </strong> {{ ventaOriginal.poblacion }}<br>              
       <strong> Fecha de venta: </strong> {{ ventaOriginal.fechaventa }}
     </div>
@@ -188,7 +188,7 @@
       </table>  
     </div>
 
-    <div class="col-md-6 panel panel-default">
+    <div class="col-md-12 panel panel-default">
       <div class="panel-heading">
         <h2 class="panel-title" align="center">Totales</h2>
       </div>    
@@ -196,7 +196,7 @@
       <strong>Base 10: </strong> {{ base10modificado | number:2 }} <strong>IVA 10: </strong> {{ iva10modificado | number:2 }} <br>
       <strong>Base 4: </strong> {{ base4modificado | number:2 }} <strong>IVA 4: </strong> {{ iva4modificado | number:2 }}
       <h3><strong>Total: </strong> {{ totalmodificado | number:2 }} </h3>  
-      <strong>DIFERENCIA: </strong>{{ ( totalmodificado - totaloriginal | number:2  ) }}
+      <strong>Diferencia: </strong>{{ ( totalmodificado - totaloriginal | number:2  ) }}
     </div> 
 
   </div>

@@ -120,13 +120,12 @@
         <div class="panel-heading">
           <h2 class="panel-title" align=center>Cliente</h2>
         </div> 
-        <strong>Código del Cliente: {{socio.id}}</strong>
+        <!--<strong>Código del Cliente: {{socio.id}}</strong>-->
         <div ng-repeat="socio in listaSocio | filter:clienteElegido">     
           <strong> Nombre: </strong>  {{ socio.nombre }} <br>
           <strong> DNI: </strong> {{ socio.dni }} <br>
           <strong> Dirección: </strong> {{ socio.direccion }} <br>
           <strong> Población: </strong> {{ socio.poblacion }} <br>
-          <strong> Saldo:  </strong> {{ socio.saldo }} <br>
         </div>
       </div>
 
@@ -175,8 +174,8 @@
 
     <div class="col-md-12 panel panel-default">
       <h2 align=center> {{respuesta}} </h2>
-      <button ng-click="printDiv('imprimeesto')"> Imprimir </button>
-      <button ng-click="Continuar()"> Continuar </button>
+      <button ng-click="printDiv('imprimeesto')" align=center> Imprimir </button>
+      <button ng-click="Continuar()" align=center> Continuar </button>
     </div>  
    
   </div>
