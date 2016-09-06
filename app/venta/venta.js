@@ -14,6 +14,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
     $scope.cerrado=false;
     $scope.contado=true;
     $scope.cliente=1;
+    $scope.cliente2=1;
     $scope.base21=0.00;
     $scope.iva21=0.00;
     $scope.base10=0.00;
@@ -113,8 +114,8 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
     };
 
     $scope.clienteElegido=function(value) {
-      if($scope.cliente==1){ $scope.contado=true; }
-      if (value.id==$scope.cliente)
+      if($scope.cliente2==1){ $scope.contado=true; }
+      if (value.id==$scope.cliente2)
       {
         return true;
       } 
@@ -184,6 +185,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       $scope.contado=true;
       $scope.cerrado=false;
       $scope.cliente=1;
+      $scope.cliente2=1;
       $scope.base21=0.00;
       $scope.iva21=0.00;
       $scope.base10=0.00;
