@@ -11,10 +11,8 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
 
 .controller('VentaController', function($scope, store, jwtHelper, $http, backendAPIservice, $location, $window) {
     $scope.terminado=false;
-    $scope.cerrado=false;
     $scope.contado=true;
     $scope.cliente=1;
-    $scope.cliente2=1;
     $scope.base21=0.00;
     $scope.iva21=0.00;
     $scope.base10=0.00;
@@ -26,12 +24,10 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
     $scope.respuesta;
     $scope.error; 
     $scope.codigo;
-    $scope.codigo2;
     $scope.cero=0;  
     $scope.prueba;
     $scope.activo;
     $scope.numventa;
-    //$scope.socio;
 
     $scope.listaVenta = [];
     $scope.listaProducto = [];
@@ -42,38 +38,13 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       var token = store.get('token'); 
       if(!jwtHelper.isTokenExpired(token))
       {     
-        /*backendAPIservice.getProductos().success(function (recibe) {       
+        backendAPIservice.getProductos().success(function (recibe) {       
           var productosArray = recibe.response.productos;
           console.log(JSON.stringify(productosArray));  
           $scope.listaProducto = productosArray;
-          store.set('token',recibe.response.token);          
-        });*/        
-        backendAPIservice.getProductos().success(function (recibe) {       
-          var productosArray = recibe.response.productos;            
           store.set('token',recibe.response.token);
-          //var codigo2=recibe.code;
-          //console.log(JSON.stringify(codigo2));
-          //$scope.codigo2=codigo2;
-          if(recibe.code==0) 
-          {  
-            console.log(JSON.stringify(productosArray));  
-            $scope.listaProducto = productosArray;            
-          }  
-          else
-          {  
-            $scope.cerrado=true;
-            var respuesta1 = recibe.response.respuesta;
-            console.log(JSON.stringify(respuesta1));
-            $scope.respuesta = respuesta1;              
-          }
+          
         });
-
-        backendAPIservice.getTipos().success(function (recibe) {        
-          var tiposArray = recibe.response.tipos;
-          console.log(JSON.stringify(tiposArray));
-          $scope.listaTipo = tiposArray;
-          store.set('token',recibe.response.token);
-        });        
 
         backendAPIservice.getClientes().success(function (recibe) {        
           var sociosArray = recibe.response.socios;
@@ -82,6 +53,12 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
           store.set('token',recibe.response.token);
         });
 
+        backendAPIservice.getTipos().success(function (recibe) {        
+          var tiposArray = recibe.response.tipos;
+          console.log(JSON.stringify(tiposArray));
+          $scope.listaTipo = tiposArray;
+          store.set('token',recibe.response.token);
+        });
       }
       else
       {
@@ -115,13 +92,10 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
     };
 
     $scope.clienteElegido=function(value) {
-      if($scope.cliente2==1){ $scope.contado=true; }
-      if (value.id==$scope.cliente2)
-      {
+      if($scope.cliente==1){ $scope.contado=true; }
+      if (value.id==$scope.cliente){
         return true;
-      } 
-      else 
-      {
+      } else {
         return false;
       } 
     };   
@@ -164,7 +138,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
         console.log(JSON.stringify(numventa));
         $scope.respuesta = respuesta1;
         $scope.numventa = numventa;
-        store.set('token',recibe.response.token);
+        if(recibe.code==0) store.set('token',recibe.response.token);
         $scope.terminado=true;
       });
     };
@@ -184,9 +158,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       })*/
       $scope.terminado=false;
       $scope.contado=true;
-      $scope.cerrado=false;
       $scope.cliente=1;
-      $scope.cliente2=1;
       $scope.base21=0.00;
       $scope.iva21=0.00;
       $scope.base10=0.00;
@@ -212,28 +184,12 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
         if(!jwtHelper.isTokenExpired(token))
         {     
           backendAPIservice.getProductos().success(function (recibe) {       
-            var productosArray = recibe.response.productos;            
-            store.set('token',recibe.response.token);
-            if(recibe.code!=0) 
-            {  
-              $scope.cerrado=true;
-              var respuesta1 = recibe.response.respuesta;
-              console.log(JSON.stringify(respuesta1));
-              $scope.respuesta = respuesta1;
-            }  
-            else
-            {  
-              console.log(JSON.stringify(productosArray));  
-              $scope.listaProducto = productosArray;              
-            }
-          });
-
-          /*backendAPIservice.getProductos().success(function (recibe) {       
             var productosArray = recibe.response.productos;
             console.log(JSON.stringify(productosArray));  
             $scope.listaProducto = productosArray;
-            store.set('token',recibe.response.token);          
-          });  */          
+            store.set('token',recibe.response.token);
+            
+          });
 
           backendAPIservice.getClientes().success(function (recibe) {        
             var sociosArray = recibe.response.socios;
@@ -272,15 +228,15 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       document.body.innerHTML = originalContents;
     };*/
 
-    $scope.printDiv = function(divName) {
+    /*$scope.printDiv = function(divName) {
       var printContents = document.getElementById(divName).innerHTML;
       var popupWin = window.open('', '_blank', 'width=300,height=300');
       popupWin.document.open();
       popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="app.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
       popupWin.document.close();
-    };
+    };*/
 
-    /*$scope.printDiv = function (divName) {
+    $scope.printDiv = function (divName) {
 
       var printContents = document.getElementById(divName).innerHTML;
       var originalContents = document.body.innerHTML;      
@@ -308,7 +264,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       popupWin.document.close();
 
       return true;
-    };*/
+    };
 
 
 
