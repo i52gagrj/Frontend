@@ -43,8 +43,21 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
         backendAPIservice.getProductos().success(function (recibe) {       
           var productosArray = recibe.response.productos;            
           store.set('token',recibe.response.token);
-          console.log(JSON.stringify(productosArray));  
-          $scope.listaProducto = productosArray;              
+          //var codigo2=recibe.code;
+          //console.log(JSON.stringify(codigo2));
+          //$scope.codigo=codigo2
+          if(recibe.code!=0) 
+          {  
+            $scope.cerrado=true;
+            var respuesta1 = recibe.response.respuesta;
+            console.log(JSON.stringify(respuesta1));
+            $scope.respuesta = respuesta1;
+          }  
+          else
+          {  
+            console.log(JSON.stringify(productosArray));  
+            $scope.listaProducto = productosArray;              
+          }
         });
 
         backendAPIservice.getClientes().success(function (recibe) {        
@@ -92,7 +105,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       $scope.Totales();
     };
 
-   /*$scope.CambiarCliente=function(index) {
+    $scope.CambiarCliente=function(index) {
       var elemento=0;
       for(elemento in $scope.listaSocio) {
         if($scope.listaSocio[elemento].id == index){
@@ -103,8 +116,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
           $scope.socio.saldo = $scope.listaSocio[elemento].saldo;          
         }    
       }
-      $scope.TotalesModificado();
-    };    */
+    };    
 
     $scope.clienteElegido=function(value) {
       if($scope.cliente==1){ $scope.contado=true; }
