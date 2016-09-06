@@ -5,35 +5,34 @@
 </div>
 
 <div class="container" ng-show="terminado==false">
-  <div class="row">
-    <div class="col-md-12 panel panel-default">
-      <div class="panel-heading">    
-        <h2 class="panel-title" align=center>Venta a buscar</h2>
-      </div>  
-      <div align=center>
-        <input type="text" size="2" ng-model="idventa"/>
-        <button ng-click="BuscarVenta(idventa)"> Buscar </button>
-      </div>   
-    </div>
-
-    <div class="col-md-12 panel panel-default" ng-if="error==true || cerrado==true">
-      <h2 align=center>{{respuesta}}</h2>
-      <h2 align=center>Realice otra busqueda</h2>
-    </div>
-
-    <div class="col-md-12 panel panel-default"> 
-      <div class="panel-heading">    
-        <h2 class="panel-title" align=center> Datos de la Venta </h2>
-      </div>  
-      <strong> Id Cliente: </strong> {{ ventaOriginal.socio }}
-      <strong> DNI: </strong> {{ ventaOriginal.dni }}<br>
-      <strong> Direccion: </strong> {{ ventaOriginal.direccion }}
-      <strong> Poblacion: </strong> {{ ventaOriginal.poblacion }}<br>      
-      <strong> Vendedor: </strong> {{ ventaOriginal.usuario }}<br>
-      <strong> Fecha de venta: </strong> {{ ventaOriginal.fechaventa }}
-      <strong> Hora de venta: </strong> {{ ventaOriginal.horaventa }}   
-    </div> 
+  <div class="col-md-12 panel panel-default">
+    <div class="panel-heading">    
+      <h2 class="panel-title" align=center>Venta a buscar</h2>
+    </div>  
+    <div align=center>
+      <input type="text" size="2" ng-model="idventa"/>
+      <button ng-click="BuscarVenta(idventa)"> Buscar </button>
+    </div>   
   </div>
+
+  <div class="col-md-12 panel panel-default" ng-if="error==true">
+    <h2 align=center>{{respuesta}}</h2>
+    <h2 align=center>Realice otra busqueda</h2>
+  </div>
+
+  <div class="col-md-12 panel panel-default"> 
+    <div class="panel-heading">    
+      <h2 class="panel-title" align=center> Datos de la Venta </h2>
+    </div>  
+    <strong> Id Cliente: </strong> {{ ventaOriginal.socio }}
+    <strong> DNI: </strong> {{ ventaOriginal.dni }}<br>
+    <strong> Direccion: </strong> {{ ventaOriginal.direccion }}
+    <strong> Poblacion: </strong> {{ ventaOriginal.poblacion }}<br>      
+    <strong> Vendedor: </strong> {{ ventaOriginal.usuario }}<br>
+    <strong> Fecha de venta: </strong> {{ ventaOriginal.fechaventa }}
+    <strong> Hora de venta: </strong> {{ ventaOriginal.horaventa }}   
+  </div> 
+  
   
   <!--<div class="col-md-12 panel panel-default" ng-if="error==true">
     <h2 align=center>{{respuesta}}</h2>
