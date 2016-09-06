@@ -37,7 +37,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
     $scope.listaSocio = [];  
     $scope.listaTipo = [];  
         
-    if(store.get('token')){
+    /*if(store.get('token')){
       var token = store.get('token'); 
       if(!jwtHelper.isTokenExpired(token))
       {     
@@ -59,6 +59,45 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
             console.log(JSON.stringify(respuesta1));
             $scope.respuesta = respuesta1;              
           }
+        });
+
+        backendAPIservice.getClientes().success(function (recibe) {        
+          var sociosArray = recibe.response.socios;
+          console.log(JSON.stringify(sociosArray));
+          $scope.listaSocio = sociosArray;
+          store.set('token',recibe.response.token);
+        });
+
+        backendAPIservice.getTipos().success(function (recibe) {        
+          var tiposArray = recibe.response.tipos;
+          console.log(JSON.stringify(tiposArray));
+          $scope.listaTipo = tiposArray;
+          store.set('token',recibe.response.token);
+        });
+      }
+      else
+      {
+        store.remove('token');
+        store.set('nombre', "Sin conexion");
+        $location.path("/login");
+      }
+    } 
+    else 
+    {
+      store.remove('token');
+      store.set('nombre', "Sin conexion");
+      $location.path("/login");
+    }*/
+
+    if(store.get('token')){
+      var token = store.get('token'); 
+      if(!jwtHelper.isTokenExpired(token))
+      {     
+        backendAPIservice.getProductos().success(function (recibe) {       
+          var productosArray = recibe.response.productos;
+          console.log(JSON.stringify(productosArray));  
+          $scope.listaProducto = productosArray;
+          store.set('token',recibe.response.token);          
         });
 
         backendAPIservice.getClientes().success(function (recibe) {        
