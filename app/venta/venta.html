@@ -155,21 +155,23 @@
           </tr>
         </tbody>
       </table>  
-      <div class="col-md-6 panel panel-default">
-        <div class="panel-heading">
-          <h2 class="panel-title">Totales</h2>
-        </div> 
-        <strong>Base 21: </strong> {{ base21 | number:2 }} <strong>IVA 21: </strong> {{ iva21 | number:2 }} <br>
-        <strong>Base 10: </strong> {{ base10 | number:2 }} <strong>IVA 10: </strong> {{ iva10 | number:2 }} <br>
-        <strong>Base 4: </strong> {{ base4 | number:2 }} <strong>IVA 4: </strong> {{ iva4 | number:2 }}
-        <h3><strong>Total: </strong> {{ total | number:2 }} </h3>
-        <strong ng-if="contado==false">Prepago</strong>  
-        <strong ng-if="contado==true">Contado</strong>   
-      </div> 
     </div>
+
+    <div class="col-md-12 panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title">Totales</h2>
+      </div> 
+      <strong>Base 21: </strong> {{ base21 | number:2 }} <strong>IVA 21: </strong> {{ iva21 | number:2 }} <br>
+      <strong>Base 10: </strong> {{ base10 | number:2 }} <strong>IVA 10: </strong> {{ iva10 | number:2 }} <br>
+      <strong>Base 4: </strong> {{ base4 | number:2 }} <strong>IVA 4: </strong> {{ iva4 | number:2 }}
+      <h3><strong>Total: </strong> {{ total | number:2 }} </h3>
+      <strong ng-if="contado==false">Prepago</strong>  
+      <strong ng-if="contado==true">Contado</strong>   
+    </div> 
+
   </div>
 
-  <div class="col-md-6 panel panel-default">
+  <div class="col-md-12 panel panel-default">
     <h2> {{respuesta}} </h2>
     <button ng-click="printDiv('imprimeesto')"> Imprimir </button>
     <button ng-click="Continuar()"> Continuar </button>
