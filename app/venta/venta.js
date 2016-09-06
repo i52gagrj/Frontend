@@ -42,6 +42,12 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       if(!jwtHelper.isTokenExpired(token))
       {     
         backendAPIservice.getProductos().success(function (recibe) {       
+          var productosArray = recibe.response.productos;
+          console.log(JSON.stringify(productosArray));  
+          $scope.listaProducto = productosArray;
+          store.set('token',recibe.response.token);          
+        });        
+        /*backendAPIservice.getProductos().success(function (recibe) {       
           var productosArray = recibe.response.productos;            
           store.set('token',recibe.response.token);
           //var codigo2=recibe.code;
@@ -59,7 +65,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
             console.log(JSON.stringify(respuesta1));
             $scope.respuesta = respuesta1;              
           }
-        });
+        });*/
 
         backendAPIservice.getClientes().success(function (recibe) {        
           var sociosArray = recibe.response.socios;
