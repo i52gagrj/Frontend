@@ -30,12 +30,10 @@
         </div>
         <!--<select name="nombre" ng-model="filtronombre" >
           <option ng-repeat="socio in listaSocio" value="{{socio.nombre}}" ng-selected="$first">{{socio.nombre}}
-        </select>
-        <strong>Código del Cliente:
-          <input size="2" type="text" name="cliente" id="cliente" ng-model="cliente" value=1></input>
-        </strong>-->
-        <div ng-repeat="socio in listaSocio">
-        <!--<div ng-repeat="socio in listaSocio | filter:filtronombre | filter:clienteElegido">-->
+        </select>-->
+        <strong>Código del Cliente:</strong>
+        <input size="2" name="cliente" id="cliente" ng-model="cliente" value=1></input>        
+        <div ng-repeat="socio in listaSocio | filter:clienteElegido">
           <strong> Nombre: </strong>  {{ socio.nombre }} <br>
           <strong> DNI: </strong> {{ socio.dni }} <br>
           <strong> Dirección: </strong> {{ socio.direccion }} <br>
