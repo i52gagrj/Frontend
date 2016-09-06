@@ -30,7 +30,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
     $scope.prueba;
     $scope.activo;
     $scope.numventa;
-    $scope.socio;
+    //$scope.socio;
 
     $scope.listaVenta = [];
     $scope.listaProducto = [];
@@ -44,10 +44,10 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
         backendAPIservice.getProductos().success(function (recibe) {       
           var productosArray = recibe.response.productos;            
           store.set('token',recibe.response.token);
-          var codigo2=recibe.code;
-          console.log(JSON.stringify(codigo2));
-          $scope.codigo2=codigo2;
-          if($scope.codigo2==0) 
+          //var codigo2=recibe.code;
+          //console.log(JSON.stringify(codigo2));
+          //$scope.codigo2=codigo2;
+          if(recibe.code==0) 
           {  
             console.log(JSON.stringify(productosArray));  
             $scope.listaProducto = productosArray;            
