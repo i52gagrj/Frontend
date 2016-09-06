@@ -29,14 +29,13 @@
           <h2 class="panel-title" align=center>Cliente</h2>
         </div>
         <select name="nombre" ng-model="filtronombre" >
-          <option value="">Venta Contado
           <option ng-repeat="socio in listaSocio" value="{{socio.nombre}}">{{socio.nombre}}
         </select>
         <!--<strong>Código del Cliente:
           <input size="2" type="text" name="cliente" id="cliente" ng-model="cliente" value=1></input>
         </strong>
         <div ng-repeat="socio in listaSocio | filter:clienteElegido"> -->    
-        <div ng-repeat="socio in listaSocio | filter:filtronombre">             
+        <div ng-repeat="socio in listaSocio | filter:filtronombre" ng-selected="$first">             
           <strong> Nombre: </strong>  {{ socio.nombre }} <br>
           <strong> DNI: </strong> {{ socio.dni }} <br>
           <strong> Dirección: </strong> {{ socio.direccion }} <br>
