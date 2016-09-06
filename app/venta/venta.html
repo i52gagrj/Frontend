@@ -4,7 +4,7 @@
   </div> 
 </div>
 
-<div class="container" ng-show="terminado==false">
+<div class="container" ng-if="terminado==false">
   <div class="row">
     <div class="col-md-6 panel panel-default">
       <div class="panel-heading">
@@ -170,9 +170,11 @@
       </div> 
     </div>
   </div>
-  
-  <h2> {{respuesta}} </h2>
-  <button ng-click="printDiv('imprimeesto')"> Imprimir </button>
-  <button ng-click="Continuar()"> Continuar </button>
+
+  <div class="col-md-12 panel panel-default"> 
+    <h2> {{respuesta}} </h2>
+    <button ng-click="printDiv('imprimeesto')"> Imprimir </button>
+    <button ng-click="Continuar()"> Continuar </button>
+  </div>  
  
 </div>
