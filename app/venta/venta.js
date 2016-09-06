@@ -38,13 +38,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
     if(store.get('token')){
       var token = store.get('token'); 
       if(!jwtHelper.isTokenExpired(token))
-      {     
-        /*backendAPIservice.getProductos().success(function (recibe) {       
-          var productosArray = recibe.response.productos;
-          console.log(JSON.stringify(productosArray));  
-          $scope.listaProducto = productosArray;
-          store.set('token',recibe.response.token);          
-        });*/        
+      {           
         backendAPIservice.getProductos().success(function (recibe) {                           
           var codigo=recibe.code;
           console.log(JSON.stringify(codigo));
