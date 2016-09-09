@@ -294,7 +294,7 @@ angular.module('Frontend.Venta', ['ngRoute','angular-jwt','angular-storage'])
       } else {
           var popupWin = window.open('', '_blank', 'width=800,height=600');
           popupWin.document.open();
-          popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="app.css" /></head><body onload="window.print()">' + printContents + '</html>');
+          popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" /></head><body onload="window.print()">' + printContents + '</html>');
           popupWin.document.close();
       }
       popupWin.document.close();
