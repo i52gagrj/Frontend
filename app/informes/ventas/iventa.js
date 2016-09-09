@@ -129,7 +129,7 @@ angular.module('Frontend.Informes.Ventas', ['ngRoute','angular-jwt','angular-sto
       var printContents = document.getElementById(divName).innerHTML;
       var popupWin = window.open('', '_blank', 'width=300,height=300');
       popupWin.document.open();
-      popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="app.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
+      popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
       popupWin.document.close();
       $scope.terminado=false;
     };        
